@@ -27,6 +27,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   const chartsGrid = document.getElementById("charts-grid");
   const chartsLoading = document.getElementById("charts-loading");
 
+  // Theme Toggle Logic
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+  
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("bossissa-theme", theme);
+    themeIcon.textContent = theme === "dark" ? "☀️" : "🌓";
+  }
+
+  const savedTheme = localStorage.getItem("bossissa-theme");
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "light";
+      applyTheme(current === "light" ? "dark" : "light");
+    });
+  }
+
   let tableData = [];
   let metaData = null;
   let chartsData = [];

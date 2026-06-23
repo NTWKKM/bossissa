@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
   <meta name="description" content="Substance-Induced Psychosis (SIP) statistical analysis — Table One and infographic visualizations comparing SIP vs Non-SIP groups." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <!-- Plotly.js (CDN, minified) -->
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
   <link rel="stylesheet" href="index.css" />
@@ -45,7 +45,12 @@
           <span class="tab-icon">📈</span> Infographics
         </button>
       </div>
-      <span class="nav-brand">Bossissa · SIP Analysis</span>
+      <div style="display:flex; align-items:center; gap: 1rem;">
+        <span class="nav-brand">Bossissa · SIP Analysis</span>
+        <button id="theme-toggle" class="tab-btn" aria-label="Toggle dark mode" style="padding: 0.5rem; border-radius: 50%; border: 1px solid var(--border);">
+          <span class="tab-icon" id="theme-icon">🌓</span>
+        </button>
+      </div>
     </div>
   </nav>
 
