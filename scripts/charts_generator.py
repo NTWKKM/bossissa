@@ -178,7 +178,7 @@ def chart_substance(df: pd.DataFrame) -> dict:
     sip, non = group_split(df)
 
     def top_counts(sub_df: pd.DataFrame, top_n: int = 8) -> pd.Series:
-        counts = sub_df[col].value_counts().head(top_n)
+        counts = sub_df[col].value_counts(sort=False).head(top_n)
         return counts
 
     sip_c = top_counts(sip)

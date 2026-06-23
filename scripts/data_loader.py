@@ -188,7 +188,10 @@ def load_data(exclude_sip_99: bool = True) -> pd.DataFrame:
     # Map categorical values to labels
     for col, mapping in VALUE_MAPPINGS.items():
         if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce").map(mapping).fillna(df[col])
+            mapped_series = pd.to_numeric(df[col], errors="coerce").map(mapping).fillna(df[col])
+            ordered_cats = list(dict.fromkeys(mapping.values()))
+            other_cats = [x for x in mapped_series.dropna().unique() if x not in ordered_cats]
+            df[col] = pd.Categorical(mapped_series, categories=ordered_cats + other_cats, ordered=True)
 
     # Convert sip_diagnosis to numeric, coerce errors to NaN
     if STRATIFY_COL in df.columns:
