@@ -2,11 +2,11 @@
 
 Automated pipeline for Substance-Induced Psychosis (SIP) statistical analysis.
 
-**Live Dashboard**: [GitHub Pages URL will appear after first deploy]
+**Live Dashboard**: [https://ntwkkm.github.io/bossissa/](https://ntwkkm.github.io/bossissa/)
 
 ## Overview
 
-- **Data Source**: Google Sheets (auto-fetched via public CSV export)
+- **Data Source**: [Google Sheets](https://docs.google.com/spreadsheets/d/1JG5cGNaqo_2DB4Z7N-3w8Yz8eHkQhAhDLoUxMoymlAY/edit?usp=sharing) (auto-fetched via public CSV export)
 - **Analysis**: Python OOP TableOne generator with full statistical engine
 - **Trigger**: Manual GitHub Actions (`workflow_dispatch`)
 - **Output**: Interactive GitHub Pages dashboard
@@ -43,7 +43,8 @@ bossissa/
 │       ├── metadata.json
 │       └── tableone.html
 ├── .github/workflows/
-│   └── analyze.yml             # Manual-trigger GitHub Actions
+│   ├── analyze.yml             # Manual-trigger GitHub Actions
+│   └── deploy.yml              # Auto-deploy to GitHub Pages
 └── pyproject.toml              # uv project config
 ```
 
