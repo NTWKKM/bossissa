@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sig = filterSig.value;
 
     const filtered = tableData.filter(r => {
-      if (term && !r.variable.toLowerCase().includes(term) && !(r.label && r.label.toLowerCase().includes(term))) return false;
-      if (type !== "all" && r.type !== type) return false;
+      if (term && !r.name.toLowerCase().includes(term) && !(r.label && r.label.toLowerCase().includes(term))) return false;
+      if (type !== "all" && r.var_type !== type) return false;
       if (sig === "sig" && (r.p_value === null || r.p_value >= 0.05)) return false;
       if (sig === "ns" && r.p_value !== null && r.p_value < 0.05) return false;
       return true;
@@ -141,24 +141,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     tbody.innerHTML = filtered.map(r => {
       let pClass = r.p_value !== null && r.p_value < 0.05 ? 'style="color:var(--accent-green);font-weight:600"' : '';
       let effectHtml = "-";
-      if (r.effect_size !== null) {
-        if (r.effect_type === "OR") {
-          effectHtml = `OR: ${r.effect_size.toFixed(2)} [${r.effect_ci[0].toFixed(2)}-${r.effect_ci[1].toFixed(2)}]`;
-        } else if (r.effect_type === "SMD") {
-          effectHtml = `SMD: ${r.effect_size.toFixed(3)}`;
+      if (r.extra_stats) {
+        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) {
+          const orData = r.extra_stats.or;
+          const ciLo = (orData.ci_lo !== null && orData.ci_lo !== undefined) ? orData.ci_lo.toFixed(2) : '?';
+          const ciHi = (orData.ci_hi !== null && orData.ci_hi !== undefined) ? orData.ci_hi.toFixed(2) : '?';
+          effectHtml = `OR: ${orData.or.toFixed(2)} [${ciLo}–${ciHi}]`;
+        } else if (r.extra_stats.smd !== undefined && r.extra_stats.smd !== null) {
+          effectHtml = `SMD: ${r.extra_stats.smd.toFixed(3)}`;
         }
+      }
+
+      let totalStr = "";
+      let g0Str = "";
+      let g1Str = "";
+
+      if (r.var_type === "categorical") {
+        const levels = Object.keys(r.stats_overall || {});
+        totalStr = levels.map(l => `<div style="margin-bottom:2px"><b>${l}:</b> ${r.stats_overall[l]}</div>`).join("");
+        g0Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups["0"]?.[l] || "-"}</div>`).join("");
+        g1Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups["1"]?.[l] || "-"}</div>`).join("");
+      } else {
+        totalStr = r.stats_overall || "-";
+        g0Str = r.stats_groups["0"] || "-";
+        g1Str = r.stats_groups["1"] || "-";
       }
 
       return `
         <tr>
           <td class="col-var">
-            ${r.label || r.variable}
-            <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.type.replace('_', ' ')}</div>
+            ${r.label || r.name}
+            <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.var_type.replace('_', ' ')}</div>
           </td>
-          <td>${r.total_str}</td>
-          <td>${r.group_str["0"] || "-"}</td>
-          <td>${r.group_str["1"] || "-"}</td>
-          <td ${pClass}>${r.p_value !== null ? r.p_value.toFixed(3) : "-"}</td>
+          <td>${totalStr}</td>
+          <td>${g0Str}</td>
+          <td>${g1Str}</td>
+          <td ${pClass}>${r.p_value_fmt}</td>
           <td style="font-size:0.8rem;color:var(--text-secondary)">${effectHtml}</td>
         </tr>
       `;
@@ -175,19 +193,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     findingsGrid.innerHTML = sigVars.map(r => {
       let effectHtml = "";
-      if (r.effect_size !== null) {
-        if (r.effect_type === "OR") effectHtml = `OR: ${r.effect_size.toFixed(2)}`;
-        else if (r.effect_type === "SMD") effectHtml = `SMD: ${r.effect_size.toFixed(2)}`;
+      if (r.extra_stats) {
+        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) effectHtml = `OR: ${r.extra_stats.or.or.toFixed(2)}`;
+        else if (r.extra_stats.smd !== undefined && r.extra_stats.smd !== null) effectHtml = `SMD: ${r.extra_stats.smd.toFixed(2)}`;
       }
+
+      let g0Str = "";
+      let g1Str = "";
+      if (r.var_type === "categorical") {
+        const levels = Object.keys(r.stats_overall || {});
+        g0Str = levels.map(l => `${l}: ${r.stats_groups["0"]?.[l] || "-"}`).join(", ");
+        g1Str = levels.map(l => `${l}: ${r.stats_groups["1"]?.[l] || "-"}`).join(", ");
+      } else {
+        g0Str = r.stats_groups["0"] || "-";
+        g1Str = r.stats_groups["1"] || "-";
+      }
+
       return `
         <div class="finding-card reveal">
           <div class="finding-header">
-            <span class="finding-title">${r.label || r.variable}</span>
-            <span class="finding-pval">p = ${r.p_value.toFixed(3)}</span>
+            <span class="finding-title">${r.label || r.name}</span>
+            <span class="finding-pval">p = ${r.p_value_fmt}</span>
           </div>
           <div class="finding-body">
-            <div><strong>Non-SIP:</strong> ${r.group_str["0"]}</div>
-            <div><strong>SIP:</strong> ${r.group_str["1"]}</div>
+            <div><strong>Non-SIP:</strong> ${g0Str}</div>
+            <div><strong>SIP:</strong> ${g1Str}</div>
             ${effectHtml ? `<div style="margin-top:0.5rem;font-size:0.85rem;color:var(--text-muted)">${effectHtml}</div>` : ''}
           </div>
         </div>
@@ -258,17 +288,38 @@ document.addEventListener("DOMContentLoaded", async () => {
     csvRows.push(["Variable", "Type", "Total", "Non-SIP", "SIP", "p-value", "Effect_Type", "Effect_Size", "Effect_CI_Low", "Effect_CI_High"].join(","));
     
     tableData.forEach(r => {
-      const ciLo = r.effect_ci ? r.effect_ci[0] : "";
-      const ciHi = r.effect_ci ? r.effect_ci[1] : "";
+      let ciLo = "", ciHi = "", effectType = "", effectSize = "";
+      if (r.extra_stats) {
+        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) {
+          effectType = "OR";
+          effectSize = r.extra_stats.or.or;
+          ciLo = r.extra_stats.or.ci_lo;
+          ciHi = r.extra_stats.or.ci_hi;
+        } else if (r.extra_stats.smd !== undefined && r.extra_stats.smd !== null) {
+          effectType = "SMD";
+          effectSize = r.extra_stats.smd;
+        }
+      }
+
+      let totalStr = r.stats_overall;
+      let g0Str = r.stats_groups["0"];
+      let g1Str = r.stats_groups["1"];
+
+      if (r.var_type === "categorical") {
+        totalStr = JSON.stringify(totalStr);
+        g0Str = JSON.stringify(g0Str);
+        g1Str = JSON.stringify(g1Str);
+      }
+
       const row = [
-        `"${r.variable}"`,
-        r.type,
-        `"${r.total_str}"`,
-        `"${r.group_str['0'] || ''}"`,
-        `"${r.group_str['1'] || ''}"`,
+        `"${r.name}"`,
+        r.var_type,
+        `"${totalStr}"`,
+        `"${g0Str || ''}"`,
+        `"${g1Str || ''}"`,
         r.p_value,
-        r.effect_type || "",
-        r.effect_size || "",
+        effectType,
+        effectSize,
         ciLo,
         ciHi
       ];
