@@ -22,8 +22,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Tab Elements
   const tabTableOne = document.getElementById("tab-tableone");
   const tabCharts = document.getElementById("tab-charts");
+  const tabStat = document.getElementById("tab-stat");
   const pageTableOne = document.getElementById("page-tableone");
   const pageCharts = document.getElementById("page-charts");
+  const pageStat = document.getElementById("page-stat");
   const chartsGrid = document.getElementById("charts-grid");
   const chartsLoading = document.getElementById("charts-loading");
 
@@ -52,13 +54,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   let tableData = [];
   let metaData = null;
   let chartsData = [];
+  let statData = null;
 
   // 1. Fetch Data
   try {
-    const [metaRes, tableRes, chartsRes] = await Promise.all([
+    const [metaRes, tableRes, chartsRes, statRes] = await Promise.all([
       fetch("data/metadata.json"),
       fetch("data/tableone.json"),
-      fetch("data/charts.json").catch(() => ({ ok: false })) // Charts might fail if not generated yet
+      fetch("data/charts.json").catch(() => ({ ok: false })),
+      fetch("data/stat_freq.json").catch(() => ({ ok: false }))
     ]);
 
     if (!metaRes.ok || !tableRes.ok) throw new Error("Data files not found");
@@ -69,10 +73,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (chartsRes && chartsRes.ok) {
       chartsData = await chartsRes.json();
     }
+    
+    if (statRes && statRes.ok) {
+      statData = await statRes.json();
+    }
 
     populateHero();
     renderTable();
     renderFindings();
+    if (statData) {
+      renderStatTabs();
+    } else {
+      document.getElementById("stat-loading-state").innerHTML = `<p style="color:var(--accent-red)">Error loading stat data.</p>`;
+    }
     
     // Hide loading, show table
     loadingState.style.display = "none";
@@ -201,8 +214,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       let g0Str = "";
       let g1Str = "";
-      const g0Name = metaData.group_labels["0"] || "0";
-      const g1Name = metaData.group_labels["1"] || "1";
+      const groupKeys = Object.keys(metaData.group_counts || {});
+      const g0Name = groupKeys.length > 0 ? groupKeys[0] : "Group 0";
+      const g1Name = groupKeys.length > 1 ? groupKeys[1] : "Group 1";
 
       if (r.var_type === "categorical") {
         const levels = Object.keys(r.stats_overall || {});
@@ -231,33 +245,40 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 3. Tab Navigation
   function switchTab(tabId) {
+    [tabTableOne, tabCharts, tabStat].forEach(el => {
+      if (el) {
+        el.classList.remove("active");
+        el.setAttribute("aria-selected", "false");
+      }
+    });
+    [pageTableOne, pageCharts, pageStat].forEach(el => {
+      if (el) el.hidden = true;
+    });
+
     if (tabId === "tableone") {
       tabTableOne.classList.add("active");
       tabTableOne.setAttribute("aria-selected", "true");
-      tabCharts.classList.remove("active");
-      tabCharts.setAttribute("aria-selected", "false");
-      
       pageTableOne.hidden = false;
-      pageCharts.hidden = true;
-    } else {
+    } else if (tabId === "charts") {
       tabCharts.classList.add("active");
       tabCharts.setAttribute("aria-selected", "true");
-      tabTableOne.classList.remove("active");
-      tabTableOne.setAttribute("aria-selected", "false");
-      
       pageCharts.hidden = false;
-      pageTableOne.hidden = true;
       
-      // Re-trigger layout for Plotly to ensure it sizes correctly if it was hidden
-      // Use setTimeout to allow the browser to paint the display:block first
       setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
       }, 50);
+    } else if (tabId === "stat") {
+      if (tabStat) {
+        tabStat.classList.add("active");
+        tabStat.setAttribute("aria-selected", "true");
+      }
+      if (pageStat) pageStat.hidden = false;
     }
   }
 
   tabTableOne.addEventListener("click", () => switchTab("tableone"));
   tabCharts.addEventListener("click", () => switchTab("charts"));
+  if (tabStat) tabStat.addEventListener("click", () => switchTab("stat"));
 
   // 4. Plotly Charts Rendering
   function renderCharts() {
@@ -356,4 +377,82 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // 6. Frequency Stats Rendering
+  function renderStatTabs() {
+    if (!statData) return;
+    
+    const loadingState = document.getElementById("stat-loading-state");
+    if (loadingState) loadingState.style.display = "none";
+    
+    const statContent = document.getElementById("stat-content-area");
+    if (statContent) statContent.hidden = false;
+
+    renderStatTable("inclusion", statData.inclusion, statData.total_n);
+    renderStatTable("hx", statData.hx_psych, statData.total_n);
+    renderStatTable("sip", statData.sip_all, statData.total_n);
+  }
+
+  function renderStatTable(idPrefix, groupData, totalN) {
+    const thead = document.getElementById(`thead-${idPrefix}`);
+    const tbody = document.getElementById(`tbody-${idPrefix}`);
+    
+    if (!thead || !tbody || !groupData || !groupData.results) return;
+
+    const groupKeys = Object.keys(groupData.group_labels).sort((a,b) => parseInt(a) - parseInt(b));
+    
+    let theadHtml = `<tr>
+      <th>Variable</th>
+      <th>Total (N=${totalN})</th>`;
+    
+    groupKeys.forEach(k => {
+      const label = groupData.group_labels[k];
+      const count = groupData.group_counts[label] || 0;
+      theadHtml += `<th>${label} (n=${count})</th>`;
+    });
+    
+    theadHtml += `<th>p-value</th></tr>`;
+    thead.innerHTML = theadHtml;
+
+    const rows = groupData.results.map(r => {
+      let pClass = r.p_value !== null && r.p_value < 0.05 ? 'style="color:var(--accent-green);font-weight:600"' : '';
+      
+      let totalStr = "";
+      let groupStrs = groupKeys.map(() => "");
+
+      if (r.var_type === "categorical") {
+        const levels = Object.keys(r.stats_overall || {});
+        totalStr = levels.map(l => `<div style="margin-bottom:2px"><b>${l}:</b> ${r.stats_overall[l]}</div>`).join("");
+        
+        groupStrs = groupKeys.map(k => {
+          const label = groupData.group_labels[k];
+          return levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups[label]?.[l] || "-"}</div>`).join("");
+        });
+      } else {
+        totalStr = r.stats_overall || "-";
+        groupStrs = groupKeys.map(k => {
+          const label = groupData.group_labels[k];
+          return r.stats_groups[label] || "-";
+        });
+      }
+
+      let rowHtml = `
+        <tr>
+          <td class="col-var">
+            ${r.label || r.name}
+            <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.var_type.replace('_', ' ')}</div>
+          </td>
+          <td>${totalStr}</td>
+      `;
+
+      groupStrs.forEach(gStr => {
+        rowHtml += `<td>${gStr}</td>`;
+      });
+
+      rowHtml += `<td ${pClass}>${r.p_value_fmt}</td></tr>`;
+      return rowHtml;
+    });
+
+    tbody.innerHTML = rows.join("");
+  }
 });

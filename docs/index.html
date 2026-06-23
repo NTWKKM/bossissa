@@ -44,9 +44,9 @@
         <button class="tab-btn"        id="tab-charts"   role="tab" aria-selected="false" aria-controls="page-charts">
           <span class="tab-icon">📈</span> Infographics
         </button>
-        <a href="stat.html" class="tab-btn" style="text-decoration: none; color: inherit;">
+        <button class="tab-btn"        id="tab-stat"     role="tab" aria-selected="false" aria-controls="page-stat">
           <span class="tab-icon">📋</span> Frequency Stats
-        </a>
+        </button>
         <a href="https://docs.google.com/spreadsheets/d/1JG5cGNaqo_2DB4Z7N-3w8Yz8eHkQhAhDLoUxMoymlAY/edit?usp=sharing" target="_blank" class="tab-btn" style="text-decoration: none; color: inherit;">
           <span class="tab-icon">📄</span> Google Sheets
         </a>
@@ -169,8 +169,57 @@
         </div>
       </div>
     </section>
-
   </div><!-- /page-charts -->
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       PAGE: STATS
+  ══════════════════════════════════════════════════════════════════ -->
+  <div id="page-stat" role="tabpanel" hidden>
+
+    <section class="section">
+      <div class="container">
+        <div class="loading-state" id="stat-loading-state"><div class="spinner"></div><p>Loading frequency data…</p></div>
+        
+        <div id="stat-content-area" hidden>
+          
+          <!-- Inclusion Criteria Table -->
+          <div class="section-header" style="margin-top: 2rem;">
+            <h2 class="section-title">Stratified by: Inclusion Criteria</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-inclusion"></thead>
+              <tbody id="tbody-inclusion"></tbody>
+            </table>
+          </div>
+
+          <!-- Psychiatric History Table -->
+          <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Stratified by: Psychiatric History</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-hx"></thead>
+              <tbody id="tbody-hx"></tbody>
+            </table>
+          </div>
+
+          <!-- SIP Diagnosis Table -->
+          <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Stratified by: SIP Diagnosis (All Groups)</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-sip"></thead>
+              <tbody id="tbody-sip"></tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-stat -->
 
   <!-- ═══════════════════════════ FOOTER ══════════════════════════ -->
   <footer class="footer">
