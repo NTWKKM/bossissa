@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+.env
+*.egg-info/
+
+# uv
+.uv/
+
+# OS
+.DS_Store
+
+# Data (never commit raw patient data)
+*.csv
+!docs/data/.gitkeep

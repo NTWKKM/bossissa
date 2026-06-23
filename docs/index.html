@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIP Statistical Analysis · Bossissa</title>
+  <meta name="description" content="Substance-Induced Psychosis (SIP) statistical analysis — Table One comparing SIP vs Non-SIP groups across clinical variables." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="badge">Substance-Induced Psychosis</div>
+      <h1 class="hero-title">SIP Diagnostic Analysis</h1>
+      <p class="hero-subtitle">
+        Comparative analysis of clinical characteristics between patients who
+        meet and do not meet DSM-5 criteria for Substance-Induced Psychotic Disorder
+      </p>
+
+      <!-- Summary cards — populated by JS -->
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card skeleton">
+          <span class="stat-value" id="stat-total">—</span>
+          <span class="stat-label">Total Patients</span>
+        </div>
+        <div class="stat-card skeleton">
+          <span class="stat-value" id="stat-sip">—</span>
+          <span class="stat-label">SIP Diagnosis</span>
+        </div>
+        <div class="stat-card skeleton">
+          <span class="stat-value" id="stat-non-sip">—</span>
+          <span class="stat-label">Non-SIP</span>
+        </div>
+        <div class="stat-card skeleton">
+          <span class="stat-value" id="stat-sig">—</span>
+          <span class="stat-label">Significant Variables</span>
+        </div>
+      </div>
+
+      <div class="meta-line" id="meta-line">Loading analysis…</div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════ NAV ════════════════════════════════ -->
+  <nav class="sticky-nav" id="sticky-nav">
+    <div class="container nav-inner">
+      <span class="nav-brand">Bossissa · SIP Analysis</span>
+      <div class="nav-links">
+        <a href="#table-section">Table One</a>
+        <a href="#findings-section">Key Findings</a>
+        <a href="#methods-section">Methods</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════ FILTERS ═════════════════════════════ -->
+  <section class="filter-bar">
+    <div class="container filter-inner">
+      <div class="filter-group">
+        <label for="filter-type">Variable Type</label>
+        <select id="filter-type">
+          <option value="all">All Types</option>
+          <option value="categorical">Categorical</option>
+          <option value="continuous_normal">Continuous (Normal)</option>
+          <option value="continuous_non_normal">Continuous (Non-Normal)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-sig">Significance</label>
+        <select id="filter-sig">
+          <option value="all">All</option>
+          <option value="sig">Significant (p&lt;0.05)</option>
+          <option value="ns">Non-Significant</option>
+        </select>
+      </div>
+      <div class="filter-group search-group">
+        <label for="search-var">Search Variable</label>
+        <input id="search-var" type="text" placeholder="Type to filter…" autocomplete="off" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ TABLE ONE ═══════════════════════════ -->
+  <section class="section" id="table-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Table 1 — Baseline Characteristics</h2>
+        <p class="section-desc">
+          Stratified by SIP diagnosis. Values shown as mean ± SD (normal),
+          median [Q1–Q3] (non-normal), or n (%) for categorical variables.
+        </p>
+        <button class="btn-export" id="btn-export-csv">⬇ Export CSV</button>
+      </div>
+
+      <div class="table-wrapper" id="table-wrapper">
+        <div class="loading-state" id="loading-state">
+          <div class="spinner"></div>
+          <p>Loading analysis data…</p>
+        </div>
+        <table class="tableone" id="tableone" hidden>
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ KEY FINDINGS ════════════════════════ -->
+  <section class="section findings-section" id="findings-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Key Findings</h2>
+        <p class="section-desc">Variables with statistically significant differences (p &lt; 0.05) between groups.</p>
+      </div>
+      <div class="findings-grid" id="findings-grid">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ METHODS ═════════════════════════════ -->
+  <section class="section methods-section" id="methods-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Statistical Methods</h2>
+      </div>
+      <div class="methods-grid">
+        <div class="method-card reveal">
+          <div class="method-icon">📊</div>
+          <h3>Variable Classification</h3>
+          <p>Automatic type inference using Shapiro-Wilk (N&lt;5,000) or Jarque-Bera (N≥5,000) normality tests, with descriptive criteria (|skewness|&lt;1.0 and |kurtosis|&lt;2.0 for N&gt;50).</p>
+        </div>
+        <div class="method-card reveal">
+          <div class="method-icon">🔬</div>
+          <h3>Continuous Variables</h3>
+          <p>Welch t-test (normal, 2 groups) or Mann-Whitney U (non-normal, 2 groups). Reported as mean ± SD or median [Q1, Q3].</p>
+        </div>
+        <div class="method-card reveal">
+          <div class="method-icon">📋</div>
+          <h3>Categorical Variables</h3>
+          <p>Pearson Chi-square with fallback to Fisher's Exact test for 2×2 tables when minimum expected frequency &lt;5. Reported as n (%).</p>
+        </div>
+        <div class="method-card reveal">
+          <div class="method-icon">⚖️</div>
+          <h3>Effect Size</h3>
+          <p>Standardized Mean Difference (SMD) with pooled SD. Odds Ratio (OR) with 95% CI using Haldane-Anscombe correction for categorical and univariate logistic regression for continuous variables.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ FOOTER ══════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>Bossissa · SIP Statistical Analysis Pipeline</p>
+      <p class="footer-meta">Data sourced from Google Sheets · Automated via GitHub Actions · <span id="footer-ts">—</span></p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

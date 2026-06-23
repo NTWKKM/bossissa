@@ -1,0 +1,14 @@
+[project]
+name = "bossissa"
+version = "0.1.0"
+description = "SIP (Substance-Induced Psychosis) Statistical Analysis Pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "scipy>=1.13.0",
+    "requests>=2.31.0",
+]
+
+[dependency-groups]
+dev = []
