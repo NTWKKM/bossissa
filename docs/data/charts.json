@@ -9,11 +9,13 @@
         "type": "pie",
         "labels": [
           "Not SIP",
-          "SIP"
+          "SIP",
+          "Incomplete Data"
         ],
         "values": [
           340,
-          338
+          338,
+          322
         ],
         "hole": 0.55,
         "marker": {
@@ -175,12 +177,12 @@
       "bargap": 0.25
     },
     "pvalues": {
-      "Auditory Hallucination": 0.3184,
-      "Visual Hallucination": 0.22,
-      "Delusion": 0.143,
-      "Aggression": 0.2484,
-      "Disorganized Speech": 0.8191,
-      "Confusion": 0.5378
+      "Auditory Hallucination": 0.5266,
+      "Visual Hallucination": 0.3663,
+      "Delusion": 0.279,
+      "Aggression": 0.0832,
+      "Disorganized Speech": 0.8115,
+      "Confusion": 0.21
     }
   },
   {
@@ -1257,15 +1259,15 @@
         "name": "SIP",
         "x": [
           1,
+          4,
           2,
-          3,
-          4
+          3
         ],
         "y": [
           22.8,
+          26.9,
           27.5,
-          22.8,
-          26.9
+          22.8
         ],
         "marker": {
           "color": "#63b3ed"
@@ -1277,15 +1279,15 @@
         "name": "Non-SIP",
         "x": [
           1,
+          4,
           2,
-          3,
-          4
+          3
         ],
         "y": [
           25.3,
+          23.2,
           27.6,
-          23.8,
-          23.2
+          23.8
         ],
         "marker": {
           "color": "#9f7aea"
@@ -1343,55 +1345,55 @@
         "mode": "markers",
         "name": "OR (95% CI)",
         "x": [
-          0.789,
-          0.828,
-          1.001,
-          1.003,
-          1.112,
-          1.18,
-          1.194,
-          1.222,
-          1.222,
-          1.222
+          0.0,
+          0.494,
+          2.188,
+          4022.204,
+          6392.925,
+          11365.851,
+          11468.053,
+          12026.626,
+          14510.693,
+          4.789614984768116e+16
         ],
         "y": [
-          "Delusion",
-          "Aggression",
-          "Substance Use Hx",
-          "Age",
           "Confusion",
-          "Auditory Hallucination",
-          "Prior Psychiatric Hx",
-          "Visual Hallucination",
+          "Age",
+          "Substance Use Hx",
+          "Aggression",
           "UDS Meth+",
-          "UDS Cannabis+"
+          "Delusion",
+          "UDS Cannabis+",
+          "Visual Hallucination",
+          "Auditory Hallucination",
+          "Prior Psychiatric Hx"
         ],
         "error_x": {
           "type": "data",
           "symmetric": false,
           "array": [
-            0.278,
-            0.291,
-            0.003,
-            0.008,
-            0.391,
-            0.414,
-            0.42,
-            0.431,
-            0.43,
-            0.43
+            0.0,
+            0.02,
+            0.044,
+            24532.739,
+            38992.54,
+            69324.044,
+            69947.403,
+            73354.324,
+            88505.46,
+            2.9213428308275974e+17
           ],
           "arrayminus": [
-            0.206,
-            0.216,
-            0.003,
-            0.008,
-            0.289,
-            0.307,
-            0.311,
-            0.318,
-            0.318,
-            0.317
+            0.0,
+            0.019,
+            0.044,
+            3455.643,
+            5492.428,
+            9764.875,
+            9852.681,
+            10332.574,
+            12466.74,
+            4.114957381193905e+16
           ],
           "color": "#8b97b0",
           "thickness": 2,
@@ -1400,16 +1402,16 @@
         "marker": {
           "size": 12,
           "color": [
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0",
-            "#8b97b0"
+            "#68d391",
+            "#68d391",
+            "#68d391",
+            "#68d391",
+            "#68d391",
+            "#68d391",
+            "#68d391",
+            "#68d391",
+            "#68d391",
+            "#68d391"
           ],
           "symbol": "diamond"
         },
@@ -1424,8 +1426,8 @@
           1
         ],
         "y": [
-          "Delusion",
-          "UDS Cannabis+"
+          "Confusion",
+          "Prior Psychiatric Hx"
         ],
         "line": {
           "color": "#f6ad55",

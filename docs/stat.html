@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequency Stats · Bossissa</title>
+  <meta name="description" content="Frequency distribution tables stratified by Inclusion Criteria, Psychiatric History, and SIP Diagnosis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <header class="hero" id="hero" style="padding-bottom: 2rem;">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="badge">Substance-Induced Psychosis · Frequency Stats</div>
+      <h1 class="hero-title">Frequency Distribution Analysis</h1>
+      <p class="hero-subtitle">
+        Descriptive characteristics and frequency distributions stratified by multiple key criteria.
+      </p>
+      <div class="meta-line" id="meta-line">Loading analysis…</div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════ TAB NAV ═════════════════════════ -->
+  <nav class="tab-nav" id="tab-nav">
+    <div class="container tab-nav-inner">
+      <div class="tab-list" role="tablist">
+        <a href="index.html" class="tab-btn" style="text-decoration: none; color: inherit;">
+          <span class="tab-icon">📊</span> Table One
+        </a>
+        <a href="index.html" class="tab-btn" style="text-decoration: none; color: inherit;">
+          <span class="tab-icon">📈</span> Infographics
+        </a>
+        <button class="tab-btn active" id="tab-stat" role="tab" aria-selected="true" aria-controls="page-stat">
+          <span class="tab-icon">📋</span> Frequency Stats
+        </button>
+      </div>
+      <div style="display:flex; align-items:center; gap: 1rem;">
+        <span class="nav-brand">Bossissa · SIP Analysis</span>
+        <button id="theme-toggle" class="tab-btn" aria-label="Toggle dark mode" style="padding: 0.5rem; border-radius: 50%; border: 1px solid var(--border);">
+          <span class="tab-icon" id="theme-icon">🌓</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       PAGE: STATS
+  ══════════════════════════════════════════════════════════════════ -->
+  <div id="page-stat" role="tabpanel">
+
+    <section class="section">
+      <div class="container">
+        <div class="loading-state" id="loading-state"><div class="spinner"></div><p>Loading frequency data…</p></div>
+        
+        <div id="content-area" hidden>
+          
+          <!-- Inclusion Criteria Table -->
+          <div class="section-header" style="margin-top: 2rem;">
+            <h2 class="section-title">Stratified by: Inclusion Criteria</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-inclusion"></thead>
+              <tbody id="tbody-inclusion"></tbody>
+            </table>
+          </div>
+
+          <!-- Psychiatric History Table -->
+          <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Stratified by: Psychiatric History</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-hx"></thead>
+              <tbody id="tbody-hx"></tbody>
+            </table>
+          </div>
+
+          <!-- SIP Diagnosis Table -->
+          <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Stratified by: SIP Diagnosis (All Groups)</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-sip"></thead>
+              <tbody id="tbody-sip"></tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-stat -->
+
+  <!-- ═══════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>Bossissa · SIP Statistical Analysis Pipeline</p>
+      <p class="footer-meta">Data sourced from Google Sheets · Automated via GitHub Actions · <span id="footer-ts">—</span></p>
+    </div>
+  </footer>
+
+  <script src="stat.js"></script>
+</body>
+</html>

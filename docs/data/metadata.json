@@ -1,17 +1,49 @@
 {
-  "generated_at": "2026-06-23T12:33:22.836123+00:00",
+  "generated_at": "2026-06-23T13:00:01.913002+00:00",
   "sheet_id": "1JG5cGNaqo_2DB4Z7N-3w8Yz8eHkQhAhDLoUxMoymlAY",
-  "total_n": 678,
-  "group_counts": {
-    "Not SIP": 340,
-    "SIP": 338
+  "total_n": 1000,
+  "stratify_cols": {
+    "sip_diagnosis": {
+      "id": "sip_diagnosis",
+      "label": "SIP Diagnosis",
+      "group_counts": {
+        "Not SIP": 340,
+        "SIP": 338,
+        "Incomplete Data": 322
+      },
+      "group_labels": {
+        "0": "Not SIP",
+        "1": "SIP",
+        "99": "Incomplete Data"
+      }
+    },
+    "inclusion_criteria": {
+      "id": "inclusion_criteria",
+      "label": "Inclusion Criteria",
+      "group_counts": {
+        "Not Meet": 508,
+        "Meet": 492
+      },
+      "group_labels": {
+        "0": "Not Meet",
+        "1": "Meet"
+      }
+    },
+    "hx_psychiatric": {
+      "id": "hx_psychiatric",
+      "label": "Psychiatric History",
+      "group_counts": {
+        "No Hx": 521,
+        "Has Hx": 479
+      },
+      "group_labels": {
+        "0": "No Hx",
+        "1": "Has Hx"
+      }
+    }
   },
-  "stratify_col": "sip_diagnosis",
-  "group_labels": {
-    "0": "Not SIP",
-    "1": "SIP"
-  },
+  "default_stratify": "sip_diagnosis",
   "n_variables": 28,
-  "n_significant": 1,
+  "n_significant": 3,
   "n_charts": 8
 }

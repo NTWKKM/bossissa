@@ -105,9 +105,12 @@ VARIABLE_META = {
 
 STRATIFY_COL = "sip_diagnosis"
 STRATIFY_LABELS = {0: "Not SIP", 1: "SIP", 99: None}  # None → exclude from analysis
+INCLUSION_LABELS = {0: "Not Met", 1: "Met"}
+HX_PSYCH_LABELS = {0: "No", 1: "Yes"}
+SIP_ALL_LABELS = {0: "Not SIP", 1: "SIP", 99: "Incomplete Data"}
 
 
-def load_data() -> pd.DataFrame:
+def load_data(exclude_sip_99: bool = True) -> pd.DataFrame:
     """Fetch CSV from Google Sheet public URL and return cleaned DataFrame."""
     print(f"Fetching data from Google Sheet ({SHEET_ID})...")
     try:
@@ -127,8 +130,11 @@ def load_data() -> pd.DataFrame:
     if STRATIFY_COL in df.columns:
         df[STRATIFY_COL] = pd.to_numeric(df[STRATIFY_COL], errors="coerce")
 
-    # Exclude rows where sip_diagnosis == 99 (incomplete data)
-    df = df[df[STRATIFY_COL] != 99].copy()
-    print(f"  After exclusion (99 removed): {len(df)} rows")
+    if exclude_sip_99:
+        # Exclude rows where sip_diagnosis == 99 (incomplete data)
+        df = df[df[STRATIFY_COL] != 99].copy()
+        print(f"  After exclusion (99 removed): {len(df)} rows")
+    else:
+        print(f"  Retaining 99 (incomplete data) as requested: {len(df)} rows")
 
     return df
