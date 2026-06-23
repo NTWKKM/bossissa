@@ -159,12 +159,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (r.var_type === "categorical") {
         const levels = Object.keys(r.stats_overall || {});
         totalStr = levels.map(l => `<div style="margin-bottom:2px"><b>${l}:</b> ${r.stats_overall[l]}</div>`).join("");
-        g0Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups["0"]?.[l] || "-"}</div>`).join("");
-        g1Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups["1"]?.[l] || "-"}</div>`).join("");
+        g0Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups[g0Name]?.[l] || "-"}</div>`).join("");
+        g1Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups[g1Name]?.[l] || "-"}</div>`).join("");
       } else {
         totalStr = r.stats_overall || "-";
-        g0Str = r.stats_groups["0"] || "-";
-        g1Str = r.stats_groups["1"] || "-";
+        g0Str = r.stats_groups[g0Name] || "-";
+        g1Str = r.stats_groups[g1Name] || "-";
       }
 
       return `
@@ -200,13 +200,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       let g0Str = "";
       let g1Str = "";
+      const g0Name = metaData.group_labels["0"] || "0";
+      const g1Name = metaData.group_labels["1"] || "1";
+
       if (r.var_type === "categorical") {
         const levels = Object.keys(r.stats_overall || {});
-        g0Str = levels.map(l => `${l}: ${r.stats_groups["0"]?.[l] || "-"}`).join(", ");
-        g1Str = levels.map(l => `${l}: ${r.stats_groups["1"]?.[l] || "-"}`).join(", ");
+        g0Str = levels.map(l => `${l}: ${r.stats_groups[g0Name]?.[l] || "-"}`).join(", ");
+        g1Str = levels.map(l => `${l}: ${r.stats_groups[g1Name]?.[l] || "-"}`).join(", ");
       } else {
-        g0Str = r.stats_groups["0"] || "-";
-        g1Str = r.stats_groups["1"] || "-";
+        g0Str = r.stats_groups[g0Name] || "-";
+        g1Str = r.stats_groups[g1Name] || "-";
       }
 
       return `
@@ -216,8 +219,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <span class="finding-pval">p = ${r.p_value_fmt}</span>
           </div>
           <div class="finding-body">
-            <div><strong>Non-SIP:</strong> ${g0Str}</div>
-            <div><strong>SIP:</strong> ${g1Str}</div>
+            <div><strong>${g0Name}:</strong> ${g0Str}</div>
+            <div><strong>${g1Name}:</strong> ${g1Str}</div>
             ${effectHtml ? `<div style="margin-top:0.5rem;font-size:0.85rem;color:var(--text-muted)">${effectHtml}</div>` : ''}
           </div>
         </div>
@@ -284,8 +287,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   btnExport.addEventListener("click", () => {
     if (!tableData.length) return;
+    const g0Name = metaData.group_labels["0"] || "0";
+    const g1Name = metaData.group_labels["1"] || "1";
+
     const csvRows = [];
-    csvRows.push(["Variable", "Type", "Total", "Non-SIP", "SIP", "p-value", "Effect_Type", "Effect_Size", "Effect_CI_Low", "Effect_CI_High"].join(","));
+    csvRows.push(["Variable", "Type", "Total", g0Name, g1Name, "p-value", "Effect_Type", "Effect_Size", "Effect_CI_Low", "Effect_CI_High"].join(","));
     
     tableData.forEach(r => {
       let ciLo = "", ciHi = "", effectType = "", effectSize = "";
@@ -302,8 +308,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       let totalStr = r.stats_overall;
-      let g0Str = r.stats_groups["0"];
-      let g1Str = r.stats_groups["1"];
+      let g0Str = r.stats_groups[g0Name];
+      let g1Str = r.stats_groups[g1Name];
 
       if (r.var_type === "categorical") {
         totalStr = JSON.stringify(totalStr);
