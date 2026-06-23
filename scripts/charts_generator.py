@@ -183,7 +183,11 @@ def chart_substance(df: pd.DataFrame) -> dict:
 
     sip_c = top_counts(sip)
     non_c = top_counts(non)
-    all_labels = list(dict.fromkeys(list(sip_c.index) + list(non_c.index)))
+    raw_labels = list(dict.fromkeys(list(sip_c.index) + list(non_c.index)))
+    
+    # Sort by the dictionary index order
+    order = ["Meth", "Cannabis", "Ket", "Opioid", "Alc", "Benzo", "Kratom", "อื่นๆ"]
+    all_labels = sorted(raw_labels, key=lambda x: order.index(x) if x in order else 999)
 
     return {
         "id": "substance_bar",
@@ -372,7 +376,9 @@ def chart_discharge(df: pd.DataFrame) -> dict:
         return {}
     sip, non = group_split(df)
 
-    all_cats = df[col].dropna().unique().tolist()
+    raw_cats = df[col].dropna().unique().tolist()
+    order = ["Admitจิตเวช", "Admitอื่น", "Refer", "กลับบ้าน"]
+    all_cats = sorted(raw_cats, key=lambda x: order.index(x) if x in order else 999)
     total_sip = max(len(sip), 1)
     total_non = max(len(non), 1)
 

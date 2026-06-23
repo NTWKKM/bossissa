@@ -201,24 +201,24 @@
         "type": "bar",
         "name": "SIP",
         "x": [
-          "Kratom",
-          "Benzo",
-          "อื่นๆ",
-          "Ket",
-          "Alc",
-          "Opioid",
+          "Meth",
           "Cannabis",
-          "Meth"
+          "Ket",
+          "Opioid",
+          "Alc",
+          "Benzo",
+          "Kratom",
+          "อื่นๆ"
         ],
         "y": [
-          53,
-          50,
-          49,
-          43,
-          42,
-          36,
+          32,
           33,
-          32
+          43,
+          36,
+          42,
+          50,
+          53,
+          49
         ],
         "marker": {
           "color": "#63b3ed"
@@ -229,23 +229,23 @@
         "type": "bar",
         "name": "Non-SIP",
         "x": [
-          "Kratom",
-          "Benzo",
-          "อื่นๆ",
-          "Ket",
-          "Alc",
-          "Opioid",
+          "Meth",
           "Cannabis",
-          "Meth"
+          "Ket",
+          "Opioid",
+          "Alc",
+          "Benzo",
+          "Kratom",
+          "อื่นๆ"
         ],
         "y": [
-          40,
-          46,
           48,
+          47,
           41,
           35,
           35,
-          47,
+          46,
+          40,
           48
         ],
         "marker": {
