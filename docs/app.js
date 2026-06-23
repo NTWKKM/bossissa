@@ -74,15 +74,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   function populateHero() {
     if (!metaData) return;
     stats.total.textContent = metaData.total_n;
-    stats.sip.textContent = metaData.group_sizes["1"] || 0;
-    stats.nonSip.textContent = metaData.group_sizes["0"] || 0;
+    stats.sip.textContent = metaData.group_counts["SIP"] || 0;
+    stats.nonSip.textContent = metaData.group_counts["Not SIP"] || 0;
     stats.sig.textContent = metaData.n_significant;
 
     document.querySelectorAll(".skeleton").forEach(el => el.classList.remove("skeleton"));
     document.getElementById("meta-line").innerHTML = `
-      Data updated: <span class="ts">${new Date(metaData.timestamp).toLocaleString()}</span>
+      Data updated: <span class="ts">${new Date(metaData.generated_at).toLocaleString()}</span>
     `;
-    footerTs.textContent = `Last run: ${new Date(metaData.timestamp).toLocaleString()}`;
+    footerTs.textContent = `Last run: ${new Date(metaData.generated_at).toLocaleString()}`;
   }
 
   function renderTable() {
@@ -102,8 +102,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const g0Name = metaData.group_labels["0"] || "0";
     const g1Name = metaData.group_labels["1"] || "1";
-    const g0N = metaData.group_sizes["0"] || 0;
-    const g1N = metaData.group_sizes["1"] || 0;
+    const g0N = metaData.group_counts[g0Name] || 0;
+    const g1N = metaData.group_counts[g1Name] || 0;
 
     thead.innerHTML = `
       <tr>
