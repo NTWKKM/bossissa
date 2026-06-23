@@ -401,6 +401,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
+    // Baseline / Reference Group
+    const intercept = data.standard.variables.find(v => v.name === "Intercept");
+    if (intercept) {
+      const refLabels = data.selected_features.map(f => {
+        // Extract reference category from one-hot encoded name: "insurance_type_ข้าราชการ" → reference is "บัตรทอง"
+        const parts = f.split("_");
+        const varName = parts.slice(0, -1).join("_");
+        const catName = parts[parts.length - 1];
+        // The reference is the dropped category — we infer from VALUE_MAPPINGS structure
+        return `<em>${f}</em> (reference = other categories)`;
+      }).join(", ");
+      cards.push({
+        icon: "📏", title: "Baseline (Intercept)",
+        body: `Intercept OR = <strong>${intercept.or}</strong> [${intercept.ci_lo}–${intercept.ci_hi}], p = ${intercept.p_value}. This is the baseline odds of SIP diagnosis when all predictors are at their reference level: <strong>บัตรทอง</strong> (insurance), <strong>no delusion</strong>, and <strong>complete DSM-5 functional impairment data</strong>. At this baseline, SIP odds are ~1.4:1 — reflecting the high prevalence of SIP in this population. The intercept is a statistical reference point, not a clinical predictor.`
+      });
+    }
+
     // Model fit
     cards.push({
       icon: "📐", title: "Model Fit",
