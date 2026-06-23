@@ -1,0 +1,1479 @@
+[
+  {
+    "id": "group_donut",
+    "title": "SIP vs Non-SIP Distribution",
+    "description": "Proportion of patients meeting DSM-5 SIP diagnostic criteria",
+    "type": "pie",
+    "data": [
+      {
+        "type": "pie",
+        "labels": [
+          "Not SIP",
+          "SIP"
+        ],
+        "values": [
+          340,
+          338
+        ],
+        "hole": 0.55,
+        "marker": {
+          "colors": [
+            "#63b3ed",
+            "#9f7aea"
+          ],
+          "line": {
+            "color": "#0a0d14",
+            "width": 3
+          }
+        },
+        "textinfo": "label+percent",
+        "textfont": {
+          "color": "#e8edf5",
+          "size": 13
+        },
+        "hovertemplate": "<b>%{label}</b><br>n = %{value}<br>%{percent}<extra></extra>"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "zerolinecolor": "rgba(255,255,255,0.06)"
+      },
+      "yaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "zerolinecolor": "rgba(255,255,255,0.06)"
+      },
+      "legend": {
+        "orientation": "h",
+        "y": -0.1
+      },
+      "margin": {
+        "l": 60,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "SIP vs Non-SIP Distribution",
+      "showlegend": true
+    }
+  },
+  {
+    "id": "symptoms_bar",
+    "title": "Clinical Symptoms by SIP Diagnosis",
+    "description": "Percentage of patients presenting each symptom, stratified by SIP diagnostic group",
+    "type": "bar",
+    "data": [
+      {
+        "type": "bar",
+        "name": "SIP",
+        "x": [
+          "Auditory Hallucination",
+          "Visual Hallucination",
+          "Delusion",
+          "Aggression",
+          "Disorganized Speech",
+          "Confusion"
+        ],
+        "y": [
+          51.5,
+          50.0,
+          44.7,
+          46.4,
+          50.6,
+          52.4
+        ],
+        "marker": {
+          "color": "#63b3ed",
+          "opacity": 0.9
+        },
+        "hovertemplate": "<b>%{x}</b><br>SIP: %{y:.1f}%<extra></extra>"
+      },
+      {
+        "type": "bar",
+        "name": "Non-SIP",
+        "x": [
+          "Auditory Hallucination",
+          "Visual Hallucination",
+          "Delusion",
+          "Aggression",
+          "Disorganized Speech",
+          "Confusion"
+        ],
+        "y": [
+          47.4,
+          45.0,
+          50.6,
+          51.2,
+          51.8,
+          49.7
+        ],
+        "marker": {
+          "color": "#9f7aea",
+          "opacity": 0.9
+        },
+        "hovertemplate": "<b>%{x}</b><br>Non-SIP: %{y:.1f}%<extra></extra>"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "yaxis": {
+        "title": "Prevalence (%)",
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "range": [
+          0,
+          105
+        ]
+      },
+      "legend": {
+        "bgcolor": "rgba(0,0,0,0)",
+        "bordercolor": "rgba(255,255,255,0.06)"
+      },
+      "margin": {
+        "l": 60,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "Clinical Symptoms by SIP Diagnosis",
+      "barmode": "group",
+      "bargap": 0.25
+    },
+    "pvalues": {
+      "Auditory Hallucination": 0.3184,
+      "Visual Hallucination": 0.22,
+      "Delusion": 0.143,
+      "Aggression": 0.2484,
+      "Disorganized Speech": 0.8191,
+      "Confusion": 0.5378
+    }
+  },
+  {
+    "id": "substance_bar",
+    "title": "Primary Substance Used",
+    "description": "Distribution of primary substance reported by patients in each diagnostic group",
+    "type": "bar",
+    "data": [
+      {
+        "type": "bar",
+        "name": "SIP",
+        "x": [
+          7,
+          6,
+          8,
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        "y": [
+          53,
+          50,
+          49,
+          43,
+          42,
+          36,
+          33,
+          32
+        ],
+        "marker": {
+          "color": "#63b3ed"
+        },
+        "hovertemplate": "<b>%{x}</b><br>SIP: %{y} patients<extra></extra>"
+      },
+      {
+        "type": "bar",
+        "name": "Non-SIP",
+        "x": [
+          7,
+          6,
+          8,
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        "y": [
+          40,
+          46,
+          48,
+          41,
+          35,
+          35,
+          47,
+          48
+        ],
+        "marker": {
+          "color": "#9f7aea"
+        },
+        "hovertemplate": "<b>%{x}</b><br>Non-SIP: %{y} patients<extra></extra>"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "yaxis": {
+        "title": "Number of Patients",
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "legend": {
+        "bgcolor": "rgba(0,0,0,0)",
+        "bordercolor": "rgba(255,255,255,0.06)"
+      },
+      "margin": {
+        "l": 60,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "Primary Substance Used",
+      "barmode": "group"
+    }
+  },
+  {
+    "id": "age_violin",
+    "title": "Age Distribution by SIP Diagnosis",
+    "description": "Age distribution of patients stratified by SIP diagnostic outcome",
+    "type": "violin",
+    "data": [
+      {
+        "type": "violin",
+        "name": "SIP",
+        "y": [
+          42,
+          58,
+          71,
+          71,
+          49,
+          41,
+          55,
+          16,
+          30,
+          67,
+          63,
+          26,
+          55,
+          32,
+          75,
+          66,
+          29,
+          38,
+          41,
+          22,
+          67,
+          67,
+          55,
+          55,
+          19,
+          19,
+          79,
+          35,
+          59,
+          59,
+          48,
+          18,
+          15,
+          18,
+          75,
+          52,
+          33,
+          21,
+          49,
+          20,
+          21,
+          63,
+          43,
+          47,
+          20,
+          44,
+          59,
+          31,
+          50,
+          45,
+          54,
+          65,
+          34,
+          68,
+          53,
+          42,
+          20,
+          44,
+          42,
+          38,
+          47,
+          73,
+          58,
+          67,
+          37,
+          41,
+          74,
+          80,
+          79,
+          57,
+          66,
+          17,
+          46,
+          54,
+          57,
+          75,
+          63,
+          42,
+          45,
+          76,
+          42,
+          24,
+          67,
+          59,
+          19,
+          59,
+          50,
+          46,
+          34,
+          47,
+          58,
+          49,
+          47,
+          18,
+          47,
+          40,
+          45,
+          46,
+          18,
+          27,
+          27,
+          56,
+          75,
+          40,
+          42,
+          36,
+          38,
+          22,
+          25,
+          36,
+          41,
+          19,
+          67,
+          66,
+          72,
+          66,
+          59,
+          60,
+          68,
+          67,
+          54,
+          43,
+          25,
+          61,
+          42,
+          69,
+          42,
+          62,
+          26,
+          31,
+          31,
+          77,
+          34,
+          69,
+          69,
+          76,
+          32,
+          68,
+          33,
+          33,
+          24,
+          35,
+          24,
+          66,
+          36,
+          39,
+          55,
+          23,
+          42,
+          45,
+          77,
+          59,
+          59,
+          64,
+          48,
+          35,
+          68,
+          47,
+          30,
+          63,
+          63,
+          45,
+          79,
+          26,
+          62,
+          23,
+          25,
+          39,
+          42,
+          79,
+          61,
+          24,
+          38,
+          64,
+          21,
+          44,
+          54,
+          76,
+          51,
+          22,
+          64,
+          31,
+          23,
+          46,
+          59,
+          51,
+          63,
+          76,
+          63,
+          25,
+          68,
+          31,
+          27,
+          50,
+          30,
+          15,
+          56,
+          38,
+          76,
+          51,
+          42,
+          57,
+          35,
+          55,
+          57,
+          17,
+          47,
+          26,
+          64,
+          74,
+          22,
+          28,
+          52,
+          33,
+          68,
+          20,
+          47,
+          71,
+          31,
+          67,
+          72,
+          75,
+          59,
+          28,
+          38,
+          71,
+          74,
+          36,
+          54,
+          31,
+          40,
+          56,
+          44,
+          31,
+          75,
+          23,
+          58,
+          39,
+          25,
+          15,
+          28,
+          17,
+          47,
+          54,
+          76,
+          52,
+          49,
+          20,
+          66,
+          25,
+          70,
+          63,
+          80,
+          60,
+          20,
+          24,
+          78,
+          54,
+          61,
+          75,
+          62,
+          29,
+          31,
+          36,
+          74,
+          20,
+          62,
+          73,
+          52,
+          19,
+          66,
+          37,
+          72,
+          54,
+          52,
+          45,
+          48,
+          65,
+          18,
+          80,
+          24,
+          19,
+          47,
+          30,
+          44,
+          30,
+          32,
+          66,
+          33,
+          63,
+          33,
+          17,
+          66,
+          38,
+          74,
+          44,
+          64,
+          32,
+          15,
+          76,
+          22,
+          23,
+          56,
+          53,
+          21,
+          68,
+          29,
+          29,
+          57,
+          54,
+          71,
+          38,
+          58,
+          38,
+          21,
+          31,
+          59,
+          16,
+          63,
+          72,
+          18,
+          67,
+          31,
+          26,
+          46,
+          42,
+          74,
+          35,
+          39,
+          74,
+          59,
+          39,
+          72,
+          48,
+          40,
+          37,
+          57,
+          72
+        ],
+        "box": {
+          "visible": true
+        },
+        "meanline": {
+          "visible": true
+        },
+        "fillcolor": "#63b3ed",
+        "opacity": 0.7,
+        "line": {
+          "color": "#63b3ed"
+        },
+        "hovertemplate": "SIP<br>Age: %{y}<extra></extra>"
+      },
+      {
+        "type": "violin",
+        "name": "Non-SIP",
+        "y": [
+          39,
+          24,
+          56,
+          79,
+          24,
+          77,
+          32,
+          48,
+          63,
+          79,
+          33,
+          29,
+          49,
+          24,
+          35,
+          35,
+          19,
+          80,
+          50,
+          37,
+          23,
+          79,
+          30,
+          47,
+          15,
+          45,
+          43,
+          15,
+          44,
+          74,
+          53,
+          33,
+          78,
+          63,
+          23,
+          36,
+          35,
+          19,
+          71,
+          61,
+          17,
+          21,
+          19,
+          32,
+          57,
+          61,
+          48,
+          54,
+          73,
+          19,
+          53,
+          31,
+          51,
+          20,
+          71,
+          46,
+          66,
+          56,
+          48,
+          24,
+          39,
+          33,
+          66,
+          54,
+          75,
+          64,
+          44,
+          54,
+          21,
+          26,
+          64,
+          16,
+          55,
+          41,
+          43,
+          55,
+          64,
+          27,
+          28,
+          37,
+          53,
+          58,
+          75,
+          55,
+          62,
+          59,
+          68,
+          79,
+          31,
+          23,
+          51,
+          35,
+          69,
+          40,
+          76,
+          53,
+          46,
+          31,
+          78,
+          60,
+          27,
+          75,
+          38,
+          55,
+          62,
+          74,
+          38,
+          43,
+          19,
+          34,
+          62,
+          80,
+          63,
+          57,
+          67,
+          58,
+          49,
+          25,
+          44,
+          76,
+          55,
+          22,
+          45,
+          25,
+          28,
+          26,
+          73,
+          39,
+          63,
+          32,
+          44,
+          28,
+          46,
+          38,
+          53,
+          65,
+          48,
+          62,
+          23,
+          50,
+          22,
+          64,
+          68,
+          47,
+          15,
+          53,
+          55,
+          54,
+          16,
+          64,
+          72,
+          31,
+          27,
+          74,
+          47,
+          69,
+          19,
+          63,
+          59,
+          36,
+          38,
+          36,
+          58,
+          60,
+          49,
+          77,
+          42,
+          25,
+          65,
+          65,
+          67,
+          20,
+          71,
+          17,
+          44,
+          41,
+          51,
+          16,
+          47,
+          74,
+          35,
+          22,
+          73,
+          29,
+          50,
+          42,
+          60,
+          60,
+          52,
+          21,
+          24,
+          33,
+          75,
+          39,
+          28,
+          66,
+          17,
+          39,
+          72,
+          49,
+          30,
+          56,
+          28,
+          25,
+          26,
+          57,
+          79,
+          76,
+          68,
+          64,
+          15,
+          69,
+          15,
+          57,
+          19,
+          33,
+          80,
+          70,
+          16,
+          25,
+          26,
+          68,
+          37,
+          19,
+          41,
+          68,
+          44,
+          29,
+          62,
+          39,
+          30,
+          19,
+          77,
+          47,
+          15,
+          31,
+          69,
+          62,
+          64,
+          30,
+          55,
+          71,
+          66,
+          41,
+          79,
+          35,
+          79,
+          17,
+          16,
+          55,
+          53,
+          69,
+          29,
+          39,
+          47,
+          71,
+          42,
+          49,
+          62,
+          67,
+          30,
+          30,
+          40,
+          38,
+          16,
+          57,
+          68,
+          45,
+          66,
+          68,
+          54,
+          41,
+          37,
+          52,
+          52,
+          21,
+          29,
+          55,
+          52,
+          41,
+          36,
+          45,
+          19,
+          34,
+          40,
+          17,
+          59,
+          57,
+          61,
+          50,
+          42,
+          24,
+          20,
+          24,
+          48,
+          21,
+          65,
+          48,
+          19,
+          22,
+          54,
+          35,
+          75,
+          21,
+          20,
+          71,
+          72,
+          26,
+          36,
+          30,
+          15,
+          72,
+          57,
+          41,
+          54,
+          17,
+          63,
+          26,
+          51,
+          27,
+          48,
+          28,
+          61,
+          60,
+          53,
+          50,
+          55,
+          43,
+          22,
+          77,
+          43,
+          54,
+          62,
+          55,
+          73,
+          42,
+          31,
+          17,
+          75,
+          27
+        ],
+        "box": {
+          "visible": true
+        },
+        "meanline": {
+          "visible": true
+        },
+        "fillcolor": "#9f7aea",
+        "opacity": 0.7,
+        "line": {
+          "color": "#9f7aea"
+        },
+        "hovertemplate": "Non-SIP<br>Age: %{y}<extra></extra>"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "zerolinecolor": "rgba(255,255,255,0.06)"
+      },
+      "yaxis": {
+        "title": "Age (years)",
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "legend": {
+        "bgcolor": "rgba(0,0,0,0)",
+        "bordercolor": "rgba(255,255,255,0.06)"
+      },
+      "margin": {
+        "l": 60,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "Age Distribution by SIP Diagnosis"
+    }
+  },
+  {
+    "id": "dsm_criteria",
+    "title": "DSM-5 Criteria Fulfilment Rate",
+    "description": "Percentage of patients meeting each DSM-5 SIP criterion, by diagnostic group",
+    "type": "bar",
+    "data": [
+      {
+        "type": "bar",
+        "name": "SIP",
+        "x": [
+          33.7,
+          36.7,
+          31.1,
+          34.3,
+          34.0,
+          36.7
+        ],
+        "y": [
+          "Hallucination / Delusion",
+          "Within 1 mo / Withdrawal",
+          "Substance-Related Sx",
+          "Not Primary Psychosis",
+          "No Delirium",
+          "Functional Impairment"
+        ],
+        "orientation": "h",
+        "marker": {
+          "color": "#63b3ed",
+          "opacity": 0.9
+        },
+        "hovertemplate": "<b>%{y}</b><br>SIP: %{x:.1f}%<extra></extra>"
+      },
+      {
+        "type": "bar",
+        "name": "Non-SIP",
+        "x": [
+          32.1,
+          35.0,
+          31.8,
+          35.3,
+          35.0,
+          35.0
+        ],
+        "y": [
+          "Hallucination / Delusion",
+          "Within 1 mo / Withdrawal",
+          "Substance-Related Sx",
+          "Not Primary Psychosis",
+          "No Delirium",
+          "Functional Impairment"
+        ],
+        "orientation": "h",
+        "marker": {
+          "color": "#9f7aea",
+          "opacity": 0.9
+        },
+        "hovertemplate": "<b>%{y}</b><br>Non-SIP: %{x:.1f}%<extra></extra>"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "title": "Fulfilment Rate (%)",
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "range": [
+          0,
+          105
+        ]
+      },
+      "yaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "automargin": true
+      },
+      "legend": {
+        "bgcolor": "rgba(0,0,0,0)",
+        "bordercolor": "rgba(255,255,255,0.06)"
+      },
+      "margin": {
+        "l": 200,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "DSM-5 Criteria Fulfilment Rate",
+      "barmode": "group"
+    }
+  },
+  {
+    "id": "uds_bar",
+    "title": "Urine Drug Screen Positivity by Group",
+    "description": "Percentage of positive UDS results for each substance, by diagnostic group",
+    "type": "bar",
+    "data": [
+      {
+        "type": "bar",
+        "name": "Methamphetamine",
+        "x": [
+          "SIP",
+          "Non-SIP"
+        ],
+        "y": [
+          51.8,
+          46.8
+        ],
+        "marker": {
+          "color": "#63b3ed"
+        },
+        "hovertemplate": "<b>Methamphetamine</b><br>%{x}: %{y:.1f}%<extra></extra>"
+      },
+      {
+        "type": "bar",
+        "name": "Cannabis",
+        "x": [
+          "SIP",
+          "Non-SIP"
+        ],
+        "y": [
+          53.0,
+          47.9
+        ],
+        "marker": {
+          "color": "#68d391"
+        },
+        "hovertemplate": "<b>Cannabis</b><br>%{x}: %{y:.1f}%<extra></extra>"
+      },
+      {
+        "type": "bar",
+        "name": "Opioid",
+        "x": [
+          "SIP",
+          "Non-SIP"
+        ],
+        "y": [
+          48.2,
+          51.5
+        ],
+        "marker": {
+          "color": "#f6ad55"
+        },
+        "hovertemplate": "<b>Opioid</b><br>%{x}: %{y:.1f}%<extra></extra>"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "yaxis": {
+        "title": "Positive Rate (%)",
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "range": [
+          0,
+          105
+        ]
+      },
+      "legend": {
+        "bgcolor": "rgba(0,0,0,0)",
+        "bordercolor": "rgba(255,255,255,0.06)"
+      },
+      "margin": {
+        "l": 60,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "Urine Drug Screen Positivity",
+      "barmode": "group"
+    }
+  },
+  {
+    "id": "discharge_bar",
+    "title": "Discharge Status",
+    "description": "Discharge disposition of patients by SIP diagnostic group",
+    "type": "bar",
+    "data": [
+      {
+        "type": "bar",
+        "name": "SIP",
+        "x": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "y": [
+          22.8,
+          27.5,
+          22.8,
+          26.9
+        ],
+        "marker": {
+          "color": "#63b3ed"
+        },
+        "hovertemplate": "<b>%{x}</b><br>SIP: %{y:.1f}%<extra></extra>"
+      },
+      {
+        "type": "bar",
+        "name": "Non-SIP",
+        "x": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "y": [
+          25.3,
+          27.6,
+          23.8,
+          23.2
+        ],
+        "marker": {
+          "color": "#9f7aea"
+        },
+        "hovertemplate": "<b>%{x}</b><br>Non-SIP: %{y:.1f}%<extra></extra>"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "yaxis": {
+        "title": "Percentage (%)",
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "legend": {
+        "bgcolor": "rgba(0,0,0,0)",
+        "bordercolor": "rgba(255,255,255,0.06)"
+      },
+      "margin": {
+        "l": 60,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "Discharge Status by Group",
+      "barmode": "group"
+    }
+  },
+  {
+    "id": "forest_plot",
+    "title": "Odds Ratio Forest Plot (Univariate)",
+    "description": "Univariate logistic regression OR with 95% CI for SIP diagnosis outcome. Green = p<0.05.",
+    "type": "scatter",
+    "data": [
+      {
+        "type": "scatter",
+        "mode": "markers",
+        "name": "OR (95% CI)",
+        "x": [
+          0.789,
+          0.828,
+          1.001,
+          1.003,
+          1.112,
+          1.18,
+          1.194,
+          1.222,
+          1.222,
+          1.222
+        ],
+        "y": [
+          "Delusion",
+          "Aggression",
+          "Substance Use Hx",
+          "Age",
+          "Confusion",
+          "Auditory Hallucination",
+          "Prior Psychiatric Hx",
+          "Visual Hallucination",
+          "UDS Meth+",
+          "UDS Cannabis+"
+        ],
+        "error_x": {
+          "type": "data",
+          "symmetric": false,
+          "array": [
+            0.278,
+            0.291,
+            0.003,
+            0.008,
+            0.391,
+            0.414,
+            0.42,
+            0.431,
+            0.43,
+            0.43
+          ],
+          "arrayminus": [
+            0.206,
+            0.216,
+            0.003,
+            0.008,
+            0.289,
+            0.307,
+            0.311,
+            0.318,
+            0.318,
+            0.317
+          ],
+          "color": "#8b97b0",
+          "thickness": 2,
+          "width": 6
+        },
+        "marker": {
+          "size": 12,
+          "color": [
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0",
+            "#8b97b0"
+          ],
+          "symbol": "diamond"
+        },
+        "hovertemplate": "<b>%{y}</b><br>OR: %{x:.3f}<extra></extra>"
+      },
+      {
+        "type": "scatter",
+        "mode": "lines",
+        "name": "OR = 1 (no effect)",
+        "x": [
+          1,
+          1
+        ],
+        "y": [
+          "Delusion",
+          "UDS Cannabis+"
+        ],
+        "line": {
+          "color": "#f6ad55",
+          "dash": "dash",
+          "width": 1.5
+        },
+        "hoverinfo": "skip"
+      }
+    ],
+    "layout": {
+      "paper_bgcolor": "#0a0d14",
+      "plot_bgcolor": "#111520",
+      "font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#8b97b0",
+        "size": 13
+      },
+      "title_font": {
+        "family": "Inter, system-ui, sans-serif",
+        "color": "#e8edf5",
+        "size": 16
+      },
+      "xaxis": {
+        "title": "Odds Ratio (log scale)",
+        "type": "log",
+        "gridcolor": "rgba(255,255,255,0.06)"
+      },
+      "yaxis": {
+        "gridcolor": "rgba(255,255,255,0.06)",
+        "automargin": true
+      },
+      "legend": {
+        "bgcolor": "rgba(0,0,0,0)",
+        "bordercolor": "rgba(255,255,255,0.06)"
+      },
+      "margin": {
+        "l": 180,
+        "r": 30,
+        "t": 60,
+        "b": 60
+      },
+      "hoverlabel": {
+        "bgcolor": "#1a2035",
+        "bordercolor": "rgba(255,255,255,0.06)",
+        "font_color": "#e8edf5"
+      },
+      "title": "Univariate OR Forest Plot",
+      "showlegend": true
+    }
+  }
+]

@@ -1,0 +1,865 @@
+[
+  {
+    "name": "age",
+    "label": "Age (years)",
+    "var_type": "continuous_non_normal",
+    "stats_overall": "47.0 [31.0, 63.0]",
+    "stats_groups": {
+      "Not SIP": "47.0 [30.0, 62.0]",
+      "SIP": "47.0 [31.0, 63.0]"
+    },
+    "p_value": 0.4713385927314879,
+    "p_value_fmt": "0.471",
+    "test_name": "Mann-Whitney U",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.0535,
+      "or": {
+        "or": 1.003,
+        "ci_lo": 0.995,
+        "ci_hi": 1.011
+      }
+    }
+  },
+  {
+    "name": "sex",
+    "label": "Sex",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "346 (51.0%)",
+      "2": "332 (49.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "167 (49.1%)",
+        "2": "173 (50.9%)"
+      },
+      "SIP": {
+        "1": "179 (53.0%)",
+        "2": "159 (47.0%)"
+      }
+    },
+    "p_value": 0.3557459689821889,
+    "p_value_fmt": "0.356",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": 0.0769,
+      "or": {
+        "or": 0.857,
+        "ci_lo": 0.634,
+        "ci_hi": 1.159
+      }
+    }
+  },
+  {
+    "name": "insurance_type",
+    "label": "Insurance Type",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "162 (23.9%)",
+      "2": "170 (25.1%)",
+      "3": "172 (25.4%)",
+      "4": "174 (25.7%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "78 (22.9%)",
+        "2": "97 (28.5%)",
+        "3": "83 (24.4%)",
+        "4": "82 (24.1%)"
+      },
+      "SIP": {
+        "1": "84 (24.9%)",
+        "2": "73 (21.6%)",
+        "3": "89 (26.3%)",
+        "4": "92 (27.2%)"
+      }
+    },
+    "p_value": 0.22244374118611784,
+    "p_value_fmt": "0.222",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "domicile",
+    "label": "Domicile",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "381 (56.2%)",
+      "2": "297 (43.8%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "190 (55.9%)",
+        "2": "150 (44.1%)"
+      },
+      "SIP": {
+        "1": "191 (56.5%)",
+        "2": "147 (43.5%)"
+      }
+    },
+    "p_value": 0.9306743704569928,
+    "p_value_fmt": "0.931",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": 0.0126,
+      "or": {
+        "or": 0.975,
+        "ci_lo": 0.72,
+        "ci_hi": 1.32
+      }
+    }
+  },
+  {
+    "name": "icd10_er",
+    "label": "ICD-10 Diagnosis (ER)",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "235 (34.7%)",
+      "2": "238 (35.1%)",
+      "3": "205 (30.2%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "116 (34.1%)",
+        "2": "117 (34.4%)",
+        "3": "107 (31.5%)"
+      },
+      "SIP": {
+        "1": "119 (35.2%)",
+        "2": "121 (35.8%)",
+        "3": "98 (29.0%)"
+      }
+    },
+    "p_value": 0.7808473074980855,
+    "p_value_fmt": "0.781",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "sx_hallucination_auditory",
+    "label": "Auditory Hallucination",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "343 (50.6%)",
+      "1": "335 (49.4%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "179 (52.6%)",
+        "1": "161 (47.4%)"
+      },
+      "SIP": {
+        "0": "164 (48.5%)",
+        "1": "174 (51.5%)"
+      }
+    },
+    "p_value": 0.31842898956796156,
+    "p_value_fmt": "0.318",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.0826,
+      "or": {
+        "or": 1.18,
+        "ci_lo": 0.873,
+        "ci_hi": 1.594
+      }
+    }
+  },
+  {
+    "name": "sx_hallucination_visual",
+    "label": "Visual Hallucination",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "356 (52.5%)",
+      "1": "322 (47.5%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "187 (55.0%)",
+        "1": "153 (45.0%)"
+      },
+      "SIP": {
+        "0": "169 (50.0%)",
+        "1": "169 (50.0%)"
+      }
+    },
+    "p_value": 0.21995436984625105,
+    "p_value_fmt": "0.220",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.1003,
+      "or": {
+        "or": 1.222,
+        "ci_lo": 0.904,
+        "ci_hi": 1.653
+      }
+    }
+  },
+  {
+    "name": "sx_delusion",
+    "label": "Delusion",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "355 (52.4%)",
+      "1": "323 (47.6%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "168 (49.4%)",
+        "1": "172 (50.6%)"
+      },
+      "SIP": {
+        "0": "187 (55.3%)",
+        "1": "151 (44.7%)"
+      }
+    },
+    "p_value": 0.14301778527807377,
+    "p_value_fmt": "0.143",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.1186,
+      "or": {
+        "or": 0.789,
+        "ci_lo": 0.583,
+        "ci_hi": 1.067
+      }
+    }
+  },
+  {
+    "name": "sx_aggression",
+    "label": "Aggression",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "347 (51.2%)",
+      "1": "331 (48.8%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "166 (48.8%)",
+        "1": "174 (51.2%)"
+      },
+      "SIP": {
+        "0": "181 (53.6%)",
+        "1": "157 (46.4%)"
+      }
+    },
+    "p_value": 0.2483845116905404,
+    "p_value_fmt": "0.248",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.0947,
+      "or": {
+        "or": 0.828,
+        "ci_lo": 0.612,
+        "ci_hi": 1.119
+      }
+    }
+  },
+  {
+    "name": "sx_disorganized_speech",
+    "label": "Disorganized Speech",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "331 (48.8%)",
+      "1": "347 (51.2%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "164 (48.2%)",
+        "1": "176 (51.8%)"
+      },
+      "SIP": {
+        "0": "167 (49.4%)",
+        "1": "171 (50.6%)"
+      }
+    },
+    "p_value": 0.8191171139780433,
+    "p_value_fmt": "0.819",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.0235,
+      "or": {
+        "or": 0.954,
+        "ci_lo": 0.706,
+        "ci_hi": 1.289
+      }
+    }
+  },
+  {
+    "name": "sx_confusion",
+    "label": "Confusion",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "332 (49.0%)",
+      "1": "346 (51.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "171 (50.3%)",
+        "1": "169 (49.7%)"
+      },
+      "SIP": {
+        "0": "161 (47.6%)",
+        "1": "177 (52.4%)"
+      }
+    },
+    "p_value": 0.5377649061090538,
+    "p_value_fmt": "0.538",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": 0.0532,
+      "or": {
+        "or": 1.112,
+        "ci_lo": 0.823,
+        "ci_hi": 1.503
+      }
+    }
+  },
+  {
+    "name": "symptom_duration",
+    "label": "Symptom Duration",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "356 (52.5%)",
+      "2": "322 (47.5%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "173 (50.9%)",
+        "2": "167 (49.1%)"
+      },
+      "SIP": {
+        "1": "183 (54.1%)",
+        "2": "155 (45.9%)"
+      }
+    },
+    "p_value": 0.43956794552407574,
+    "p_value_fmt": "0.440",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": 0.0653,
+      "or": {
+        "or": 0.877,
+        "ci_lo": 0.649,
+        "ci_hi": 1.186
+      }
+    }
+  },
+  {
+    "name": "hx_psychiatric",
+    "label": "Prior Psychiatric History",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "360 (53.1%)",
+      "1": "318 (46.9%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "188 (55.3%)",
+        "1": "152 (44.7%)"
+      },
+      "SIP": {
+        "0": "172 (50.9%)",
+        "1": "166 (49.1%)"
+      }
+    },
+    "p_value": 0.283432612268092,
+    "p_value_fmt": "0.283",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.0884,
+      "or": {
+        "or": 1.194,
+        "ci_lo": 0.883,
+        "ci_hi": 1.614
+      }
+    }
+  },
+  {
+    "name": "hx_substance_use",
+    "label": "Substance Use History",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "211 (31.1%)",
+      "1": "236 (34.8%)",
+      "99": "231 (34.1%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "99 (29.1%)",
+        "1": "128 (37.6%)",
+        "99": "113 (33.2%)"
+      },
+      "SIP": {
+        "0": "112 (33.1%)",
+        "1": "108 (32.0%)",
+        "99": "118 (34.9%)"
+      }
+    },
+    "p_value": 0.2727756635893137,
+    "p_value_fmt": "0.273",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "primary_substance",
+    "label": "Primary Substance",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "80 (11.8%)",
+      "2": "80 (11.8%)",
+      "3": "84 (12.4%)",
+      "4": "71 (10.5%)",
+      "5": "77 (11.4%)",
+      "6": "96 (14.2%)",
+      "7": "93 (13.7%)",
+      "8": "97 (14.3%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "48 (14.1%)",
+        "2": "47 (13.8%)",
+        "3": "41 (12.1%)",
+        "4": "35 (10.3%)",
+        "5": "35 (10.3%)",
+        "6": "46 (13.5%)",
+        "7": "40 (11.8%)",
+        "8": "48 (14.1%)"
+      },
+      "SIP": {
+        "1": "32 (9.5%)",
+        "2": "33 (9.8%)",
+        "3": "43 (12.7%)",
+        "4": "36 (10.7%)",
+        "5": "42 (12.4%)",
+        "6": "50 (14.8%)",
+        "7": "53 (15.7%)",
+        "8": "49 (14.5%)"
+      }
+    },
+    "p_value": 0.3038653216222682,
+    "p_value_fmt": "0.304",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "primary_substance_route",
+    "label": "Route of Administration",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "134 (19.8%)",
+      "2": "129 (19.0%)",
+      "3": "141 (20.8%)",
+      "4": "134 (19.8%)",
+      "5": "140 (20.6%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "71 (20.9%)",
+        "2": "57 (16.8%)",
+        "3": "73 (21.5%)",
+        "4": "65 (19.1%)",
+        "5": "74 (21.8%)"
+      },
+      "SIP": {
+        "1": "63 (18.6%)",
+        "2": "72 (21.3%)",
+        "3": "68 (20.1%)",
+        "4": "69 (20.4%)",
+        "5": "66 (19.5%)"
+      }
+    },
+    "p_value": 0.5628961690233614,
+    "p_value_fmt": "0.563",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "last_substance_use",
+    "label": "Last Substance Use",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "147 (21.7%)",
+      "2": "152 (22.4%)",
+      "3": "180 (26.5%)",
+      "4": "199 (29.4%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "61 (17.9%)",
+        "2": "83 (24.4%)",
+        "3": "99 (29.1%)",
+        "4": "97 (28.5%)"
+      },
+      "SIP": {
+        "1": "86 (25.4%)",
+        "2": "69 (20.4%)",
+        "3": "81 (24.0%)",
+        "4": "102 (30.2%)"
+      }
+    },
+    "p_value": 0.058569885383762677,
+    "p_value_fmt": "0.059",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "uds_status",
+    "label": "UDS Status",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "325 (47.9%)",
+      "1": "353 (52.1%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "172 (50.6%)",
+        "1": "168 (49.4%)"
+      },
+      "SIP": {
+        "0": "153 (45.3%)",
+        "1": "185 (54.7%)"
+      }
+    },
+    "p_value": 0.1901763692925764,
+    "p_value_fmt": "0.190",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.1067,
+      "or": {
+        "or": 1.238,
+        "ci_lo": 0.915,
+        "ci_hi": 1.674
+      }
+    }
+  },
+  {
+    "name": "uds_meth",
+    "label": "UDS: Methamphetamine",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "344 (50.7%)",
+      "1": "334 (49.3%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "181 (53.2%)",
+        "1": "159 (46.8%)"
+      },
+      "SIP": {
+        "0": "163 (48.2%)",
+        "1": "175 (51.8%)"
+      }
+    },
+    "p_value": 0.21946249947131077,
+    "p_value_fmt": "0.219",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.1003,
+      "or": {
+        "or": 1.222,
+        "ci_lo": 0.904,
+        "ci_hi": 1.652
+      }
+    }
+  },
+  {
+    "name": "uds_cannabis",
+    "label": "UDS: Cannabis",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "336 (49.6%)",
+      "1": "342 (50.4%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "177 (52.1%)",
+        "1": "163 (47.9%)"
+      },
+      "SIP": {
+        "0": "159 (47.0%)",
+        "1": "179 (53.0%)"
+      }
+    },
+    "p_value": 0.21881477555613735,
+    "p_value_fmt": "0.219",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.1005,
+      "or": {
+        "or": 1.222,
+        "ci_lo": 0.904,
+        "ci_hi": 1.653
+      }
+    }
+  },
+  {
+    "name": "uds_opioid",
+    "label": "UDS: Opioid",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "340 (50.1%)",
+      "1": "338 (49.9%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "165 (48.5%)",
+        "1": "175 (51.5%)"
+      },
+      "SIP": {
+        "0": "175 (51.8%)",
+        "1": "163 (48.2%)"
+      }
+    },
+    "p_value": 0.4422919665522669,
+    "p_value_fmt": "0.442",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": -0.0649,
+      "or": {
+        "or": 0.878,
+        "ci_lo": 0.65,
+        "ci_hi": 1.187
+      }
+    }
+  },
+  {
+    "name": "dsm_hallucination_delusion",
+    "label": "DSM-5: Hallucination or Delusion",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "239 (35.3%)",
+      "1": "223 (32.9%)",
+      "99": "216 (31.9%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "123 (36.2%)",
+        "1": "109 (32.1%)",
+        "99": "108 (31.8%)"
+      },
+      "SIP": {
+        "0": "116 (34.3%)",
+        "1": "114 (33.7%)",
+        "99": "108 (32.0%)"
+      }
+    },
+    "p_value": 0.8558879820337285,
+    "p_value_fmt": "0.856",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "dsm_within_1mo_or_withdrawal",
+    "label": "DSM-5: Within 1 mo / Withdrawal",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "237 (35.0%)",
+      "1": "243 (35.8%)",
+      "99": "198 (29.2%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "118 (34.7%)",
+        "1": "119 (35.0%)",
+        "99": "103 (30.3%)"
+      },
+      "SIP": {
+        "0": "119 (35.2%)",
+        "1": "124 (36.7%)",
+        "99": "95 (28.1%)"
+      }
+    },
+    "p_value": 0.8087882091273888,
+    "p_value_fmt": "0.809",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "dsm_substance_related",
+    "label": "DSM-5: Substance-Related Sx",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "231 (34.1%)",
+      "1": "213 (31.4%)",
+      "99": "234 (34.5%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "105 (30.9%)",
+        "1": "108 (31.8%)",
+        "99": "127 (37.4%)"
+      },
+      "SIP": {
+        "0": "126 (37.3%)",
+        "1": "105 (31.1%)",
+        "99": "107 (31.7%)"
+      }
+    },
+    "p_value": 0.16082489428719426,
+    "p_value_fmt": "0.161",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "dsm_not_primary",
+    "label": "DSM-5: Not Primary Psychosis",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "222 (32.7%)",
+      "1": "236 (34.8%)",
+      "99": "220 (32.4%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "109 (32.1%)",
+        "1": "120 (35.3%)",
+        "99": "111 (32.6%)"
+      },
+      "SIP": {
+        "0": "113 (33.4%)",
+        "1": "116 (34.3%)",
+        "99": "109 (32.2%)"
+      }
+    },
+    "p_value": 0.9267457158867839,
+    "p_value_fmt": "0.927",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "dsm_no_delirium",
+    "label": "DSM-5: No Delirium",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "228 (33.6%)",
+      "1": "234 (34.5%)",
+      "99": "216 (31.9%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "118 (34.7%)",
+        "1": "119 (35.0%)",
+        "99": "103 (30.3%)"
+      },
+      "SIP": {
+        "0": "110 (32.5%)",
+        "1": "115 (34.0%)",
+        "99": "113 (33.4%)"
+      }
+    },
+    "p_value": 0.6682626141442696,
+    "p_value_fmt": "0.668",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "dsm_functional_impairment",
+    "label": "DSM-5: Functional Impairment",
+    "var_type": "categorical",
+    "stats_overall": {
+      "0": "235 (34.7%)",
+      "1": "243 (35.8%)",
+      "99": "200 (29.5%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "0": "105 (30.9%)",
+        "1": "119 (35.0%)",
+        "99": "116 (34.1%)"
+      },
+      "SIP": {
+        "0": "130 (38.5%)",
+        "1": "124 (36.7%)",
+        "99": "84 (24.9%)"
+      }
+    },
+    "p_value": 0.019481071434948233,
+    "p_value_fmt": "0.019",
+    "test_name": "Chi-square",
+    "significant": true,
+    "extra_stats": {
+      "smd": null
+    }
+  },
+  {
+    "name": "discharge_status",
+    "label": "Discharge Status",
+    "var_type": "categorical",
+    "stats_overall": {
+      "1": "163 (24.0%)",
+      "2": "187 (27.6%)",
+      "3": "158 (23.3%)",
+      "4": "170 (25.1%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "1": "86 (25.3%)",
+        "2": "94 (27.6%)",
+        "3": "81 (23.8%)",
+        "4": "79 (23.2%)"
+      },
+      "SIP": {
+        "1": "77 (22.8%)",
+        "2": "93 (27.5%)",
+        "3": "77 (22.8%)",
+        "4": "91 (26.9%)"
+      }
+    },
+    "p_value": 0.6950869538566777,
+    "p_value_fmt": "0.695",
+    "test_name": "Chi-square",
+    "significant": false,
+    "extra_stats": {
+      "smd": null
+    }
+  }
+]

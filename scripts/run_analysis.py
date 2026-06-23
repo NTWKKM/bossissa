@@ -14,6 +14,7 @@ from pathlib import Path
 # Ensure scripts/ is importable
 sys.path.insert(0, str(Path(__file__).parent))
 
+from charts_generator import generate_all_charts
 from data_loader import STRATIFY_COL, STRATIFY_LABELS, VARIABLE_META, load_data
 from tableone_generator import TableOneFormatter, TableOneGenerator
 
@@ -79,7 +80,12 @@ def main() -> None:
         "n_significant": sum(1 for r in results if r.p_value is not None and r.p_value < 0.05),
     }
 
-    # 6. Write outputs
+    # 6. Generate charts
+    print("Generating Plotly chart specs...")
+    charts = generate_all_charts(df)
+    metadata["n_charts"] = len(charts)
+
+    # 7. Write outputs
     (OUTPUT_DIR / "tableone.json").write_text(
         json.dumps(json_results, ensure_ascii=False, indent=2), encoding="utf-8"
     )
@@ -87,6 +93,10 @@ def main() -> None:
         json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     (OUTPUT_DIR / "tableone.html").write_text(html_table, encoding="utf-8")
+    (OUTPUT_DIR / "charts.json").write_text(
+        json.dumps(charts, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(f"  Generated {len(charts)} chart specs → docs/data/charts.json")
 
     print("\n✅ Analysis complete.")
     print(f"   Total N: {metadata['total_n']}")
