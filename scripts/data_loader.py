@@ -110,6 +110,25 @@ HX_PSYCH_LABELS = {0: "No", 1: "Yes"}
 SIP_ALL_LABELS = {0: "Not SIP", 1: "SIP", 99: "Incomplete Data"}
 
 
+PRIMARY_SUBSTANCE_MAP = {
+    1: "Meth",
+    2: "Cannabis",
+    3: "Ket",
+    4: "Opioid",
+    5: "Alc",
+    6: "Benzo",
+    7: "Kratom",
+    8: "อื่นๆ"
+}
+
+DISCHARGE_STATUS_MAP = {
+    1: "Admitจิตเวช",
+    2: "Admitอื่น",
+    3: "Refer",
+    4: "กลับบ้าน"
+}
+
+
 def load_data(exclude_sip_99: bool = True) -> pd.DataFrame:
     """Fetch CSV from Google Sheet public URL and return cleaned DataFrame."""
     print(f"Fetching data from Google Sheet ({SHEET_ID})...")
@@ -126,6 +145,13 @@ def load_data(exclude_sip_99: bool = True) -> pd.DataFrame:
     rename_map = {k: v for k, v in COLUMN_RENAME.items() if k in df.columns}
     df = df.rename(columns=rename_map)
 
+    # Map categorical values to labels
+    if "primary_substance" in df.columns:
+        df["primary_substance"] = pd.to_numeric(df["primary_substance"], errors="coerce").map(PRIMARY_SUBSTANCE_MAP).fillna(df["primary_substance"])
+        
+    if "discharge_status" in df.columns:
+        df["discharge_status"] = pd.to_numeric(df["discharge_status"], errors="coerce").map(DISCHARGE_STATUS_MAP).fillna(df["discharge_status"])
+
     # Convert sip_diagnosis to numeric, coerce errors to NaN
     if STRATIFY_COL in df.columns:
         df[STRATIFY_COL] = pd.to_numeric(df[STRATIFY_COL], errors="coerce")
@@ -138,3 +164,4 @@ def load_data(exclude_sip_99: bool = True) -> pd.DataFrame:
         print(f"  Retaining 99 (incomplete data) as requested: {len(df)} rows")
 
     return df
+
