@@ -414,6 +414,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <p>${c.body}</p>
       </div>
     `).join("");
+    observeReveal(grid);
   }
 
   tabTableOne.addEventListener("click", () => switchTab("tableone"));
@@ -446,6 +447,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         div.innerHTML = `<p style="color:var(--accent-red);padding:2rem;text-align:center">Chart "${spec.title || spec.id}" failed to render.</p>`;
       }
     });
+    observeReveal(chartsGrid);
   }
 
   // 5. Interactivity
@@ -525,7 +527,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  function observeReveal(root = document) {
+    root.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+  observeReveal();
 
   // 6. Frequency Stats Rendering
   function renderStatTabs() {
