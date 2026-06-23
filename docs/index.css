@@ -595,6 +595,27 @@ tr.sig-row > td:first-child {
   line-height: 1.65;
 }
 
+/* Interpretation box (single text block with bullets) */
+.interp-box {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 2rem;
+  transition: border-color var(--transition);
+}
+.interp-box:hover {
+  border-color: var(--border-glow);
+}
+.interp-box h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.interp-box li {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
 /* Reveal animation */
 .reveal {
   opacity: 0;

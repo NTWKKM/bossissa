@@ -370,67 +370,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const firthSig = data.firth.variables.filter(v => v.significant);
     const stdSig = data.standard.variables.filter(v => v.significant && v.name !== "Intercept");
-
-    const cards = [];
-
-    // LASSO summary
-    cards.push({
-      icon: "🎯", title: "LASSO Feature Selection",
-      body: `From ${data.n_features_total} candidate features, LASSO (C=${data.lasso_C}) selected <strong>${data.n_features_selected}</strong> independent predictors. This sparse model minimizes AIC while handling multicollinearity.`
-    });
-
-    // Agreement
     const firthNames = new Set(firthSig.map(v => v.name));
     const stdNames = new Set(stdSig.map(v => v.name));
     const agree = [...firthNames].filter(n => stdNames.has(n));
-    cards.push({
-      icon: "🤝", title: "Firth vs Standard Agreement",
-      body: `Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth penalized likelihood provides more conservative estimates with profile likelihood CIs — preferred when separation is a concern.`
-    });
+    const intercept = data.standard.variables.find(v => v.name === "Intercept");
 
-    // Significant predictors interpretation
+    const bullets = [];
+
+    // 1. LASSO
+    bullets.push(`<strong>🎯 LASSO Feature Selection</strong> — From ${data.n_features_total} candidate features, LASSO (C=${data.lasso_C}) selected <strong>${data.n_features_selected}</strong> independent predictors by minimizing AIC. This sparse model handles multicollinearity — redundant variables are dropped.`);
+
+    // 2. Agreement
+    bullets.push(`<strong>🤝 Firth vs Standard Agreement</strong> — Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth penalized likelihood provides more conservative profile-likelihood CIs — preferred reference when separation is a concern.`);
+
+    // 3. Significant predictors
     if (firthSig.length > 0) {
       const items = firthSig.map(v => {
         const direction = v.or < 1 ? "protective" : "risk";
         const strength = Math.abs(v.or - 1) < 0.2 ? "weak" : Math.abs(v.or - 1) < 0.5 ? "moderate" : "strong";
-        return `<strong>${v.name}:</strong> OR=${v.or} (${direction}, ${strength}), p=${v.p_value}`;
-      }).join("<br>");
-      cards.push({
-        icon: "🔍", title: "Significant Predictors (Firth)",
-        body: items
-      });
+        return `<strong>${v.name}</strong>: OR = ${v.or} [${v.ci_lo}–${v.ci_hi}] (${direction}, ${strength}), p = ${v.p_value}`;
+      }).join(" · ");
+      bullets.push(`<strong>🔍 Significant Predictors (Firth)</strong> — ${items}`);
     }
 
-    // Baseline / Reference Group
-    const intercept = data.standard.variables.find(v => v.name === "Intercept");
+    // 4. Baseline
     if (intercept) {
-      const refLabels = data.selected_features.map(f => {
-        // Extract reference category from one-hot encoded name: "insurance_type_ข้าราชการ" → reference is "บัตรทอง"
-        const parts = f.split("_");
-        const varName = parts.slice(0, -1).join("_");
-        const catName = parts[parts.length - 1];
-        // The reference is the dropped category — we infer from VALUE_MAPPINGS structure
-        return `<em>${f}</em> (reference = other categories)`;
-      }).join(", ");
-      cards.push({
-        icon: "📏", title: "Baseline (Intercept)",
-        body: `Intercept OR = <strong>${intercept.or}</strong> [${intercept.ci_lo}–${intercept.ci_hi}], p = ${intercept.p_value}. This is the baseline odds of SIP diagnosis when all predictors are at their reference level: <strong>บัตรทอง</strong> (insurance), <strong>no delusion</strong>, and <strong>complete DSM-5 functional impairment data</strong>. At this baseline, SIP odds are ~1.4:1 — reflecting the high prevalence of SIP in this population. The intercept is a statistical reference point, not a clinical predictor.`
-      });
+      bullets.push(`<strong>📏 Baseline (Intercept)</strong> — OR = <strong>${intercept.or}</strong> [${intercept.ci_lo}–${intercept.ci_hi}], p = ${intercept.p_value}. Baseline SIP odds when all predictors are at reference level: <strong>บัตรทอง</strong> (insurance), <strong>no delusion</strong>, <strong>complete DSM-5 functional impairment data</strong>. At ~1.4:1, this reflects the high SIP prevalence in this population. The intercept is a statistical reference point, not a clinical predictor.`);
     }
 
-    // Model fit
-    cards.push({
-      icon: "📐", title: "Model Fit",
-      body: `Pseudo R² = ${data.standard.pseudo_r2} — the selected features explain a small portion of variance in SIP diagnosis. This suggests SIP determination is multifactorial, with unmeasured confounders (e.g., substance dose, duration, genetic factors) playing major roles.`
-    });
+    // 5. Model fit
+    bullets.push(`<strong>📐 Model Fit</strong> — Pseudo R² = ${data.standard.pseudo_r2}. The selected features explain a small portion of variance in SIP diagnosis. SIP determination is multifactorial — unmeasured confounders (substance dose, duration, genetics, social factors) likely play major roles.`);
 
-    grid.innerHTML = cards.map(c => `
-      <div class="method-card reveal">
-        <div class="method-icon">${c.icon}</div>
-        <h3>${c.title}</h3>
-        <p>${c.body}</p>
+    grid.innerHTML = `
+      <div class="interp-box reveal">
+        <h3 style="margin-bottom:1rem;font-size:1.1rem">Key Findings</h3>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.85rem;line-height:1.7">
+          ${bullets.map(b => `<li>${b}</li>`).join("")}
+        </ul>
       </div>
-    `).join("");
+    `;
     observeReveal(grid);
   }
 
