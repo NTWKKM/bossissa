@@ -110,22 +110,62 @@ HX_PSYCH_LABELS = {0: "No", 1: "Yes"}
 SIP_ALL_LABELS = {0: "Not SIP", 1: "SIP", 99: "Incomplete Data"}
 
 
-PRIMARY_SUBSTANCE_MAP = {
-    1: "Meth",
-    2: "Cannabis",
-    3: "Ket",
-    4: "Opioid",
-    5: "Alc",
-    6: "Benzo",
-    7: "Kratom",
-    8: "อื่นๆ"
-}
-
-DISCHARGE_STATUS_MAP = {
-    1: "Admitจิตเวช",
-    2: "Admitอื่น",
-    3: "Refer",
-    4: "กลับบ้าน"
+VALUE_MAPPINGS = {
+    "inclusion_criteria": {0: "ไม่", 1: "ใช่"},
+    "exclusion_criteria": {0: "ไม่มี", 1: "เวชระเบียนไม่สมบูรณ์", 2: "โรคจิตเวชเดิม", 3: "อื่นๆ"},
+    "sex": {1: "ชาย", 2: "หญิง"},
+    "insurance_type": {1: "บัตรทอง", 2: "ข้าราชการ", 3: "ประกันสังคม", 4: "อื่นๆ"},
+    "domicile": {1: "ในจังหวัด", 2: "ต่างจังหวัด"},
+    "icd10_er": {1: "F23", 2: "F29", 3: "อื่นๆ"},
+    
+    "sx_hallucination_auditory": {0: "ไม่มี", 1: "มี"},
+    "sx_hallucination_visual": {0: "ไม่มี", 1: "มี"},
+    "sx_delusion": {0: "ไม่มี", 1: "มี"},
+    "sx_aggression": {0: "ไม่มี", 1: "มี"},
+    "sx_disorganized_speech": {0: "ไม่มี", 1: "มี"},
+    "sx_confusion": {0: "ไม่มี", 1: "มี"},
+    "symptom_duration": {1: "<1เดือน", 2: ">1เดือน"},
+    
+    "hx_psychiatric": {0: "ไม่มี", 1: "มี"},
+    "hx_substance_use": {0: "ไม่มี", 1: "มี", 99: "ไม่ทราบ"},
+    "hx_meth": {0: "ไม่มี", 1: "มี"},
+    "hx_cannabis": {0: "ไม่มี", 1: "มี"},
+    "hx_ketamine": {0: "ไม่มี", 1: "มี"},
+    "hx_opioid": {0: "ไม่มี", 1: "มี"},
+    "hx_alcohol": {0: "ไม่มี", 1: "มี"},
+    "hx_benzo": {0: "ไม่มี", 1: "มี"},
+    "hx_kratom": {0: "ไม่มี", 1: "มี"},
+    
+    "primary_substance": {
+        1: "Meth", 2: "Cannabis", 3: "Ket", 4: "Opioid",
+        5: "Alc", 6: "Benzo", 7: "Kratom", 8: "อื่นๆ"
+    },
+    "primary_substance_route": {1: "สูบ", 2: "ฉีด", 3: "กิน", 4: "ดม", 5: "อื่นๆ"},
+    "substance_duration_unit": {1: "ชม", 2: "วัน", 3: "เดือน", 4: "ปี"},
+    "last_substance_use": {1: "<24ชม", 2: "1-7วัน", 3: "1-4สัปดาห์", 4: ">1เดือน"},
+    
+    "uds_status": {0: "ไม่ได้ตรวจ", 1: "ตรวจ"},
+    "uds_meth": {0: "Negative", 1: "Positive"},
+    "uds_cannabis": {0: "Negative", 1: "Positive"},
+    "uds_opioid": {0: "Negative", 1: "Positive"},
+    
+    "dsm_hallucination_delusion": {0: "ไม่", 1: "ใช่", 99: "ข้อมูลไม่ครบ"},
+    "dsm_within_1mo_or_withdrawal": {0: "ไม่", 1: "ใช่", 99: "ข้อมูลไม่ครบ"},
+    "dsm_substance_related": {0: "ไม่", 1: "ใช่", 99: "ข้อมูลไม่ครบ"},
+    "dsm_not_primary": {0: "ไม่", 1: "ใช่", 99: "ข้อมูลไม่ครบ"},
+    "dsm_no_delirium": {0: "ไม่", 1: "ใช่", 99: "ข้อมูลไม่ครบ"},
+    "dsm_functional_impairment": {0: "ไม่", 1: "ใช่", 99: "ข้อมูลไม่ครบ"},
+    
+    "med_antipsychotic": {0: "ไม่", 1: "ใช่"},
+    "med_benzo": {0: "ไม่", 1: "ใช่"},
+    "med_sedation": {0: "ไม่", 1: "ใช่"},
+    
+    "discharge_status": {
+        1: "Admitจิตเวช",
+        2: "Admitอื่น",
+        3: "Refer",
+        4: "กลับบ้าน"
+    }
 }
 
 
@@ -146,11 +186,9 @@ def load_data(exclude_sip_99: bool = True) -> pd.DataFrame:
     df = df.rename(columns=rename_map)
 
     # Map categorical values to labels
-    if "primary_substance" in df.columns:
-        df["primary_substance"] = pd.to_numeric(df["primary_substance"], errors="coerce").map(PRIMARY_SUBSTANCE_MAP).fillna(df["primary_substance"])
-        
-    if "discharge_status" in df.columns:
-        df["discharge_status"] = pd.to_numeric(df["discharge_status"], errors="coerce").map(DISCHARGE_STATUS_MAP).fillna(df["discharge_status"])
+    for col, mapping in VALUE_MAPPINGS.items():
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce").map(mapping).fillna(df[col])
 
     # Convert sip_diagnosis to numeric, coerce errors to NaN
     if STRATIFY_COL in df.columns:

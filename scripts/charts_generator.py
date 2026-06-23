@@ -438,10 +438,12 @@ def chart_forest_plot(df: pd.DataFrame) -> dict:
             sub = df[[col, STRATIFY_COL]].dropna()
             if len(sub) < 10 or sub[STRATIFY_COL].nunique() < 2:
                 continue
-            x = pd.to_numeric(sub[col], errors="coerce").dropna()
-            sub = sub.loc[x.index]
-            x = x.values
+            if pd.api.types.is_numeric_dtype(sub[col]):
+                x = (sub[col] == 1).astype(float)
+            else:
+                x = sub[col].str.lower().str.contains(r"yes|ใช่|positive|\+|มี", regex=True, na=False).astype(float)
             y = sub[STRATIFY_COL].astype(float).values
+            x = x.values
 
             # Simple logistic via scipy
             from scipy.optimize import minimize
@@ -536,11 +538,11 @@ def _pct_positive(s: pd.Series) -> float:
     s = s.dropna()
     if len(s) == 0:
         return 0.0
-    # Detect positive: numeric 1, or string "Yes"/"ใช่"/"Positive"/"+", etc.
+    # Detect positive: numeric 1, or string "Yes"/"ใช่"/"Positive"/"+"/"มี", etc.
     if pd.api.types.is_numeric_dtype(s):
         pos = (s == 1).sum()
     else:
-        pos = s.str.lower().str.contains(r"yes|ใช่|positive|\+", regex=True, na=False).sum()
+        pos = s.str.lower().str.contains(r"yes|ใช่|positive|\+|มี", regex=True, na=False).sum()
     return round(100.0 * int(pos) / len(s), 1)
 
 
