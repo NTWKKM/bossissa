@@ -122,8 +122,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       return true;
     });
 
-    const g0Name = metaData.group_labels["0"] || "0";
-    const g1Name = metaData.group_labels["1"] || "1";
+    const groupKeys = Object.keys(metaData.group_counts || {});
+    const g0Name = groupKeys.length > 0 ? groupKeys[0] : "Group 0";
+    const g1Name = groupKeys.length > 1 ? groupKeys[1] : "Group 1";
     const g0N = metaData.group_counts[g0Name] || 0;
     const g1N = metaData.group_counts[g1Name] || 0;
 
