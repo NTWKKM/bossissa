@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-06-23T17:07:35.624175+00:00",
+  "total_n": 678,
+  "n_features_total": 51,
+  "n_features_selected": 3,
+  "lasso_C": 0.1,
+  "selected_features": [
+    "insurance_type_ข้าราชการ",
+    "sx_delusion_มี",
+    "dsm_functional_impairment_ข้อมูลไม่ครบ"
+  ],
+  "firth": {
+    "method": "Firth (Penalized Likelihood — firthmodels)",
+    "n_iterations": 4,
+    "variables": [
+      {
+        "name": "insurance_type_ข้าราชการ",
+        "coef": -0.3594,
+        "se": 0.1794,
+        "or": 0.698,
+        "ci_lo": 0.491,
+        "ci_hi": 0.992,
+        "p_value": 0.0452,
+        "significant": true
+      },
+      {
+        "name": "sx_delusion_มี",
+        "coef": -0.2276,
+        "se": 0.1552,
+        "or": 0.796,
+        "ci_lo": 0.588,
+        "ci_hi": 1.08,
+        "p_value": 0.1426,
+        "significant": false
+      },
+      {
+        "name": "dsm_functional_impairment_ข้อมูลไม่ครบ",
+        "coef": -0.4579,
+        "se": 0.1704,
+        "or": 0.633,
+        "ci_lo": 0.453,
+        "ci_hi": 0.883,
+        "p_value": 0.0072,
+        "significant": true
+      }
+    ]
+  },
+  "standard": {
+    "method": "Standard MLE (statsmodels)",
+    "log_likelihood": -463.11,
+    "pseudo_r2": 0.0145,
+    "n_iterations": 4,
+    "variables": [
+      {
+        "name": "Intercept",
+        "coef": 0.3288,
+        "se": 0.1262,
+        "or": 1.389,
+        "ci_lo": 1.085,
+        "ci_hi": 1.779,
+        "p_value": 0.0092,
+        "significant": true
+      },
+      {
+        "name": "insurance_type_ข้าราชการ",
+        "coef": -0.3622,
+        "se": 0.1802,
+        "or": 0.696,
+        "ci_lo": 0.489,
+        "ci_hi": 0.991,
+        "p_value": 0.0444,
+        "significant": true
+      },
+      {
+        "name": "sx_delusion_มี",
+        "coef": -0.2289,
+        "se": 0.1557,
+        "or": 0.795,
+        "ci_lo": 0.586,
+        "ci_hi": 1.079,
+        "p_value": 0.1415,
+        "significant": false
+      },
+      {
+        "name": "dsm_functional_impairment_ข้อมูลไม่ครบ",
+        "coef": -0.4612,
+        "se": 0.171,
+        "or": 0.631,
+        "ci_lo": 0.451,
+        "ci_hi": 0.882,
+        "p_value": 0.007,
+        "significant": true
+      }
+    ]
+  }
+}

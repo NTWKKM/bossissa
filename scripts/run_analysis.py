@@ -16,6 +16,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from charts_generator import generate_all_charts
 from data_loader import STRATIFY_COL, STRATIFY_LABELS, VARIABLE_META, load_data
+from multivariate_analysis import main as generate_multivariate
+from stat_generator import main as generate_stat_freq
 from tableone_generator import TableOneFormatter, TableOneGenerator
 
 OUTPUT_DIR = Path(__file__).parent.parent / "docs" / "data"
@@ -86,7 +88,15 @@ def main() -> None:
     charts = generate_all_charts(df)
     metadata["n_charts"] = len(charts)
 
-    # 7. Write outputs
+    # 7. Generate stat_freq (inclusion/hx_psych/sip_all)
+    print("Generating frequency stats...")
+    generate_stat_freq()
+
+    # 8. Generate multivariate analysis (LASSO → Firth + Standard)
+    print("Generating multivariate analysis...")
+    generate_multivariate()
+
+    # 9. Write outputs
     (OUTPUT_DIR / "tableone.json").write_text(
         json.dumps(json_results, ensure_ascii=False, indent=2), encoding="utf-8"
     )

@@ -23,9 +23,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tabTableOne = document.getElementById("tab-tableone");
   const tabCharts = document.getElementById("tab-charts");
   const tabStat = document.getElementById("tab-stat");
+  const tabMulti = document.getElementById("tab-multi");
   const pageTableOne = document.getElementById("page-tableone");
   const pageCharts = document.getElementById("page-charts");
   const pageStat = document.getElementById("page-stat");
+  const pageMulti = document.getElementById("page-multi");
   const chartsGrid = document.getElementById("charts-grid");
   const chartsLoading = document.getElementById("charts-loading");
 
@@ -56,53 +58,29 @@ document.addEventListener("DOMContentLoaded", async () => {
   let chartsData = [];
   let statData = null;
 
-  // 1. Fetch Data
+  // 1. Fetch Data (core: metadata + tableone only; charts + stat_freq lazy-loaded)
   try {
-    const [metaRes, tableRes, chartsRes, statRes] = await Promise.all([
+    const [metaRes, tableRes] = await Promise.all([
       fetch("data/metadata.json"),
-      fetch("data/tableone.json"),
-      fetch("data/charts.json").catch(() => ({ ok: false })),
-      fetch("data/stat_freq.json").catch(() => ({ ok: false }))
+      fetch("data/tableone.json")
     ]);
 
     if (!metaRes.ok || !tableRes.ok) throw new Error("Data files not found");
 
     metaData = await metaRes.json();
     tableData = await tableRes.json();
-    
-    if (chartsRes && chartsRes.ok) {
-      chartsData = await chartsRes.json();
-    }
-    
-    if (statRes && statRes.ok) {
-      statData = await statRes.json();
-    }
 
     populateHero();
     renderTable();
     renderFindings();
-    if (statData) {
-      renderStatTabs();
-    } else {
-      document.getElementById("stat-loading-state").innerHTML = `<p style="color:var(--accent-red)">Error loading stat data.</p>`;
-    }
-    
+
     // Hide loading, show table
     loadingState.style.display = "none";
     table.hidden = false;
-    
-    // Render charts if active or preload
-    if (chartsData.length > 0) {
-      chartsLoading.style.display = "none";
-      renderCharts();
-    } else {
-      chartsLoading.innerHTML = "<p>No chart data available yet.</p>";
-    }
 
   } catch (err) {
     console.error(err);
     loadingState.innerHTML = `<p style="color:var(--accent-red)">Error loading analysis data. Ensure the GitHub Action has run.</p>`;
-    chartsLoading.innerHTML = `<p style="color:var(--accent-red)">Error loading chart data.</p>`;
   }
 
   // 2. Core Rendering
@@ -243,15 +221,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
   }
 
-  // 3. Tab Navigation
+  // 3. Tab Navigation (with lazy-loading for charts + stat_freq + multivariate)
+  let chartsLoaded = false;
+  let statLoaded = false;
+  let multiLoaded = false;
+
   function switchTab(tabId) {
-    [tabTableOne, tabCharts, tabStat].forEach(el => {
+    [tabTableOne, tabCharts, tabStat, tabMulti].forEach(el => {
       if (el) {
         el.classList.remove("active");
         el.setAttribute("aria-selected", "false");
       }
     });
-    [pageTableOne, pageCharts, pageStat].forEach(el => {
+    [pageTableOne, pageCharts, pageStat, pageMulti].forEach(el => {
       if (el) el.hidden = true;
     });
 
@@ -264,23 +246,182 @@ document.addEventListener("DOMContentLoaded", async () => {
       tabCharts.setAttribute("aria-selected", "true");
       pageCharts.hidden = false;
       
-      setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
-      }, 50);
+      if (!chartsLoaded) {
+        loadCharts();
+      } else {
+        setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+      }
     } else if (tabId === "stat") {
       if (tabStat) {
         tabStat.classList.add("active");
         tabStat.setAttribute("aria-selected", "true");
       }
       if (pageStat) pageStat.hidden = false;
+      
+      if (!statLoaded) {
+        loadStatFreq();
+      }
+    } else if (tabId === "multi") {
+      if (tabMulti) {
+        tabMulti.classList.add("active");
+        tabMulti.setAttribute("aria-selected", "true");
+      }
+      if (pageMulti) pageMulti.hidden = false;
+      
+      if (!multiLoaded) {
+        loadMultivariate();
+      }
     }
+  }
+
+  async function loadCharts() {
+    try {
+      const res = await fetch("data/charts.json");
+      if (!res.ok) throw new Error("charts.json not found");
+      chartsData = await res.json();
+      chartsLoading.style.display = "none";
+      renderCharts();
+      chartsLoaded = true;
+    } catch (err) {
+      chartsLoading.innerHTML = `<p style="color:var(--accent-red)">Error loading chart data.</p>`;
+    }
+  }
+
+  async function loadStatFreq() {
+    try {
+      const res = await fetch("data/stat_freq.json");
+      if (!res.ok) throw new Error("stat_freq.json not found");
+      statData = await res.json();
+      renderStatTabs();
+      statLoaded = true;
+    } catch (err) {
+      document.getElementById("stat-loading-state").innerHTML = `<p style="color:var(--accent-red)">Error loading stat data.</p>`;
+    }
+  }
+
+  async function loadMultivariate() {
+    try {
+      const res = await fetch("data/multivariate.json");
+      if (!res.ok) throw new Error("multivariate.json not found");
+      const multiData = await res.json();
+      renderMultivariate(multiData);
+      multiLoaded = true;
+    } catch (err) {
+      document.getElementById("multi-loading-state").innerHTML = `<p style="color:var(--accent-red)">Error loading multivariate data. Ensure the GitHub Action has run.</p>`;
+    }
+  }
+
+  function renderMultivariate(data) {
+    document.getElementById("multi-loading-state").style.display = "none";
+    document.getElementById("multi-content-area").hidden = false;
+
+    // Summary stats
+    document.getElementById("multi-n-features").textContent = `${data.n_features_selected}/${data.n_features_total}`;
+    document.getElementById("multi-lasso-c").textContent = data.lasso_C;
+    document.getElementById("multi-firth-sig").textContent = data.firth.variables.filter(v => v.significant).length;
+    document.getElementById("multi-std-sig").textContent = data.standard.variables.filter(v => v.significant && v.name !== "Intercept").length;
+
+    // Firth meta
+    document.getElementById("multi-firth-meta").textContent = `Method: ${data.firth.method}. ${data.firth.n_iterations} iterations.`;
+
+    // Standard meta
+    document.getElementById("multi-std-meta").textContent = `Method: ${data.standard.method}. Pseudo R² = ${data.standard.pseudo_r2}. Log-likelihood = ${data.standard.log_likelihood}.`;
+
+    // Render both tables
+    renderMultiTable("firth", data.firth.variables);
+    renderMultiTable("std", data.standard.variables);
+
+    // Interpretation cards
+    renderMultiInterpretation(data);
+  }
+
+  function renderMultiTable(idPrefix, variables) {
+    const thead = document.getElementById(`thead-${idPrefix}`);
+    const tbody = document.getElementById(`tbody-${idPrefix}`);
+    if (!thead || !tbody) return;
+
+    thead.innerHTML = `<tr>
+      <th>Predictor</th>
+      <th>Coef (β)</th>
+      <th>SE</th>
+      <th>OR</th>
+      <th>95% CI</th>
+      <th>p-value</th>
+    </tr>`;
+
+    tbody.innerHTML = variables.map(v => {
+      const pClass = v.significant ? 'style="color:var(--accent-green);font-weight:600"' : '';
+      const ciStr = `[${v.ci_lo}–${v.ci_hi}]`;
+      const orDisplay = v.or > 1 ? `<span style="color:var(--accent-red)">${v.or}</span>` : v.or < 1 ? `<span style="color:var(--accent-green)">${v.or}</span>` : v.or;
+      return `<tr>
+        <td class="col-var">${v.name}</td>
+        <td style="font-family:var(--font-mono);font-size:0.82rem">${v.coef}</td>
+        <td style="font-family:var(--font-mono);font-size:0.82rem">${v.se}</td>
+        <td style="font-family:var(--font-mono);font-weight:600">${orDisplay}</td>
+        <td style="font-family:var(--font-mono);font-size:0.82rem">${ciStr}</td>
+        <td ${pClass} style="font-family:var(--font-mono)">${v.p_value}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  function renderMultiInterpretation(data) {
+    const grid = document.getElementById("multi-interp");
+    if (!grid) return;
+
+    const firthSig = data.firth.variables.filter(v => v.significant);
+    const stdSig = data.standard.variables.filter(v => v.significant && v.name !== "Intercept");
+
+    const cards = [];
+
+    // LASSO summary
+    cards.push({
+      icon: "🎯", title: "LASSO Feature Selection",
+      body: `From ${data.n_features_total} candidate features, LASSO (C=${data.lasso_C}) selected <strong>${data.n_features_selected}</strong> independent predictors. This sparse model minimizes AIC while handling multicollinearity.`
+    });
+
+    // Agreement
+    const firthNames = new Set(firthSig.map(v => v.name));
+    const stdNames = new Set(stdSig.map(v => v.name));
+    const agree = [...firthNames].filter(n => stdNames.has(n));
+    cards.push({
+      icon: "🤝", title: "Firth vs Standard Agreement",
+      body: `Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth penalized likelihood provides more conservative estimates with profile likelihood CIs — preferred when separation is a concern.`
+    });
+
+    // Significant predictors interpretation
+    if (firthSig.length > 0) {
+      const items = firthSig.map(v => {
+        const direction = v.or < 1 ? "protective" : "risk";
+        const strength = Math.abs(v.or - 1) < 0.2 ? "weak" : Math.abs(v.or - 1) < 0.5 ? "moderate" : "strong";
+        return `<strong>${v.name}:</strong> OR=${v.or} (${direction}, ${strength}), p=${v.p_value}`;
+      }).join("<br>");
+      cards.push({
+        icon: "🔍", title: "Significant Predictors (Firth)",
+        body: items
+      });
+    }
+
+    // Model fit
+    cards.push({
+      icon: "📐", title: "Model Fit",
+      body: `Pseudo R² = ${data.standard.pseudo_r2} — the selected features explain a small portion of variance in SIP diagnosis. This suggests SIP determination is multifactorial, with unmeasured confounders (e.g., substance dose, duration, genetic factors) playing major roles.`
+    });
+
+    grid.innerHTML = cards.map(c => `
+      <div class="method-card reveal">
+        <div class="method-icon">${c.icon}</div>
+        <h3>${c.title}</h3>
+        <p>${c.body}</p>
+      </div>
+    `).join("");
   }
 
   tabTableOne.addEventListener("click", () => switchTab("tableone"));
   tabCharts.addEventListener("click", () => switchTab("charts"));
   if (tabStat) tabStat.addEventListener("click", () => switchTab("stat"));
+  if (tabMulti) tabMulti.addEventListener("click", () => switchTab("multi"));
 
-  // 4. Plotly Charts Rendering
+  // 4. Plotly Charts Rendering (with per-chart error isolation)
   function renderCharts() {
     if (!window.Plotly) {
       console.warn("Plotly not loaded yet, retrying in 200ms...");
@@ -296,24 +437,32 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.id = containerId;
       chartsGrid.appendChild(div);
 
-      // We clone the layout to ensure Plotly doesn't mutate our source object in weird ways
-      const layout = Object.assign({}, spec.layout);
-      const config = { responsive: true, displayModeBar: false };
-
-      Plotly.newPlot(containerId, spec.data, layout, config);
+      try {
+        const layout = Object.assign({}, spec.layout);
+        const config = { responsive: true, displayModeBar: false };
+        Plotly.newPlot(containerId, spec.data, layout, config);
+      } catch (err) {
+        console.error(`Chart ${spec.id || i} failed:`, err);
+        div.innerHTML = `<p style="color:var(--accent-red);padding:2rem;text-align:center">Chart "${spec.title || spec.id}" failed to render.</p>`;
+      }
     });
   }
 
   // 5. Interactivity
-  [filterType, filterSig, searchVar].forEach(el => {
-    el.addEventListener("input", renderTable);
+  let debounceTimer;
+  [filterType, filterSig].forEach(el => {
     el.addEventListener("change", renderTable);
+  });
+  searchVar.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(renderTable, 200);
   });
 
   btnExport.addEventListener("click", () => {
     if (!tableData.length) return;
-    const g0Name = metaData.group_labels["0"] || "0";
-    const g1Name = metaData.group_labels["1"] || "1";
+    const groupKeys = Object.keys(metaData.group_counts || {});
+    const g0Name = groupKeys.length > 0 ? groupKeys[0] : "Group 0";
+    const g1Name = groupKeys.length > 1 ? groupKeys[1] : "Group 1";
 
     const csvRows = [];
     csvRows.push(["Variable", "Type", "Total", g0Name, g1Name, "p-value", "Effect_Type", "Effect_Size", "Effect_CI_Low", "Effect_CI_High"].join(","));

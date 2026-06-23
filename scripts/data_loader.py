@@ -105,8 +105,8 @@ VARIABLE_META = {
 
 STRATIFY_COL = "sip_diagnosis"
 STRATIFY_LABELS = {0: "Not SIP", 1: "SIP", 99: None}  # None → exclude from analysis
-INCLUSION_LABELS = {0: "Not Met", 1: "Met"}
-HX_PSYCH_LABELS = {0: "No", 1: "Yes"}
+INCLUSION_LABELS = {"ไม่": "Not Met", "ใช่": "Met"}
+HX_PSYCH_LABELS = {"ไม่มี": "No", "มี": "Yes"}
 SIP_ALL_LABELS = {0: "Not SIP", 1: "SIP", 99: "Incomplete Data"}
 
 

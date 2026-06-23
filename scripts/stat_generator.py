@@ -26,9 +26,12 @@ from tableone_generator import TableOneFormatter, TableOneGenerator
 OUTPUT_DIR = Path(__file__).parent.parent / "docs" / "data"
 
 def process_group(generator: TableOneGenerator, df: pd.DataFrame, selected_vars: list[str], stratify_col: str, labels: dict) -> dict:
-    # Ensure column is numeric for mapping if needed
+    # Only convert to numeric if the column still has numeric values (e.g. sip_diagnosis)
+    # For columns already mapped to categorical strings (inclusion_criteria, hx_psychiatric), skip
     if stratify_col in df.columns:
-        df[stratify_col] = pd.to_numeric(df[stratify_col], errors="coerce")
+        sample_vals = df[stratify_col].dropna().head(5).tolist()
+        if sample_vals and all(isinstance(v, (int, float)) or (isinstance(v, str) and v.replace('.','',1).replace('-','',1).isdigit()) for v in sample_vals):
+            df[stratify_col] = pd.to_numeric(df[stratify_col], errors="coerce")
 
     # Generate results
     results, _ = generator.generate(
@@ -41,11 +44,13 @@ def process_group(generator: TableOneGenerator, df: pd.DataFrame, selected_vars:
     for va in results:
         new_groups = {}
         for k, v in va.stats_groups.items():
+            # Try numeric key first, then string key
             try:
                 numeric_k = int(float(k))
                 label = labels.get(numeric_k) or k
-            except ValueError:
-                label = k
+            except (ValueError, TypeError):
+                # String key — look up directly in labels dict
+                label = labels.get(k) or k
             new_groups[label] = v
         va.stats_groups = new_groups
 

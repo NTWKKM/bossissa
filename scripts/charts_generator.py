@@ -447,7 +447,7 @@ def chart_forest_plot(df: pd.DataFrame) -> dict:
             if pd.api.types.is_numeric_dtype(sub[col]):
                 x = (sub[col] == 1).astype(float)
             else:
-                x = sub[col].str.lower().str.contains(r"yes|ใช่|positive|\+|มี", regex=True, na=False).astype(float)
+                x = sub[col].str.lower().str.fullmatch(r"yes|ใช่|positive|\+|มี", na=False).astype(float)
             y = sub[STRATIFY_COL].astype(float).values
             x = x.values
 
@@ -461,7 +461,10 @@ def chart_forest_plot(df: pd.DataFrame) -> dict:
                 continue
             b1 = res.x[1]
             or_val = float(np.exp(b1))
-            se = float(np.sqrt(abs(res.hess_inv[1, 1])))
+            # Validate Hessian inverse before computing SE
+            if res.hess_inv is None or np.any(np.isnan(res.hess_inv)) or np.any(np.isinf(res.hess_inv)):
+                continue
+            se = float(np.sqrt(max(abs(res.hess_inv[1, 1]), 1e-10)))
             ci_lo = float(np.exp(b1 - 1.96 * se))
             ci_hi = float(np.exp(b1 + 1.96 * se))
             # Wald p-value
@@ -544,11 +547,12 @@ def _pct_positive(s: pd.Series) -> float:
     s = s.dropna()
     if len(s) == 0:
         return 0.0
-    # Detect positive: numeric 1, or string "Yes"/"ใช่"/"Positive"/"+"/"มี", etc.
+    # Detect positive: numeric 1, or string "Yes"/"ใช่"/"Positive"/"+"/"มี" (exact match, not substring)
     if pd.api.types.is_numeric_dtype(s):
         pos = (s == 1).sum()
     else:
-        pos = s.str.lower().str.contains(r"yes|ใช่|positive|\+|มี", regex=True, na=False).sum()
+        # Exact match on positive labels — avoid matching "ไม่มี" (contains "มี")
+        pos = s.str.lower().str.fullmatch(r"yes|ใช่|positive|\+|มี", na=False).sum()
     return round(100.0 * int(pos) / len(s), 1)
 
 

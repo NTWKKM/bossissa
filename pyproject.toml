@@ -8,6 +8,9 @@ dependencies = [
     "numpy>=1.26.0",
     "scipy>=1.13.0",
     "requests>=2.31.0",
+    "scikit-learn>=1.5.0",
+    "statsmodels>=0.14.0",
+    "firthmodels>=0.7.0",
 ]
 
 [dependency-groups]

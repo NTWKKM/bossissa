@@ -10,6 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <!-- Plotly.js (CDN, minified) -->
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+  <!-- Prevent dark mode FOUC: apply theme before first paint -->
+  <script>
+    (function(){var t=localStorage.getItem("bossissa-theme");if(t)document.documentElement.setAttribute("data-theme",t);})();
+  </script>
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
@@ -46,6 +50,9 @@
         </button>
         <button class="tab-btn"        id="tab-stat"     role="tab" aria-selected="false" aria-controls="page-stat">
           <span class="tab-icon">📋</span> Frequency Stats
+        </button>
+        <button class="tab-btn"        id="tab-multi"    role="tab" aria-selected="false" aria-controls="page-multi">
+          <span class="tab-icon">🧬</span> Multivariate
         </button>
         <a href="https://docs.google.com/spreadsheets/d/1JG5cGNaqo_2DB4Z7N-3w8Yz8eHkQhAhDLoUxMoymlAY/edit?usp=sharing" target="_blank" class="tab-btn" style="text-decoration: none; color: inherit;">
           <span class="tab-icon">📄</span> Google Sheets
@@ -220,6 +227,66 @@
     </section>
 
   </div><!-- /page-stat -->
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       PAGE: MULTIVARIATE
+  ══════════════════════════════════════════════════════════════════ -->
+  <div id="page-multi" role="tabpanel" hidden>
+
+    <section class="section">
+      <div class="container">
+        <div class="loading-state" id="multi-loading-state"><div class="spinner"></div><p>Loading multivariate analysis…</p></div>
+
+        <div id="multi-content-area" hidden>
+
+          <!-- Summary -->
+          <div class="section-header">
+            <h2 class="section-title">Multivariate Logistic Regression</h2>
+            <p class="section-desc">LASSO feature selection → Firth (penalized likelihood) + Standard MLE side-by-side. Adjusted odds ratios with 95% CI.</p>
+          </div>
+
+          <div class="stats-grid" id="multi-stats-grid" style="margin-bottom:2rem">
+            <div class="stat-card"><span class="stat-value" id="multi-n-features">—</span><span class="stat-label">Features Selected</span></div>
+            <div class="stat-card"><span class="stat-value" id="multi-lasso-c">—</span><span class="stat-label">LASSO C</span></div>
+            <div class="stat-card"><span class="stat-value" id="multi-firth-sig">—</span><span class="stat-label">Firth Significant</span></div>
+            <div class="stat-card"><span class="stat-value" id="multi-std-sig">—</span><span class="stat-label">Standard Significant</span></div>
+          </div>
+
+          <!-- Firth Results -->
+          <div class="section-header" style="margin-top: 2rem;">
+            <h2 class="section-title">Firth Logistic Regression (Penalized Likelihood)</h2>
+            <p class="section-desc" id="multi-firth-meta"></p>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-firth"></thead>
+              <tbody id="tbody-firth"></tbody>
+            </table>
+          </div>
+
+          <!-- Standard Results -->
+          <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Standard Logistic Regression (MLE)</h2>
+            <p class="section-desc" id="multi-std-meta"></p>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-std"></thead>
+              <tbody id="tbody-std"></tbody>
+            </table>
+          </div>
+
+          <!-- Interpretation -->
+          <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Interpretation</h2>
+          </div>
+          <div class="methods-grid" id="multi-interp"></div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-multi -->
 
   <!-- ═══════════════════════════ FOOTER ══════════════════════════ -->
   <footer class="footer">
