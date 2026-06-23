@@ -248,7 +248,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       pageTableOne.hidden = true;
       
       // Re-trigger layout for Plotly to ensure it sizes correctly if it was hidden
-      window.dispatchEvent(new Event('resize'));
+      // Use setTimeout to allow the browser to paint the display:block first
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 50);
     }
   }
 

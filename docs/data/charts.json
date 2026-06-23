@@ -35,8 +35,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -60,15 +60,19 @@
         "y": -0.1
       },
       "margin": {
-        "l": 60,
-        "r": 30,
-        "t": 60,
-        "b": 60
+        "l": 50,
+        "r": 20,
+        "t": 50,
+        "b": 50
       },
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "SIP vs Non-SIP Distribution",
       "showlegend": true
@@ -132,8 +136,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -160,15 +164,19 @@
         "bordercolor": "rgba(255,255,255,0.06)"
       },
       "margin": {
-        "l": 60,
-        "r": 30,
-        "t": 60,
-        "b": 60
+        "l": 50,
+        "r": 20,
+        "t": 50,
+        "b": 50
       },
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "Clinical Symptoms by SIP Diagnosis",
       "barmode": "group",
@@ -247,8 +255,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -271,15 +279,19 @@
         "bordercolor": "rgba(255,255,255,0.06)"
       },
       "margin": {
-        "l": 60,
-        "r": 30,
-        "t": 60,
-        "b": 60
+        "l": 50,
+        "r": 20,
+        "t": 50,
+        "b": 50
       },
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "Primary Substance Used",
       "barmode": "group"
@@ -1007,8 +1019,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -1032,15 +1044,19 @@
         "bordercolor": "rgba(255,255,255,0.06)"
       },
       "margin": {
-        "l": 60,
-        "r": 30,
-        "t": 60,
-        "b": 60
+        "l": 50,
+        "r": 20,
+        "t": 50,
+        "b": 50
       },
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "Age Distribution by SIP Diagnosis"
     }
@@ -1105,8 +1121,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -1142,7 +1158,11 @@
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "DSM-5 Criteria Fulfilment Rate",
       "barmode": "group"
@@ -1204,8 +1224,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -1232,15 +1252,19 @@
         "bordercolor": "rgba(255,255,255,0.06)"
       },
       "margin": {
-        "l": 60,
-        "r": 30,
-        "t": 60,
-        "b": 60
+        "l": 50,
+        "r": 20,
+        "t": 50,
+        "b": 50
       },
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "Urine Drug Screen Positivity",
       "barmode": "group"
@@ -1294,8 +1318,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -1318,15 +1342,19 @@
         "bordercolor": "rgba(255,255,255,0.06)"
       },
       "margin": {
-        "l": 60,
-        "r": 30,
-        "t": 60,
-        "b": 60
+        "l": 50,
+        "r": 20,
+        "t": 50,
+        "b": 50
       },
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "Discharge Status by Group",
       "barmode": "group"
@@ -1436,8 +1464,8 @@
       }
     ],
     "layout": {
-      "paper_bgcolor": "#0a0d14",
-      "plot_bgcolor": "#111520",
+      "paper_bgcolor": "rgba(0,0,0,0)",
+      "plot_bgcolor": "rgba(0,0,0,0)",
       "font": {
         "family": "Inter, system-ui, sans-serif",
         "color": "#8b97b0",
@@ -1470,7 +1498,11 @@
       "hoverlabel": {
         "bgcolor": "#1a2035",
         "bordercolor": "rgba(255,255,255,0.06)",
-        "font_color": "#e8edf5"
+        "font": {
+          "color": "#ffffff",
+          "size": 13,
+          "family": "Inter, system-ui, sans-serif"
+        }
       },
       "title": "Univariate OR Forest Plot",
       "showlegend": true

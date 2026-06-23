@@ -43,15 +43,19 @@ COLORS = {
 }
 
 BASE_LAYOUT = {
-    "paper_bgcolor": COLORS["bg_paper"],
-    "plot_bgcolor":  COLORS["bg"],
+    "paper_bgcolor": "rgba(0,0,0,0)",
+    "plot_bgcolor":  "rgba(0,0,0,0)",
     "font":          {"family": "Inter, system-ui, sans-serif", "color": COLORS["text"], "size": 13},
     "title_font":    {"family": "Inter, system-ui, sans-serif", "color": COLORS["title"], "size": 16},
     "xaxis": {"gridcolor": COLORS["grid"], "zerolinecolor": COLORS["grid"]},
     "yaxis": {"gridcolor": COLORS["grid"], "zerolinecolor": COLORS["grid"]},
     "legend": {"bgcolor": "rgba(0,0,0,0)", "bordercolor": COLORS["grid"]},
-    "margin": {"l": 60, "r": 30, "t": 60, "b": 60},
-    "hoverlabel": {"bgcolor": "#1a2035", "bordercolor": COLORS["grid"], "font_color": COLORS["title"]},
+    "margin": {"l": 50, "r": 20, "t": 50, "b": 50},
+    "hoverlabel": {
+        "bgcolor": "#1a2035", 
+        "bordercolor": COLORS["grid"], 
+        "font": {"color": "#ffffff", "size": 13, "family": "Inter, system-ui, sans-serif"}
+    },
 }
 
 
