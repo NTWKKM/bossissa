@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T13:31:46.261298+00:00",
+  "generated_at": "2026-06-23T13:36:20.819676+00:00",
   "sheet_id": "1JG5cGNaqo_2DB4Z7N-3w8Yz8eHkQhAhDLoUxMoymlAY",
   "total_n": 678,
   "group_counts": {
@@ -8,8 +8,8 @@
   },
   "stratify_col": "sip_diagnosis",
   "group_labels": {
-    "0": "Not SIP",
-    "1": "SIP"
+    "Not SIP": "Not SIP",
+    "SIP": "SIP"
   },
   "n_variables": 28,
   "n_significant": 1,

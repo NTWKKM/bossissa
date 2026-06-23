@@ -50,7 +50,8 @@ def main() -> None:
         va.stats_groups = new_groups
 
     # 3. Build output group_labels for formatter
-    display_labels = {str(k): v for k, v in STRATIFY_LABELS.items() if v is not None}
+    # Since sip_diagnosis is already mapped in df, the keys in stats_groups are the labels
+    display_labels = {v: v for k, v in STRATIFY_LABELS.items() if v is not None}
 
     # 4. Render to HTML
     formatter = TableOneFormatter()
