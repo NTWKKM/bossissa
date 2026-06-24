@@ -68,6 +68,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   function observeReveal(root = document) {
     root.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
+  
+  // Observe static reveal elements on page load
+  observeReveal(document);
 
   let tableData = [];
   let metaData = null;
