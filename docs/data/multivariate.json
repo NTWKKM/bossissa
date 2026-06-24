@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T12:41:39.663064+00:00",
+  "generated_at": "2026-06-24T16:11:36.144286+00:00",
   "total_n": 1000,
   "n_events": 121,
   "epv": 2.75,
@@ -7,184 +7,229 @@
   "lasso": {
     "method": "LASSO (10-fold CV)",
     "best_C": 0.3594,
-    "auc_cv": 0.809,
-    "brier_score_cv": 0.0787,
+    "auc_cv": 0.8069,
+    "brier_score_cv": 0.079,
     "calibration": {
       "prob_true": [
+        0.04,
+        0.03,
         0.03,
         0.06,
-        0.03,
-        0.04,
         0.06,
-        0.04,
-        0.06,
-        0.1,
-        0.21,
+        0.05,
+        0.05,
+        0.12,
+        0.19,
         0.58
       ],
       "prob_pred": [
-        0.0076,
-        0.0169,
-        0.0291,
-        0.042,
-        0.058,
-        0.0813,
-        0.1108,
-        0.1552,
-        0.2518,
-        0.4643
+        0.0037,
+        0.0101,
+        0.0183,
+        0.0293,
+        0.046,
+        0.0687,
+        0.0989,
+        0.1491,
+        0.2705,
+        0.534
       ]
     },
     "variables": [
       {
-        "name": "age_scaled",
-        "coef": -0.0694,
-        "or": 0.933
+        "name": "age",
+        "coef": -0.0845,
+        "or": 0.919
       },
       {
         "name": "sex_หญิง",
-        "coef": -0.2336,
-        "or": 0.792
+        "coef": -0.1775,
+        "or": 0.837
       },
       {
         "name": "insurance_type_ข้าราชการ",
-        "coef": -0.1735,
-        "or": 0.841
+        "coef": -0.1102,
+        "or": 0.896
       },
       {
         "name": "insurance_type_ประกันสังคม",
-        "coef": 0.0432,
-        "or": 1.044
+        "coef": 0.0437,
+        "or": 1.045
       },
       {
         "name": "icd10_er_F29",
-        "coef": 0.0547,
-        "or": 1.056
+        "coef": 0.0875,
+        "or": 1.091
       },
       {
         "name": "sx_hallucination_auditory_มี",
-        "coef": -0.0101,
-        "or": 0.99
+        "coef": -0.0968,
+        "or": 0.908
       },
       {
         "name": "sx_hallucination_visual_มี",
-        "coef": -0.1011,
-        "or": 0.904
+        "coef": -0.1061,
+        "or": 0.899
       },
       {
         "name": "sx_delusion_มี",
-        "coef": -0.1111,
-        "or": 0.895
+        "coef": -0.1286,
+        "or": 0.879
       },
       {
         "name": "sx_aggression_มี",
-        "coef": 0.1449,
-        "or": 1.156
+        "coef": 0.1122,
+        "or": 1.119
       },
       {
         "name": "sx_disorganized_speech_มี",
-        "coef": -0.061,
-        "or": 0.941
+        "coef": -0.0774,
+        "or": 0.926
       },
       {
         "name": "hx_psychiatric_มี",
-        "coef": -0.1052,
-        "or": 0.9
+        "coef": -0.1083,
+        "or": 0.897
       },
       {
         "name": "hx_substance_use_มี",
-        "coef": 0.0861,
-        "or": 1.09
+        "coef": 0.1016,
+        "or": 1.107
+      },
+      {
+        "name": "primary_substance_Cannabis",
+        "coef": 0.0571,
+        "or": 1.059
       },
       {
         "name": "primary_substance_Ket",
-        "coef": 0.032,
-        "or": 1.033
+        "coef": 0.1439,
+        "or": 1.155
       },
       {
         "name": "primary_substance_Opioid",
-        "coef": 0.0789,
-        "or": 1.082
+        "coef": 0.1574,
+        "or": 1.17
+      },
+      {
+        "name": "primary_substance_Alc",
+        "coef": -0.0217,
+        "or": 0.979
       },
       {
         "name": "primary_substance_Benzo",
-        "coef": -0.0934,
-        "or": 0.911
+        "coef": -0.0457,
+        "or": 0.955
       },
       {
         "name": "primary_substance_Kratom",
-        "coef": 0.1692,
-        "or": 1.184
+        "coef": 0.1684,
+        "or": 1.183
+      },
+      {
+        "name": "primary_substance_อื่นๆ",
+        "coef": 0.0643,
+        "or": 1.066
+      },
+      {
+        "name": "primary_substance_route_ดม",
+        "coef": -0.0211,
+        "or": 0.979
+      },
+      {
+        "name": "last_substance_use_1-7วัน",
+        "coef": -0.0518,
+        "or": 0.95
+      },
+      {
+        "name": "last_substance_use_1-4สัปดาห์",
+        "coef": -0.0793,
+        "or": 0.924
+      },
+      {
+        "name": "last_substance_use_>1เดือน",
+        "coef": -0.0568,
+        "or": 0.945
+      },
+      {
+        "name": "uds_status_ตรวจ",
+        "coef": 0.0587,
+        "or": 1.06
       },
       {
         "name": "uds_meth_Positive",
-        "coef": 0.1047,
-        "or": 1.11
+        "coef": 0.0405,
+        "or": 1.041
       },
       {
         "name": "uds_cannabis_Positive",
-        "coef": 0.0451,
-        "or": 1.046
+        "coef": 0.0263,
+        "or": 1.027
+      },
+      {
+        "name": "uds_opioid_Positive",
+        "coef": -0.0532,
+        "or": 0.948
       },
       {
         "name": "dsm_hallucination_delusion_ใช่",
-        "coef": 0.59,
-        "or": 1.804
+        "coef": 0.3669,
+        "or": 1.443
       },
       {
         "name": "dsm_within_1mo_or_withdrawal_ใช่",
-        "coef": 1.2746,
-        "or": 3.577
+        "coef": 0.6835,
+        "or": 1.981
       },
       {
         "name": "dsm_substance_related_ใช่",
-        "coef": 0.9626,
-        "or": 2.619
+        "coef": 0.4281,
+        "or": 1.534
       },
       {
         "name": "dsm_not_primary_ใช่",
-        "coef": 0.7709,
-        "or": 2.162
+        "coef": 0.3465,
+        "or": 1.414
       },
       {
         "name": "dsm_no_delirium_ใช่",
-        "coef": 1.3102,
-        "or": 3.707
+        "coef": 0.7259,
+        "or": 2.067
       },
       {
         "name": "dsm_functional_impairment_ใช่",
-        "coef": 1.2256,
-        "or": 3.406
+        "coef": 0.6177,
+        "or": 1.855
       },
       {
         "name": "discharge_status_Admitอื่น",
-        "coef": -1.5343,
-        "or": 0.216
+        "coef": -0.8225,
+        "or": 0.439
       },
       {
         "name": "discharge_status_Refer",
-        "coef": -0.7825,
-        "or": 0.457
+        "coef": -0.4267,
+        "or": 0.653
       },
       {
         "name": "discharge_status_กลับบ้าน",
-        "coef": -1.1427,
-        "or": 0.319
+        "coef": -0.5805,
+        "or": 0.56
       }
     ],
-    "n_features_selected": 27
+    "n_features_selected": 36
   },
   "firth": {
     "method": "Firth (Penalized Likelihood — firthmodels)",
-    "n_iterations": 13,
+    "n_iterations": 18,
     "variables": [
       {
-        "name": "age_scaled",
-        "coef": -0.1414,
-        "se": 0.1124,
-        "or": 0.868,
-        "ci_lo": 0.696,
-        "ci_hi": 1.082,
+        "name": "age",
+        "coef": -0.0069,
+        "se": 0.0055,
+        "or": 0.993,
+        "ci_lo": 0.983,
+        "ci_hi": 1.004,
         "p_value": 0.2085,
         "significant": false
       },
@@ -632,26 +677,26 @@
     "variables": [
       {
         "name": "Intercept",
-        "coef": -7.8439,
-        "se": 1.1068,
-        "or": 0.0,
+        "coef": -7.4587,
+        "se": 1.1477,
+        "or": 0.001,
         "ci_lo": 0.0,
-        "ci_hi": 0.003,
+        "ci_hi": 0.005,
         "p_value": 0.0,
         "significant": true
       },
       {
-        "name": "age_scaled",
-        "coef": -0.1566,
-        "se": 0.1244,
-        "or": 0.855,
-        "ci_lo": 0.67,
-        "ci_hi": 1.091,
+        "name": "age",
+        "coef": -0.0076,
+        "se": 0.006,
+        "or": 0.992,
+        "ci_lo": 0.981,
+        "ci_hi": 1.004,
         "p_value": 0.2082,
         "significant": false,
-        "crude_or": 0.86,
-        "crude_ci_lo": 0.711,
-        "crude_ci_hi": 1.04,
+        "crude_or": 0.993,
+        "crude_ci_lo": 0.984,
+        "crude_ci_hi": 1.002,
         "crude_p_value": 0.1205
       },
       {

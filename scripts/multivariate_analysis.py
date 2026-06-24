@@ -53,12 +53,9 @@ def prepare_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, list[str
             feature_dfs.append(dummies)
             feature_names.extend(dummies.columns.tolist())
         else:
-            # Continuous — standardize
-            scaler = StandardScaler()
-            vals = series.dropna().values.reshape(-1, 1)
-            scaled = scaler.fit_transform(vals)
-            col_name = f"{var}_scaled"
-            feature_dfs.append(pd.DataFrame(scaled, columns=[col_name], index=series.dropna().index))
+            # Continuous — raw values
+            col_name = var
+            feature_dfs.append(pd.DataFrame(series.values, columns=[col_name], index=series.index))
             feature_names.append(col_name)
 
     X_df = pd.concat(feature_dfs, axis=1)
@@ -66,8 +63,12 @@ def prepare_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, list[str
     X_df = X_df.loc[mask]
     y = y_raw[mask].astype(int)
 
-    # Fill any remaining NaN in X with 0 (median for scaled, 0 for dummies = reference category)
-    X_df = X_df.fillna(0)
+    # Impute missing values: 0 for binary dummies, median for continuous
+    for col in X_df.columns:
+        if set(X_df[col].dropna().unique()).issubset({0.0, 1.0}):
+            X_df[col] = X_df[col].fillna(0.0)
+        else:
+            X_df[col] = X_df[col].fillna(X_df[col].median())
     
     X_raw = X_df.values.astype(float)
     y_raw_int = y.astype(int)
@@ -109,9 +110,14 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     from sklearn.calibration import calibration_curve
     from sklearn.model_selection import cross_val_predict
 
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import StandardScaler
+
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        # 10-fold CV to find best C
+        # 1. Scale X and find best C using 10-fold CV
+        scaler = StandardScaler()
+        X_scaled = scaler.fit_transform(X)
         model = LogisticRegressionCV(
             Cs=10,
             cv=10,
@@ -121,7 +127,7 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
             random_state=42,
             scoring='neg_log_loss'
         )
-        model.fit(X, y)
+        model.fit(X_scaled, y)
 
     best_C = float(model.C_[0])
     
@@ -138,11 +144,15 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
             "or": round(float(np.exp(coefs[idx])), 3)
         })
         
-    # To get cross-validated metrics, we can use cross_val_predict with the best_C
+    # To get cross-validated metrics, we use a Pipeline within cross_val_predict
+    # to perfectly isolate the scaling step and prevent data leakage
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        final_model = LogisticRegression(penalty="l1", solver="saga", C=best_C, max_iter=5000, random_state=42)
-        y_prob_cv = cross_val_predict(final_model, X, y, cv=10, method='predict_proba')[:, 1]
+        pipeline = Pipeline([
+            ("scaler", StandardScaler()),
+            ("lasso", LogisticRegression(penalty="l1", solver="saga", C=best_C, max_iter=5000, random_state=42))
+        ])
+        y_prob_cv = cross_val_predict(pipeline, X, y, cv=10, method='predict_proba')[:, 1]
         
     # Calculate metrics
     auc_cv = roc_auc_score(y, y_prob_cv)
@@ -284,6 +294,9 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
         if df_groups > 2:
             hl_chi2 = float(chi2_val)
             hl_p = float(1 - stats.chi2.cdf(hl_chi2, df_groups - 2))
+        else:
+            hl_chi2 = None
+            hl_p = None
     except Exception as e:
         pass
 

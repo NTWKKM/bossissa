@@ -265,6 +265,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
       `;
     }).join("");
+    observeReveal(findingsGrid);
   }
 
   // 3. Tab Navigation (with lazy-loading for charts + stat_freq + multivariate)
@@ -415,7 +416,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     let stdMeta = `Method: ${data.standard.method}. Pseudo R² = ${data.standard.pseudo_r2}. Log-likelihood = ${data.standard.log_likelihood}.`;
     if (data.standard.nagelkerke_r2) stdMeta += ` Nagelkerke R² = ${data.standard.nagelkerke_r2}.`;
     if (data.standard.auc) stdMeta += ` AUC = ${data.standard.auc}.`;
-    if (data.standard.hl_p_value !== null) stdMeta += ` HL test p = ${data.standard.hl_p_value}.`;
+    if (data.standard.hl_p_value !== null) {
+      stdMeta += ` HL test p = ${data.standard.hl_p_value}.`;
+    } else {
+      stdMeta += ` HL test skipped: insufficient prediction bins (n≤2).`;
+    }
     document.getElementById("multi-std-meta").textContent = stdMeta;
 
     // Render both tables
@@ -521,7 +526,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     `);
 
     // 1. LASSO
-    bullets.push(`<strong>🎯 LASSO Feature Selection (Prediction)</strong> — For building a sparse prediction model (e.g., clinical scoring tool), LASSO (C=${data.lasso_C}) shrunk the ${data.n_features_total} candidates down to <strong>${data.n_features_selected}</strong> independent predictors. LASSO ORs are deliberately shrunk (biased towards 1) to prevent overfitting, so they are not used for causal interpretation.`);
+    bullets.push(`<strong>🎯 LASSO Feature Selection (Prediction)</strong> — For building a sparse prediction model (e.g., clinical scoring tool), LASSO (C=${data.lasso.best_C}) shrunk the ${data.n_features_total} candidates down to <strong>${data.lasso.n_features_selected}</strong> independent predictors. LASSO ORs are deliberately shrunk (biased towards 1) to prevent overfitting, so they are not used for causal interpretation.`);
 
     // 2. Agreement
     bullets.push(`<strong>🤝 Firth vs Standard Agreement</strong> — Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth provides more conservative profile-likelihood CIs and handles small samples or rare events better. Standard MLE provides goodness-of-fit metrics (Nagelkerke R² = ${data.standard.nagelkerke_r2 || '-'}) and discrimination power (AUC = ${data.standard.auc || '-'}) required by medical journals.`);
@@ -607,8 +612,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const g0Name = groupKeys.length > 0 ? groupKeys[0] : "Group 0";
     const g1Name = groupKeys.length > 1 ? groupKeys[1] : "Group 1";
 
+    function csvEscape(str) {
+      if (str === null || str === undefined) return "";
+      const s = String(str);
+      if (s.includes('"') || s.includes(',') || s.includes('\n')) {
+        return `"${s.replace(/"/g, '""')}"`;
+      }
+      return s;
+    }
+
     const csvRows = [];
-    csvRows.push(["Variable", "Type", "Total", g0Name, g1Name, "p-value", "Effect_Type", "Effect_Size", "Effect_CI_Low", "Effect_CI_High"].join(","));
+    csvRows.push(["Variable", "Type", "Total", g0Name, g1Name, "p-value", "Effect_Type", "Effect_Size", "Effect_CI_Low", "Effect_CI_High"].map(csvEscape).join(","));
     
     tableData.forEach(r => {
       let ciLo = "", ciHi = "", effectType = "", effectSize = "";
@@ -636,16 +650,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       const row = [
-        `"${r.name}"`,
-        r.var_type,
-        `"${totalStr}"`,
-        `"${g0Str || ''}"`,
-        `"${g1Str || ''}"`,
-        r.p_value,
-        effectType,
-        effectSize,
-        ciLo,
-        ciHi
+        csvEscape(r.name),
+        csvEscape(r.var_type),
+        csvEscape(totalStr),
+        csvEscape(g0Str || ''),
+        csvEscape(g1Str || ''),
+        csvEscape(r.p_value),
+        csvEscape(effectType),
+        csvEscape(effectSize),
+        csvEscape(ciLo),
+        csvEscape(ciHi)
       ];
       csvRows.push(row.join(","));
     });

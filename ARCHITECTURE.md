@@ -64,10 +64,15 @@ The pipeline evaluates pre-specified clinical covariates across three model conf
 | User Theme | Client overrides default | `localStorage` (key: `bossissa-theme`) |
 | Filter/Search | Last-writer wins | Ephemeral DOM state, no persistence |
 
-## Warnings
+## Warnings & Statistical Guarantees
 
+### 7.1 Warnings
 - **Statistical Power**: P-values may lack power if subgroup N is critically low. Interpret with caution.
 - **Automated Normality Tests**: Shapiro-Wilk (N<5000) or Jarque-Bera (N≥5000) with skew/kurtosis criteria. Clinical researchers should visually verify distributions.
-- **EPV and Multivariate Stability**: The UI enforces strict interpretative recommendations based on Events Per Variable (EPV). If EPV < 10 or perfect separation occurs, Firth's Penalized Likelihood is the recommended explanatory model. Standard MLE is safely interpretable only when EPV ≥ 10. For predictive workflows, LASSO is the recommended first step.
-- **LASSO Predictive Validation**: The LASSO model utilizes 10-fold Cross-Validation with `neg_log_loss` scoring to rigorously estimate the out-of-sample AUC, Brier Score, and Calibration. This prevents over-optimistic performance reporting typical in non-cross-validated pipelines.
 - **PHI Sanitization**: Pipeline must ensure no PHI/PII in `docs/data/*.json` payloads. Google Sheet must be public ("Anyone with link can view") with PHI removed beforehand.
+
+### 7.2 Statistical Guarantees
+- **Data Leakage Prevention**: The pipeline strictly enforces cross-validation boundaries. For the LASSO predictive model, data scaling and imputation are encapsulated within an `sklearn.pipeline.Pipeline`, ensuring that inner cross-validation folds do not leak distributional information (mean/variance) into out-of-sample metric evaluations (AUC, Brier score).
+- **Imputation Strategy**: Missing values are not silently imputed with means. Binary dummy variables are filled with `0` (reference category), and continuous variables are filled with their median before model fitting. This prevents artificial variance reduction.
+- **Unit Consistency**: Explanatory models (Standard MLE, Firth) process unscaled raw variables. This guarantees that reported Adjusted Odds Ratios align directly with the Crude Odds Ratios from Table One (i.e., per 1 raw unit increase), avoiding clinical misinterpretation.
+- **EPV and Multivariate Stability**: The UI enforces strict interpretative recommendations based on Events Per Variable (EPV). If EPV < 10 or perfect separation occurs, Firth's Penalized Likelihood is the recommended explanatory model. Standard MLE is safely interpretable only when EPV ≥ 10. For predictive workflows, LASSO is the recommended first step.
