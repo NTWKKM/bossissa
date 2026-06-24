@@ -55,6 +55,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  // Reveal animation observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  function observeReveal(root = document) {
+    root.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
   let tableData = [];
   let metaData = null;
   let chartsData = [];
@@ -688,20 +702,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Reveal animation observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  function observeReveal(root = document) {
-    root.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  }
-  observeReveal();
 
   // 6. Frequency Stats Rendering
   function renderStatTabs() {
