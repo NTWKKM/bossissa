@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T16:11:36.144286+00:00",
+  "generated_at": "2026-06-24T23:17:12.554036+00:00",
   "total_n": 1000,
   "n_events": 121,
   "epv": 2.75,
@@ -7,32 +7,32 @@
   "lasso": {
     "method": "LASSO (10-fold CV)",
     "best_C": 0.3594,
-    "auc_cv": 0.8069,
-    "brier_score_cv": 0.079,
+    "auc_cv": 0.8114,
+    "brier_score_cv": 0.0777,
     "calibration": {
       "prob_true": [
         0.04,
+        0.04,
         0.03,
+        0.04,
+        0.08,
         0.03,
-        0.06,
-        0.06,
-        0.05,
-        0.05,
+        0.04,
         0.12,
         0.19,
-        0.58
+        0.6
       ],
       "prob_pred": [
-        0.0037,
-        0.0101,
+        0.0038,
+        0.0106,
         0.0183,
-        0.0293,
-        0.046,
-        0.0687,
-        0.0989,
-        0.1491,
-        0.2705,
-        0.534
+        0.0289,
+        0.0442,
+        0.0658,
+        0.0942,
+        0.151,
+        0.2624,
+        0.5237
       ]
     },
     "variables": [
@@ -93,7 +93,7 @@
       },
       {
         "name": "hx_substance_use_มี",
-        "coef": 0.1016,
+        "coef": 0.1017,
         "or": 1.107
       },
       {
@@ -118,7 +118,7 @@
       },
       {
         "name": "primary_substance_Benzo",
-        "coef": -0.0457,
+        "coef": -0.0458,
         "or": 0.955
       },
       {
@@ -128,7 +128,7 @@
       },
       {
         "name": "primary_substance_อื่นๆ",
-        "coef": 0.0643,
+        "coef": 0.0642,
         "or": 1.066
       },
       {
@@ -221,7 +221,7 @@
   },
   "firth": {
     "method": "Firth (Penalized Likelihood — firthmodels)",
-    "n_iterations": 18,
+    "n_iterations": 17,
     "variables": [
       {
         "name": "age",
