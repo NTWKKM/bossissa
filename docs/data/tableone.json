@@ -3,13 +3,13 @@
     "name": "age",
     "label": "Age (years)",
     "var_type": "continuous_non_normal",
-    "stats_overall": "47.0 [31.0, 63.0]",
+    "stats_overall": "46.0 [30.0, 65.0]",
     "stats_groups": {
-      "Not SIP": "47.0 [30.0, 62.0]",
-      "SIP": "47.0 [31.0, 63.0]"
+      "Not SIP": "46.0 [30.0, 65.0]",
+      "SIP": "49.0 [31.8, 67.0]"
     },
-    "p_value": 0.4713385927314879,
-    "p_value_fmt": "0.471",
+    "p_value": 0.12873516867102935,
+    "p_value_fmt": "0.129",
     "test_name": "Mann-Whitney U",
     "significant": false,
     "n_missing": 0,
@@ -20,19 +20,15 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.7332,
-    "p_value_bh_fmt": "0.733",
+    "p_value_bh": 0.2003,
+    "p_value_bh_fmt": "0.200",
     "normality_by_group": {
       "0": false,
       "1": false
     },
     "extra_stats": {
-      "smd": -0.0535,
-      "or": {
-        "or": 1.003,
-        "ci_lo": 0.995,
-        "ci_hi": 1.011
-      }
+      "smd": -0.1217,
+      "or": {}
     }
   },
   {
@@ -40,21 +36,21 @@
     "label": "Sex",
     "var_type": "categorical",
     "stats_overall": {
-      "ชาย": "346 (51.0%)",
-      "หญิง": "332 (49.0%)"
+      "ชาย": "503 (50.3%)",
+      "หญิง": "497 (49.7%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ชาย": "167 (49.1%)",
-        "หญิง": "173 (50.9%)"
+        "ชาย": "402 (49.8%)",
+        "หญิง": "406 (50.2%)"
       },
       "SIP": {
-        "ชาย": "179 (53.0%)",
-        "หญิง": "159 (47.0%)"
+        "ชาย": "101 (52.6%)",
+        "หญิง": "91 (47.4%)"
       }
     },
-    "p_value": 0.3557459689821889,
-    "p_value_fmt": "0.356",
+    "p_value": 0.5286281749527844,
+    "p_value_fmt": "0.529",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -65,15 +61,15 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6641,
-    "p_value_bh_fmt": "0.664",
+    "p_value_bh": 0.6728,
+    "p_value_bh_fmt": "0.673",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": -0.0769,
+      "smd": -0.0571,
       "or": {
-        "or": 0.857,
-        "ci_lo": 0.634,
-        "ci_hi": 1.159
+        "or": 0.892,
+        "ci_lo": 0.651,
+        "ci_hi": 1.223
       }
     }
   },
@@ -82,27 +78,27 @@
     "label": "Insurance Type",
     "var_type": "categorical",
     "stats_overall": {
-      "บัตรทอง": "162 (23.9%)",
-      "ข้าราชการ": "170 (25.1%)",
-      "ประกันสังคม": "172 (25.4%)",
-      "อื่นๆ": "174 (25.7%)"
+      "บัตรทอง": "265 (26.5%)",
+      "ข้าราชการ": "231 (23.1%)",
+      "ประกันสังคม": "268 (26.8%)",
+      "อื่นๆ": "236 (23.6%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "บัตรทอง": "78 (22.9%)",
-        "ข้าราชการ": "97 (28.5%)",
-        "ประกันสังคม": "83 (24.4%)",
-        "อื่นๆ": "82 (24.1%)"
+        "บัตรทอง": "213 (26.4%)",
+        "ข้าราชการ": "186 (23.0%)",
+        "ประกันสังคม": "217 (26.9%)",
+        "อื่นๆ": "192 (23.8%)"
       },
       "SIP": {
-        "บัตรทอง": "84 (24.9%)",
-        "ข้าราชการ": "73 (21.6%)",
-        "ประกันสังคม": "89 (26.3%)",
-        "อื่นๆ": "92 (27.2%)"
+        "บัตรทอง": "52 (27.1%)",
+        "ข้าราชการ": "45 (23.4%)",
+        "ประกันสังคม": "51 (26.6%)",
+        "อื่นๆ": "44 (22.9%)"
       }
     },
-    "p_value": 0.2224437411861187,
-    "p_value_fmt": "0.222",
+    "p_value": 0.9925187844013387,
+    "p_value_fmt": "0.993",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -113,8 +109,8 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bh": 0.9925,
+    "p_value_bh_fmt": "0.993",
     "normality_by_group": {},
     "extra_stats": {
       "smd": null
@@ -125,21 +121,21 @@
     "label": "Domicile",
     "var_type": "categorical",
     "stats_overall": {
-      "ในจังหวัด": "381 (56.2%)",
-      "ต่างจังหวัด": "297 (43.8%)"
+      "ในจังหวัด": "485 (48.5%)",
+      "ต่างจังหวัด": "515 (51.5%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ในจังหวัด": "190 (55.9%)",
-        "ต่างจังหวัด": "150 (44.1%)"
+        "ในจังหวัด": "403 (49.9%)",
+        "ต่างจังหวัด": "405 (50.1%)"
       },
       "SIP": {
-        "ในจังหวัด": "191 (56.5%)",
-        "ต่างจังหวัด": "147 (43.5%)"
+        "ในจังหวัด": "82 (42.7%)",
+        "ต่างจังหวัด": "110 (57.3%)"
       }
     },
-    "p_value": 0.9306743704569928,
-    "p_value_fmt": "0.931",
+    "p_value": 0.08799732038669512,
+    "p_value_fmt": "0.088",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -150,15 +146,15 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.9307,
-    "p_value_bh_fmt": "0.931",
+    "p_value_bh": 0.1449,
+    "p_value_bh_fmt": "0.145",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": -0.0126,
+      "smd": 0.1441,
       "or": {
-        "or": 0.975,
-        "ci_lo": 0.72,
-        "ci_hi": 1.32
+        "or": 1.335,
+        "ci_lo": 0.972,
+        "ci_hi": 1.834
       }
     }
   },
@@ -167,24 +163,24 @@
     "label": "ICD-10 Diagnosis (ER)",
     "var_type": "categorical",
     "stats_overall": {
-      "F23": "235 (34.7%)",
-      "F29": "238 (35.1%)",
-      "อื่นๆ": "205 (30.2%)"
+      "F23": "336 (33.6%)",
+      "F29": "324 (32.4%)",
+      "อื่นๆ": "340 (34.0%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "F23": "116 (34.1%)",
-        "F29": "117 (34.4%)",
-        "อื่นๆ": "107 (31.5%)"
+        "F23": "263 (32.5%)",
+        "F29": "270 (33.4%)",
+        "อื่นๆ": "275 (34.0%)"
       },
       "SIP": {
-        "F23": "119 (35.2%)",
-        "F29": "121 (35.8%)",
-        "อื่นๆ": "98 (29.0%)"
+        "F23": "73 (38.0%)",
+        "F29": "54 (28.1%)",
+        "อื่นๆ": "65 (33.9%)"
       }
     },
-    "p_value": 0.7808473074980855,
-    "p_value_fmt": "0.781",
+    "p_value": 0.25614865206351034,
+    "p_value_fmt": "0.256",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -195,8 +191,8 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.9174,
-    "p_value_bh_fmt": "0.917",
+    "p_value_bh": 0.3586,
+    "p_value_bh_fmt": "0.359",
     "normality_by_group": {},
     "extra_stats": {
       "smd": null
@@ -207,40 +203,40 @@
     "label": "Auditory Hallucination",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "343 (50.6%)",
-      "มี": "335 (49.4%)"
+      "ไม่มี": "608 (60.8%)",
+      "มี": "392 (39.2%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "179 (52.6%)",
-        "มี": "161 (47.4%)"
+        "ไม่มี": "527 (65.2%)",
+        "มี": "281 (34.8%)"
       },
       "SIP": {
-        "ไม่มี": "164 (48.5%)",
-        "มี": "174 (51.5%)"
+        "ไม่มี": "81 (42.2%)",
+        "มี": "111 (57.8%)"
       }
     },
-    "p_value": 0.31842898956796156,
-    "p_value_fmt": "0.318",
+    "p_value": 6.84187897551591e-09,
+    "p_value_fmt": "<0.001",
     "test_name": "Chi-square",
-    "significant": false,
+    "significant": true,
     "n_missing": 0,
     "pct_missing": 0.0,
     "n_missing_by_group": {
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": 0.0826,
+      "smd": 0.4748,
       "or": {
-        "or": 1.18,
-        "ci_lo": 0.873,
-        "ci_hi": 1.594
+        "or": 2.57,
+        "ci_lo": 1.865,
+        "ci_hi": 3.543
       }
     }
   },
@@ -249,40 +245,40 @@
     "label": "Visual Hallucination",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "356 (52.5%)",
-      "มี": "322 (47.5%)"
+      "ไม่มี": "725 (72.5%)",
+      "มี": "275 (27.5%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "187 (55.0%)",
-        "มี": "153 (45.0%)"
+        "ไม่มี": "571 (70.7%)",
+        "มี": "237 (29.3%)"
       },
       "SIP": {
-        "ไม่มี": "169 (50.0%)",
-        "มี": "169 (50.0%)"
+        "ไม่มี": "154 (80.2%)",
+        "มี": "38 (19.8%)"
       }
     },
-    "p_value": 0.21995436984625108,
-    "p_value_fmt": "0.220",
+    "p_value": 0.010133199548916151,
+    "p_value_fmt": "0.010",
     "test_name": "Chi-square",
-    "significant": false,
+    "significant": true,
     "n_missing": 0,
     "pct_missing": 0.0,
     "n_missing_by_group": {
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bonferroni": 0.2837,
+    "p_value_bonferroni_fmt": "0.284",
+    "p_value_bh": 0.0189,
+    "p_value_bh_fmt": "0.019",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": 0.1003,
+      "smd": -0.223,
       "or": {
-        "or": 1.222,
-        "ci_lo": 0.904,
-        "ci_hi": 1.653
+        "or": 0.594,
+        "ci_lo": 0.404,
+        "ci_hi": 0.875
       }
     }
   },
@@ -291,40 +287,40 @@
     "label": "Delusion",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "355 (52.4%)",
-      "มี": "323 (47.6%)"
+      "ไม่มี": "492 (49.2%)",
+      "มี": "508 (50.8%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "168 (49.4%)",
-        "มี": "172 (50.6%)"
+        "ไม่มี": "439 (54.3%)",
+        "มี": "369 (45.7%)"
       },
       "SIP": {
-        "ไม่มี": "187 (55.3%)",
-        "มี": "151 (44.7%)"
+        "ไม่มี": "53 (27.6%)",
+        "มี": "139 (72.4%)"
       }
     },
-    "p_value": 0.1430177852780738,
-    "p_value_fmt": "0.143",
+    "p_value": 4.749867444003974e-11,
+    "p_value_fmt": "<0.001",
     "test_name": "Chi-square",
-    "significant": false,
+    "significant": true,
     "n_missing": 0,
     "pct_missing": 0.0,
     "n_missing_by_group": {
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": -0.1186,
+      "smd": 0.5647,
       "or": {
-        "or": 0.789,
-        "ci_lo": 0.583,
-        "ci_hi": 1.067
+        "or": 3.12,
+        "ci_lo": 2.209,
+        "ci_hi": 4.407
       }
     }
   },
@@ -333,21 +329,21 @@
     "label": "Aggression",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "347 (51.2%)",
-      "มี": "331 (48.8%)"
+      "ไม่มี": "554 (55.4%)",
+      "มี": "446 (44.6%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "166 (48.8%)",
-        "มี": "174 (51.2%)"
+        "ไม่มี": "445 (55.1%)",
+        "มี": "363 (44.9%)"
       },
       "SIP": {
-        "ไม่มี": "181 (53.6%)",
-        "มี": "157 (46.4%)"
+        "ไม่มี": "109 (56.8%)",
+        "มี": "83 (43.2%)"
       }
     },
-    "p_value": 0.2483845116905404,
-    "p_value_fmt": "0.248",
+    "p_value": 0.7305780144134746,
+    "p_value_fmt": "0.731",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -358,15 +354,15 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bh": 0.8182,
+    "p_value_bh_fmt": "0.818",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": -0.0947,
+      "smd": -0.0342,
       "or": {
-        "or": 0.828,
-        "ci_lo": 0.612,
-        "ci_hi": 1.119
+        "or": 0.933,
+        "ci_lo": 0.68,
+        "ci_hi": 1.282
       }
     }
   },
@@ -375,21 +371,21 @@
     "label": "Disorganized Speech",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "331 (48.8%)",
-      "มี": "347 (51.2%)"
+      "ไม่มี": "699 (69.9%)",
+      "มี": "301 (30.1%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "164 (48.2%)",
-        "มี": "176 (51.8%)"
+        "ไม่มี": "572 (70.8%)",
+        "มี": "236 (29.2%)"
       },
       "SIP": {
-        "ไม่มี": "167 (49.4%)",
-        "มี": "171 (50.6%)"
+        "ไม่มี": "127 (66.1%)",
+        "มี": "65 (33.9%)"
       }
     },
-    "p_value": 0.8191171139780433,
-    "p_value_fmt": "0.819",
+    "p_value": 0.2403443243476377,
+    "p_value_fmt": "0.240",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -400,15 +396,15 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.9174,
-    "p_value_bh_fmt": "0.917",
+    "p_value_bh": 0.3542,
+    "p_value_bh_fmt": "0.354",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": -0.0235,
+      "smd": 0.1001,
       "or": {
-        "or": 0.954,
-        "ci_lo": 0.706,
-        "ci_hi": 1.289
+        "or": 1.24,
+        "ci_lo": 0.887,
+        "ci_hi": 1.734
       }
     }
   },
@@ -417,40 +413,40 @@
     "label": "Confusion",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "332 (49.0%)",
-      "มี": "346 (51.0%)"
+      "ไม่มี": "449 (44.9%)",
+      "มี": "551 (55.1%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "171 (50.3%)",
-        "มี": "169 (49.7%)"
+        "ไม่มี": "257 (31.8%)",
+        "มี": "551 (68.2%)"
       },
       "SIP": {
-        "ไม่มี": "161 (47.6%)",
-        "มี": "177 (52.4%)"
+        "ไม่มี": "192 (100.0%)",
+        "มี": "0 (0.0%)"
       }
     },
-    "p_value": 0.5377649061090538,
-    "p_value_fmt": "0.538",
+    "p_value": 8.830699271508992e-65,
+    "p_value_fmt": "<0.001",
     "test_name": "Chi-square",
-    "significant": false,
+    "significant": true,
     "n_missing": 0,
     "pct_missing": 0.0,
     "n_missing_by_group": {
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.7881,
-    "p_value_bh_fmt": "0.788",
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": 0.0532,
+      "smd": -2.0707,
       "or": {
-        "or": 1.112,
-        "ci_lo": 0.823,
-        "ci_hi": 1.503
+        "or": 0.001,
+        "ci_lo": 0.0,
+        "ci_hi": 0.02
       }
     }
   },
@@ -459,21 +455,21 @@
     "label": "Symptom Duration",
     "var_type": "categorical",
     "stats_overall": {
-      "<1เดือน": "356 (52.5%)",
-      ">1เดือน": "322 (47.5%)"
+      "<1เดือน": "483 (48.3%)",
+      ">1เดือน": "517 (51.7%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "<1เดือน": "173 (50.9%)",
-        ">1เดือน": "167 (49.1%)"
+        "<1เดือน": "388 (48.0%)",
+        ">1เดือน": "420 (52.0%)"
       },
       "SIP": {
-        "<1เดือน": "183 (54.1%)",
-        ">1เดือน": "155 (45.9%)"
+        "<1เดือน": "95 (49.5%)",
+        ">1เดือน": "97 (50.5%)"
       }
     },
-    "p_value": 0.43956794552407574,
-    "p_value_fmt": "0.440",
+    "p_value": 0.7768584225317259,
+    "p_value_fmt": "0.777",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -484,15 +480,15 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.7285,
-    "p_value_bh_fmt": "0.729",
+    "p_value_bh": 0.8366,
+    "p_value_bh_fmt": "0.837",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": -0.0653,
+      "smd": -0.0292,
       "or": {
-        "or": 0.877,
-        "ci_lo": 0.649,
-        "ci_hi": 1.186
+        "or": 0.943,
+        "ci_lo": 0.689,
+        "ci_hi": 1.292
       }
     }
   },
@@ -501,40 +497,40 @@
     "label": "Prior Psychiatric History",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "360 (53.1%)",
-      "มี": "318 (46.9%)"
+      "ไม่มี": "798 (79.8%)",
+      "มี": "202 (20.2%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "188 (55.3%)",
-        "มี": "152 (44.7%)"
+        "ไม่มี": "606 (75.0%)",
+        "มี": "202 (25.0%)"
       },
       "SIP": {
-        "ไม่มี": "172 (50.9%)",
-        "มี": "166 (49.1%)"
+        "ไม่มี": "192 (100.0%)",
+        "มี": "0 (0.0%)"
       }
     },
-    "p_value": 0.283432612268092,
-    "p_value_fmt": "0.283",
+    "p_value": 1.9228909108564882e-14,
+    "p_value_fmt": "<0.001",
     "test_name": "Chi-square",
-    "significant": false,
+    "significant": true,
     "n_missing": 0,
     "pct_missing": 0.0,
     "n_missing_by_group": {
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": 0.0884,
+      "smd": -0.8165,
       "or": {
-        "or": 1.194,
-        "ci_lo": 0.883,
-        "ci_hi": 1.614
+        "or": 0.008,
+        "ci_lo": 0.0,
+        "ci_hi": 0.125
       }
     }
   },
@@ -543,24 +539,24 @@
     "label": "Substance Use History",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่มี": "211 (31.1%)",
-      "มี": "236 (34.8%)",
-      "ไม่ทราบ": "231 (34.1%)"
+      "ไม่มี": "103 (10.3%)",
+      "มี": "897 (89.7%)",
+      "ไม่ทราบ": "0 (0.0%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่มี": "99 (29.1%)",
-        "มี": "128 (37.6%)",
-        "ไม่ทราบ": "113 (33.2%)"
+        "ไม่มี": "82 (10.1%)",
+        "มี": "726 (89.9%)",
+        "ไม่ทราบ": "0 (0.0%)"
       },
       "SIP": {
-        "ไม่มี": "112 (33.1%)",
-        "มี": "108 (32.0%)",
-        "ไม่ทราบ": "118 (34.9%)"
+        "ไม่มี": "21 (10.9%)",
+        "มี": "171 (89.1%)",
+        "ไม่ทราบ": "0 (0.0%)"
       }
     },
-    "p_value": 0.2727756635893137,
-    "p_value_fmt": "0.273",
+    "p_value": 0.848341463757849,
+    "p_value_fmt": "0.848",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -571,11 +567,16 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bh": 0.8798,
+    "p_value_bh_fmt": "0.880",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": null
+      "smd": -0.0257,
+      "or": {
+        "or": 0.92,
+        "ci_lo": 0.554,
+        "ci_hi": 1.528
+      }
     }
   },
   {
@@ -583,51 +584,51 @@
     "label": "Primary Substance",
     "var_type": "categorical",
     "stats_overall": {
-      "Meth": "80 (11.8%)",
-      "Cannabis": "80 (11.8%)",
-      "Ket": "84 (12.4%)",
-      "Opioid": "71 (10.5%)",
-      "Alc": "77 (11.4%)",
-      "Benzo": "96 (14.2%)",
-      "Kratom": "93 (13.7%)",
-      "อื่นๆ": "97 (14.3%)"
+      "Meth": "425 (42.5%)",
+      "Cannabis": "60 (6.0%)",
+      "Ket": "0 (0.0%)",
+      "Opioid": "0 (0.0%)",
+      "Alc": "357 (35.7%)",
+      "Benzo": "0 (0.0%)",
+      "Kratom": "0 (0.0%)",
+      "อื่นๆ": "158 (15.8%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "Meth": "48 (14.1%)",
-        "Cannabis": "47 (13.8%)",
-        "Ket": "41 (12.1%)",
-        "Opioid": "35 (10.3%)",
-        "Alc": "35 (10.3%)",
-        "Benzo": "46 (13.5%)",
-        "Kratom": "40 (11.8%)",
-        "อื่นๆ": "48 (14.1%)"
+        "Meth": "303 (37.5%)",
+        "Cannabis": "44 (5.4%)",
+        "Ket": "0 (0.0%)",
+        "Opioid": "0 (0.0%)",
+        "Alc": "337 (41.7%)",
+        "Benzo": "0 (0.0%)",
+        "Kratom": "0 (0.0%)",
+        "อื่นๆ": "124 (15.3%)"
       },
       "SIP": {
-        "Meth": "32 (9.5%)",
-        "Cannabis": "33 (9.8%)",
-        "Ket": "43 (12.7%)",
-        "Opioid": "36 (10.7%)",
-        "Alc": "42 (12.4%)",
-        "Benzo": "50 (14.8%)",
-        "Kratom": "53 (15.7%)",
-        "อื่นๆ": "49 (14.5%)"
+        "Meth": "122 (63.5%)",
+        "Cannabis": "16 (8.3%)",
+        "Ket": "0 (0.0%)",
+        "Opioid": "0 (0.0%)",
+        "Alc": "20 (10.4%)",
+        "Benzo": "0 (0.0%)",
+        "Kratom": "0 (0.0%)",
+        "อื่นๆ": "34 (17.7%)"
       }
     },
-    "p_value": 0.30386532162226776,
-    "p_value_fmt": "0.304",
+    "p_value": 4.251723548299422e-15,
+    "p_value_fmt": "<0.001",
     "test_name": "Chi-square",
-    "significant": false,
+    "significant": true,
     "n_missing": 0,
     "pct_missing": 0.0,
     "n_missing_by_group": {
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
       "smd": null
@@ -638,30 +639,30 @@
     "label": "Route of Administration",
     "var_type": "categorical",
     "stats_overall": {
-      "สูบ": "134 (19.8%)",
-      "ฉีด": "129 (19.0%)",
-      "กิน": "141 (20.8%)",
-      "ดม": "134 (19.8%)",
-      "อื่นๆ": "140 (20.6%)"
+      "สูบ": "178 (17.8%)",
+      "ฉีด": "216 (21.6%)",
+      "กิน": "200 (20.0%)",
+      "ดม": "220 (22.0%)",
+      "อื่นๆ": "186 (18.6%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "สูบ": "71 (20.9%)",
-        "ฉีด": "57 (16.8%)",
-        "กิน": "73 (21.5%)",
-        "ดม": "65 (19.1%)",
-        "อื่นๆ": "74 (21.8%)"
+        "สูบ": "142 (17.6%)",
+        "ฉีด": "183 (22.6%)",
+        "กิน": "160 (19.8%)",
+        "ดม": "174 (21.5%)",
+        "อื่นๆ": "149 (18.4%)"
       },
       "SIP": {
-        "สูบ": "63 (18.6%)",
-        "ฉีด": "72 (21.3%)",
-        "กิน": "68 (20.1%)",
-        "ดม": "69 (20.4%)",
-        "อื่นๆ": "66 (19.5%)"
+        "สูบ": "36 (18.8%)",
+        "ฉีด": "33 (17.2%)",
+        "กิน": "40 (20.8%)",
+        "ดม": "46 (24.0%)",
+        "อื่นๆ": "37 (19.3%)"
       }
     },
-    "p_value": 0.5628961690233614,
-    "p_value_fmt": "0.563",
+    "p_value": 0.5889636114565364,
+    "p_value_fmt": "0.589",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -672,8 +673,8 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.7881,
-    "p_value_bh_fmt": "0.788",
+    "p_value_bh": 0.717,
+    "p_value_bh_fmt": "0.717",
     "normality_by_group": {},
     "extra_stats": {
       "smd": null
@@ -684,39 +685,39 @@
     "label": "Last Substance Use",
     "var_type": "categorical",
     "stats_overall": {
-      "<24ชม": "147 (21.7%)",
-      "1-7วัน": "152 (22.4%)",
-      "1-4สัปดาห์": "180 (26.5%)",
-      ">1เดือน": "199 (29.4%)"
+      "<24ชม": "267 (26.7%)",
+      "1-7วัน": "265 (26.5%)",
+      "1-4สัปดาห์": "240 (24.0%)",
+      ">1เดือน": "228 (22.8%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "<24ชม": "61 (17.9%)",
-        "1-7วัน": "83 (24.4%)",
-        "1-4สัปดาห์": "99 (29.1%)",
-        ">1เดือน": "97 (28.5%)"
+        "<24ชม": "193 (23.9%)",
+        "1-7วัน": "204 (25.2%)",
+        "1-4สัปดาห์": "183 (22.6%)",
+        ">1เดือน": "228 (28.2%)"
       },
       "SIP": {
-        "<24ชม": "86 (25.4%)",
-        "1-7วัน": "69 (20.4%)",
-        "1-4สัปดาห์": "81 (24.0%)",
-        ">1เดือน": "102 (30.2%)"
+        "<24ชม": "74 (38.5%)",
+        "1-7วัน": "61 (31.8%)",
+        "1-4สัปดาห์": "57 (29.7%)",
+        ">1เดือน": "0 (0.0%)"
       }
     },
-    "p_value": 0.058569885383762774,
-    "p_value_fmt": "0.059",
+    "p_value": 1.3382843330291542e-15,
+    "p_value_fmt": "<0.001",
     "test_name": "Chi-square",
-    "significant": false,
+    "significant": true,
     "n_missing": 0,
     "pct_missing": 0.0,
     "n_missing_by_group": {
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
       "smd": null
@@ -727,21 +728,21 @@
     "label": "UDS Status",
     "var_type": "categorical",
     "stats_overall": {
-      "ไม่ได้ตรวจ": "325 (47.9%)",
-      "ตรวจ": "353 (52.1%)"
+      "ไม่ได้ตรวจ": "219 (21.9%)",
+      "ตรวจ": "781 (78.1%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "ไม่ได้ตรวจ": "172 (50.6%)",
-        "ตรวจ": "168 (49.4%)"
+        "ไม่ได้ตรวจ": "174 (21.5%)",
+        "ตรวจ": "634 (78.5%)"
       },
       "SIP": {
-        "ไม่ได้ตรวจ": "153 (45.3%)",
-        "ตรวจ": "185 (54.7%)"
+        "ไม่ได้ตรวจ": "45 (23.4%)",
+        "ตรวจ": "147 (76.6%)"
       }
     },
-    "p_value": 0.1901763692925764,
-    "p_value_fmt": "0.190",
+    "p_value": 0.6340668473903374,
+    "p_value_fmt": "0.634",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -752,15 +753,15 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
+    "p_value_bh": 0.7397,
+    "p_value_bh_fmt": "0.740",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": 0.1067,
+      "smd": -0.0456,
       "or": {
-        "or": 1.238,
-        "ci_lo": 0.915,
-        "ci_hi": 1.674
+        "or": 0.897,
+        "ci_lo": 0.617,
+        "ci_hi": 1.303
       }
     }
   },
@@ -769,350 +770,21 @@
     "label": "UDS: Methamphetamine",
     "var_type": "categorical",
     "stats_overall": {
-      "Negative": "344 (50.7%)",
-      "Positive": "334 (49.3%)"
+      "Negative": "665 (66.5%)",
+      "Positive": "335 (33.5%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "Negative": "181 (53.2%)",
-        "Positive": "159 (46.8%)"
+        "Negative": "567 (70.2%)",
+        "Positive": "241 (29.8%)"
       },
       "SIP": {
-        "Negative": "163 (48.2%)",
-        "Positive": "175 (51.8%)"
+        "Negative": "98 (51.0%)",
+        "Positive": "94 (49.0%)"
       }
     },
-    "p_value": 0.21946249947131077,
-    "p_value_fmt": "0.219",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": 0.1003,
-      "or": {
-        "or": 1.222,
-        "ci_lo": 0.904,
-        "ci_hi": 1.652
-      }
-    }
-  },
-  {
-    "name": "uds_cannabis",
-    "label": "UDS: Cannabis",
-    "var_type": "categorical",
-    "stats_overall": {
-      "Negative": "336 (49.6%)",
-      "Positive": "342 (50.4%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "Negative": "177 (52.1%)",
-        "Positive": "163 (47.9%)"
-      },
-      "SIP": {
-        "Negative": "159 (47.0%)",
-        "Positive": "179 (53.0%)"
-      }
-    },
-    "p_value": 0.21881477555613732,
-    "p_value_fmt": "0.219",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": 0.1005,
-      "or": {
-        "or": 1.222,
-        "ci_lo": 0.904,
-        "ci_hi": 1.653
-      }
-    }
-  },
-  {
-    "name": "uds_opioid",
-    "label": "UDS: Opioid",
-    "var_type": "categorical",
-    "stats_overall": {
-      "Negative": "340 (50.1%)",
-      "Positive": "338 (49.9%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "Negative": "165 (48.5%)",
-        "Positive": "175 (51.5%)"
-      },
-      "SIP": {
-        "Negative": "175 (51.8%)",
-        "Positive": "163 (48.2%)"
-      }
-    },
-    "p_value": 0.4422919665522669,
-    "p_value_fmt": "0.442",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.7285,
-    "p_value_bh_fmt": "0.729",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": -0.0649,
-      "or": {
-        "or": 0.878,
-        "ci_lo": 0.65,
-        "ci_hi": 1.187
-      }
-    }
-  },
-  {
-    "name": "dsm_hallucination_delusion",
-    "label": "DSM-5: Hallucination or Delusion",
-    "var_type": "categorical",
-    "stats_overall": {
-      "ไม่": "239 (35.3%)",
-      "ใช่": "223 (32.9%)",
-      "ข้อมูลไม่ครบ": "216 (31.9%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "ไม่": "123 (36.2%)",
-        "ใช่": "109 (32.1%)",
-        "ข้อมูลไม่ครบ": "108 (31.8%)"
-      },
-      "SIP": {
-        "ไม่": "116 (34.3%)",
-        "ใช่": "114 (33.7%)",
-        "ข้อมูลไม่ครบ": "108 (32.0%)"
-      }
-    },
-    "p_value": 0.8558879820337285,
-    "p_value_fmt": "0.856",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.9217,
-    "p_value_bh_fmt": "0.922",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": null
-    }
-  },
-  {
-    "name": "dsm_within_1mo_or_withdrawal",
-    "label": "DSM-5: Within 1 mo / Withdrawal",
-    "var_type": "categorical",
-    "stats_overall": {
-      "ไม่": "237 (35.0%)",
-      "ใช่": "243 (35.8%)",
-      "ข้อมูลไม่ครบ": "198 (29.2%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "ไม่": "118 (34.7%)",
-        "ใช่": "119 (35.0%)",
-        "ข้อมูลไม่ครบ": "103 (30.3%)"
-      },
-      "SIP": {
-        "ไม่": "119 (35.2%)",
-        "ใช่": "124 (36.7%)",
-        "ข้อมูลไม่ครบ": "95 (28.1%)"
-      }
-    },
-    "p_value": 0.8087882091273888,
-    "p_value_fmt": "0.809",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.9174,
-    "p_value_bh_fmt": "0.917",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": null
-    }
-  },
-  {
-    "name": "dsm_substance_related",
-    "label": "DSM-5: Substance-Related Sx",
-    "var_type": "categorical",
-    "stats_overall": {
-      "ไม่": "231 (34.1%)",
-      "ใช่": "213 (31.4%)",
-      "ข้อมูลไม่ครบ": "234 (34.5%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "ไม่": "105 (30.9%)",
-        "ใช่": "108 (31.8%)",
-        "ข้อมูลไม่ครบ": "127 (37.4%)"
-      },
-      "SIP": {
-        "ไม่": "126 (37.3%)",
-        "ใช่": "105 (31.1%)",
-        "ข้อมูลไม่ครบ": "107 (31.7%)"
-      }
-    },
-    "p_value": 0.1608248942871943,
-    "p_value_fmt": "0.161",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.6369,
-    "p_value_bh_fmt": "0.637",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": null
-    }
-  },
-  {
-    "name": "dsm_not_primary",
-    "label": "DSM-5: Not Primary Psychosis",
-    "var_type": "categorical",
-    "stats_overall": {
-      "ไม่": "222 (32.7%)",
-      "ใช่": "236 (34.8%)",
-      "ข้อมูลไม่ครบ": "220 (32.4%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "ไม่": "109 (32.1%)",
-        "ใช่": "120 (35.3%)",
-        "ข้อมูลไม่ครบ": "111 (32.6%)"
-      },
-      "SIP": {
-        "ไม่": "113 (33.4%)",
-        "ใช่": "116 (34.3%)",
-        "ข้อมูลไม่ครบ": "109 (32.2%)"
-      }
-    },
-    "p_value": 0.9267457158867839,
-    "p_value_fmt": "0.927",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.9307,
-    "p_value_bh_fmt": "0.931",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": null
-    }
-  },
-  {
-    "name": "dsm_no_delirium",
-    "label": "DSM-5: No Delirium",
-    "var_type": "categorical",
-    "stats_overall": {
-      "ไม่": "228 (33.6%)",
-      "ใช่": "234 (34.5%)",
-      "ข้อมูลไม่ครบ": "216 (31.9%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "ไม่": "118 (34.7%)",
-        "ใช่": "119 (35.0%)",
-        "ข้อมูลไม่ครบ": "103 (30.3%)"
-      },
-      "SIP": {
-        "ไม่": "110 (32.5%)",
-        "ใช่": "115 (34.0%)",
-        "ข้อมูลไม่ครบ": "113 (33.4%)"
-      }
-    },
-    "p_value": 0.6682626141442696,
-    "p_value_fmt": "0.668",
-    "test_name": "Chi-square",
-    "significant": false,
-    "n_missing": 0,
-    "pct_missing": 0.0,
-    "n_missing_by_group": {
-      "0": 0,
-      "1": 0
-    },
-    "p_value_bonferroni": 1.0,
-    "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.8847,
-    "p_value_bh_fmt": "0.885",
-    "normality_by_group": {},
-    "extra_stats": {
-      "smd": null
-    }
-  },
-  {
-    "name": "dsm_functional_impairment",
-    "label": "DSM-5: Functional Impairment",
-    "var_type": "categorical",
-    "stats_overall": {
-      "ไม่": "235 (34.7%)",
-      "ใช่": "243 (35.8%)",
-      "ข้อมูลไม่ครบ": "200 (29.5%)"
-    },
-    "stats_groups": {
-      "Not SIP": {
-        "ไม่": "105 (30.9%)",
-        "ใช่": "119 (35.0%)",
-        "ข้อมูลไม่ครบ": "116 (34.1%)"
-      },
-      "SIP": {
-        "ไม่": "130 (38.5%)",
-        "ใช่": "124 (36.7%)",
-        "ข้อมูลไม่ครบ": "84 (24.9%)"
-      }
-    },
-    "p_value": 0.019481071434948233,
-    "p_value_fmt": "0.019",
+    "p_value": 6.92024981103171e-07,
+    "p_value_fmt": "<0.001",
     "test_name": "Chi-square",
     "significant": true,
     "n_missing": 0,
@@ -1121,41 +793,40 @@
       "0": 0,
       "1": 0
     },
-    "p_value_bonferroni": 0.5455,
-    "p_value_bonferroni_fmt": "0.545",
-    "p_value_bh": 0.5455,
-    "p_value_bh_fmt": "0.545",
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
-      "smd": null
+      "smd": 0.3993,
+      "or": {
+        "or": 2.257,
+        "ci_lo": 1.638,
+        "ci_hi": 3.11
+      }
     }
   },
   {
-    "name": "discharge_status",
-    "label": "Discharge Status",
+    "name": "uds_cannabis",
+    "label": "UDS: Cannabis",
     "var_type": "categorical",
     "stats_overall": {
-      "Admitจิตเวช": "163 (24.0%)",
-      "Admitอื่น": "187 (27.6%)",
-      "Refer": "158 (23.3%)",
-      "กลับบ้าน": "170 (25.1%)"
+      "Negative": "717 (71.7%)",
+      "Positive": "283 (28.3%)"
     },
     "stats_groups": {
       "Not SIP": {
-        "Admitจิตเวช": "86 (25.3%)",
-        "Admitอื่น": "94 (27.6%)",
-        "Refer": "81 (23.8%)",
-        "กลับบ้าน": "79 (23.2%)"
+        "Negative": "573 (70.9%)",
+        "Positive": "235 (29.1%)"
       },
       "SIP": {
-        "Admitจิตเวช": "77 (22.8%)",
-        "Admitอื่น": "93 (27.5%)",
-        "Refer": "77 (22.8%)",
-        "กลับบ้าน": "91 (26.9%)"
+        "Negative": "144 (75.0%)",
+        "Positive": "48 (25.0%)"
       }
     },
-    "p_value": 0.6950869538566777,
-    "p_value_fmt": "0.695",
+    "p_value": 0.2982588473809967,
+    "p_value_fmt": "0.298",
     "test_name": "Chi-square",
     "significant": false,
     "n_missing": 0,
@@ -1166,8 +837,368 @@
     },
     "p_value_bonferroni": 1.0,
     "p_value_bonferroni_fmt": "1.000",
-    "p_value_bh": 0.8847,
-    "p_value_bh_fmt": "0.885",
+    "p_value_bh": 0.3977,
+    "p_value_bh_fmt": "0.398",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": -0.092,
+      "or": {
+        "or": 0.813,
+        "ci_lo": 0.567,
+        "ci_hi": 1.165
+      }
+    }
+  },
+  {
+    "name": "uds_opioid",
+    "label": "UDS: Opioid",
+    "var_type": "categorical",
+    "stats_overall": {
+      "Negative": "865 (86.5%)",
+      "Positive": "135 (13.5%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "Negative": "707 (87.5%)",
+        "Positive": "101 (12.5%)"
+      },
+      "SIP": {
+        "Negative": "158 (82.3%)",
+        "Positive": "34 (17.7%)"
+      }
+    },
+    "p_value": 0.07492983454623181,
+    "p_value_fmt": "0.075",
+    "test_name": "Chi-square",
+    "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.1311,
+    "p_value_bh_fmt": "0.131",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": 0.1458,
+      "or": {
+        "or": 1.506,
+        "ci_lo": 0.985,
+        "ci_hi": 2.304
+      }
+    }
+  },
+  {
+    "name": "dsm_hallucination_delusion",
+    "label": "DSM-5: Hallucination or Delusion",
+    "var_type": "categorical",
+    "stats_overall": {
+      "ไม่": "260 (26.0%)",
+      "ใช่": "740 (74.0%)",
+      "ข้อมูลไม่ครบ": "0 (0.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "ไม่": "260 (32.2%)",
+        "ใช่": "548 (67.8%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      },
+      "SIP": {
+        "ไม่": "0 (0.0%)",
+        "ใช่": "192 (100.0%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      }
+    },
+    "p_value": 1.4866017582105904e-19,
+    "p_value_fmt": "<0.001",
+    "test_name": "Chi-square",
+    "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": 0.9741,
+      "or": {
+        "or": 182.849,
+        "ci_lo": 11.351,
+        "ci_hi": 2945.491
+      }
+    }
+  },
+  {
+    "name": "dsm_within_1mo_or_withdrawal",
+    "label": "DSM-5: Within 1 mo / Withdrawal",
+    "var_type": "categorical",
+    "stats_overall": {
+      "ไม่": "228 (22.8%)",
+      "ใช่": "772 (77.2%)",
+      "ข้อมูลไม่ครบ": "0 (0.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "ไม่": "228 (28.2%)",
+        "ใช่": "580 (71.8%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      },
+      "SIP": {
+        "ไม่": "0 (0.0%)",
+        "ใช่": "192 (100.0%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      }
+    },
+    "p_value": 1.215216131191043e-16,
+    "p_value_fmt": "<0.001",
+    "test_name": "Chi-square",
+    "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": 0.8867,
+      "or": {
+        "or": 151.546,
+        "ci_lo": 9.405,
+        "ci_hi": 2441.978
+      }
+    }
+  },
+  {
+    "name": "dsm_substance_related",
+    "label": "DSM-5: Substance-Related Sx",
+    "var_type": "categorical",
+    "stats_overall": {
+      "ไม่": "424 (42.4%)",
+      "ใช่": "576 (57.6%)",
+      "ข้อมูลไม่ครบ": "0 (0.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "ไม่": "424 (52.5%)",
+        "ใช่": "384 (47.5%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      },
+      "SIP": {
+        "ไม่": "0 (0.0%)",
+        "ใช่": "192 (100.0%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      }
+    },
+    "p_value": 1.832361584451434e-39,
+    "p_value_fmt": "<0.001",
+    "test_name": "Chi-square",
+    "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": 1.486,
+      "or": {
+        "or": 425.052,
+        "ci_lo": 26.399,
+        "ci_hi": 6843.782
+      }
+    }
+  },
+  {
+    "name": "dsm_not_primary",
+    "label": "DSM-5: Not Primary Psychosis",
+    "var_type": "categorical",
+    "stats_overall": {
+      "ไม่": "202 (20.2%)",
+      "ใช่": "798 (79.8%)",
+      "ข้อมูลไม่ครบ": "0 (0.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "ไม่": "202 (25.0%)",
+        "ใช่": "606 (75.0%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      },
+      "SIP": {
+        "ไม่": "0 (0.0%)",
+        "ใช่": "192 (100.0%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      }
+    },
+    "p_value": 1.9228909108564816e-14,
+    "p_value_fmt": "<0.001",
+    "test_name": "Chi-square",
+    "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": 0.8165,
+      "or": {
+        "or": 128.545,
+        "ci_lo": 7.975,
+        "ci_hi": 2072.041
+      }
+    }
+  },
+  {
+    "name": "dsm_no_delirium",
+    "label": "DSM-5: No Delirium",
+    "var_type": "categorical",
+    "stats_overall": {
+      "ไม่": "551 (55.1%)",
+      "ใช่": "449 (44.9%)",
+      "ข้อมูลไม่ครบ": "0 (0.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "ไม่": "551 (68.2%)",
+        "ใช่": "257 (31.8%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      },
+      "SIP": {
+        "ไม่": "0 (0.0%)",
+        "ใช่": "192 (100.0%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      }
+    },
+    "p_value": 8.830699271508992e-65,
+    "p_value_fmt": "<0.001",
+    "test_name": "Chi-square",
+    "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": 2.0707,
+      "or": {
+        "or": 824.573,
+        "ci_lo": 51.186,
+        "ci_hi": 13283.278
+      }
+    }
+  },
+  {
+    "name": "dsm_functional_impairment",
+    "label": "DSM-5: Functional Impairment",
+    "var_type": "categorical",
+    "stats_overall": {
+      "ไม่": "260 (26.0%)",
+      "ใช่": "740 (74.0%)",
+      "ข้อมูลไม่ครบ": "0 (0.0%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "ไม่": "260 (32.2%)",
+        "ใช่": "548 (67.8%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      },
+      "SIP": {
+        "ไม่": "0 (0.0%)",
+        "ใช่": "192 (100.0%)",
+        "ข้อมูลไม่ครบ": "0 (0.0%)"
+      }
+    },
+    "p_value": 1.4866017582105904e-19,
+    "p_value_fmt": "<0.001",
+    "test_name": "Chi-square",
+    "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
+    "normality_by_group": {},
+    "extra_stats": {
+      "smd": 0.9741,
+      "or": {
+        "or": 182.849,
+        "ci_lo": 11.351,
+        "ci_hi": 2945.491
+      }
+    }
+  },
+  {
+    "name": "discharge_status",
+    "label": "Discharge Status",
+    "var_type": "categorical",
+    "stats_overall": {
+      "Admitจิตเวช": "192 (19.2%)",
+      "Admitอื่น": "275 (27.5%)",
+      "Refer": "264 (26.4%)",
+      "กลับบ้าน": "269 (26.9%)"
+    },
+    "stats_groups": {
+      "Not SIP": {
+        "Admitจิตเวช": "0 (0.0%)",
+        "Admitอื่น": "275 (34.0%)",
+        "Refer": "264 (32.7%)",
+        "กลับบ้าน": "269 (33.3%)"
+      },
+      "SIP": {
+        "Admitจิตเวช": "192 (100.0%)",
+        "Admitอื่น": "0 (0.0%)",
+        "Refer": "0 (0.0%)",
+        "กลับบ้าน": "0 (0.0%)"
+      }
+    },
+    "p_value": 1.7994208765314067e-216,
+    "p_value_fmt": "<0.001",
+    "test_name": "Chi-square",
+    "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.0,
+    "p_value_bonferroni_fmt": "<0.001",
+    "p_value_bh": 0.0,
+    "p_value_bh_fmt": "<0.001",
     "normality_by_group": {},
     "extra_stats": {
       "smd": null

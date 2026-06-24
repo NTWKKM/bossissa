@@ -460,13 +460,17 @@ def chart_forest_plot(df: pd.DataFrame) -> dict:
             if not res.success:
                 continue
             b1 = res.x[1]
-            or_val = float(np.exp(b1))
+            or_val = float(np.exp(min(b1, 700.0)))
             # Validate Hessian inverse before computing SE
             if res.hess_inv is None or np.any(np.isnan(res.hess_inv)) or np.any(np.isinf(res.hess_inv)):
                 continue
             se = float(np.sqrt(max(abs(res.hess_inv[1, 1]), 1e-10)))
-            ci_lo = float(np.exp(b1 - 1.96 * se))
-            ci_hi = float(np.exp(b1 + 1.96 * se))
+            
+            # Prevent overflow in np.exp
+            val_lo = min(b1 - 1.96 * se, 700.0)
+            val_hi = min(b1 + 1.96 * se, 700.0)
+            ci_lo = float(np.exp(val_lo))
+            ci_hi = float(np.exp(val_hi))
             # Wald p-value
             z = b1 / se if se > 0 else 0
             p = float(2 * (1 - stats.norm.cdf(abs(z))))

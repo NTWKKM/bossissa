@@ -68,8 +68,29 @@ def prepare_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, list[str
 
     # Fill any remaining NaN in X with 0 (median for scaled, 0 for dummies = reference category)
     X_df = X_df.fillna(0)
+    
+    X_raw = X_df.values.astype(float)
+    y_raw_int = y.astype(int)
 
-    return X_df.values.astype(float), y.astype(int), feature_names, pd.Series(y)
+    # Remove perfectly collinear features via QR decomposition
+    import scipy.linalg
+    X_with_intercept = np.column_stack([np.ones(X_raw.shape[0]), X_raw])
+    Q, R, P = scipy.linalg.qr(X_with_intercept, mode='economic', pivoting=True)
+    rank = np.sum(np.abs(np.diag(R)) > 1e-10)
+    indep_indices = P[:rank]
+    
+    # Original features correspond to indices 1 to N in the augmented matrix
+    selected_orig_idx = [i - 1 for i in indep_indices if i > 0]
+    selected_orig_idx.sort()
+    
+    if len(selected_orig_idx) < len(feature_names):
+        dropped = [feature_names[i] for i in range(len(feature_names)) if i not in selected_orig_idx]
+        print(f"  Dropped {len(dropped)} collinear features: {', '.join(dropped)}")
+    
+    X_clean = X_raw[:, selected_orig_idx]
+    names_clean = [feature_names[i] for i in selected_orig_idx]
+
+    return X_clean, y_raw_int, names_clean, pd.Series(y)
 
 
 # ──────────────────────────────────────────────
@@ -84,7 +105,7 @@ def lasso_select(X: np.ndarray, y: np.ndarray, feature_names: list[str], C: floa
     """
     import warnings
     with warnings.catch_warnings():
-        warnings.simplefilter("ignore", FutureWarning)
+        warnings.simplefilter("ignore")
         model = LogisticRegression(
             penalty="l1",
             solver="saga",
@@ -240,13 +261,21 @@ def main(df: pd.DataFrame = None) -> None:
         selected = lasso_select(X, y, feature_names, C=C_val)
         if len(selected) == 0:
             continue
-        # Quick AIC via statsmodels on selected features
+        # Quick AIC via FirthLogisticRegression on selected features
         sel_idx = [feature_names.index(s) for s in selected]
-        X_tmp = sm.add_constant(X[:, sel_idx])
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            res_tmp = sm.Logit(y, X_tmp).fit(disp=False, maxiter=200)
-        aic = res_tmp.aic
+        X_tmp = X[:, sel_idx]
+        from firthmodels import FirthLogisticRegression
+        fl_tmp = FirthLogisticRegression(max_iter=200, gtol=1e-6, xtol=1e-6)
+        
+        try:
+            fl_tmp.fit(X_tmp, y)
+            # AIC = 2k - 2 * log(L)
+            k = len(selected) + 1  # +1 for intercept
+            aic = 2 * k - 2 * fl_tmp.loglik_
+        except Exception as e:
+            print(f"  C={C_val}: {len(selected)} features, AIC calculation failed ({e})")
+            continue
+                
         print(f"  C={C_val}: {len(selected)} features, AIC={aic:.1f}")
         if aic < best_aic:
             best_aic = aic
