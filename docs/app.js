@@ -358,16 +358,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       multiLoaded = true;
     } catch (err) {
       document.getElementById("multi-loading-state").innerHTML = `<p style="color:var(--accent-red)">Error loading multivariate data. Ensure the GitHub Action has run.</p>`;
-    }
-  }
-
   function renderMultivariate(data) {
     document.getElementById("multi-loading-state").style.display = "none";
     document.getElementById("multi-content-area").hidden = false;
 
     // Summary stats
+    document.getElementById("multi-epv").textContent = data.epv;
     document.getElementById("multi-n-features").textContent = `${data.n_features_selected}/${data.n_features_total}`;
-    document.getElementById("multi-lasso-c").textContent = data.lasso_C;
     document.getElementById("multi-firth-sig").textContent = data.firth.variables.filter(v => v.significant).length;
     document.getElementById("multi-std-sig").textContent = data.standard.variables.filter(v => v.significant && v.name !== "Intercept").length;
 
@@ -375,38 +372,59 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("multi-firth-meta").textContent = `Method: ${data.firth.method}. ${data.firth.n_iterations} iterations.`;
 
     // Standard meta
-    document.getElementById("multi-std-meta").textContent = `Method: ${data.standard.method}. Pseudo R² = ${data.standard.pseudo_r2}. Log-likelihood = ${data.standard.log_likelihood}.`;
+    let stdMeta = `Method: ${data.standard.method}. Pseudo R² = ${data.standard.pseudo_r2}. Log-likelihood = ${data.standard.log_likelihood}.`;
+    if (data.standard.nagelkerke_r2) stdMeta += ` Nagelkerke R² = ${data.standard.nagelkerke_r2}.`;
+    if (data.standard.auc) stdMeta += ` AUC = ${data.standard.auc}.`;
+    if (data.standard.hl_p_value !== null) stdMeta += ` HL test p = ${data.standard.hl_p_value}.`;
+    document.getElementById("multi-std-meta").textContent = stdMeta;
 
     // Render both tables
-    renderMultiTable("firth", data.firth.variables);
-    renderMultiTable("std", data.standard.variables);
+    renderMultiTable("firth", data.firth.variables, false);
+    renderMultiTable("std", data.standard.variables, true);
 
     // Interpretation cards
     renderMultiInterpretation(data);
   }
 
-  function renderMultiTable(idPrefix, variables) {
+  function renderMultiTable(idPrefix, variables, showCrude = false) {
     const thead = document.getElementById(`thead-${idPrefix}`);
     const tbody = document.getElementById(`tbody-${idPrefix}`);
     if (!thead || !tbody) return;
 
-    thead.innerHTML = `<tr>
+    let headHtml = `<tr>
       <th>Predictor</th>
       <th>Coef (β)</th>
-      <th>SE</th>
-      <th>OR</th>
+      <th>SE</th>`;
+    
+    if (showCrude) {
+      headHtml += `<th>Crude OR (95% CI)</th>`;
+    }
+    
+    headHtml += `<th>Adj OR</th>
       <th>95% CI</th>
       <th>p-value</th>
     </tr>`;
+    thead.innerHTML = headHtml;
 
     tbody.innerHTML = variables.map(v => {
       const pClass = v.significant ? 'style="color:var(--accent-green);font-weight:600"' : '';
       const ciStr = `[${v.ci_lo}–${v.ci_hi}]`;
       const orDisplay = v.or > 1 ? `<span style="color:var(--accent-red)">${v.or}</span>` : v.or < 1 ? `<span style="color:var(--accent-green)">${v.or}</span>` : v.or;
+      
+      let crudeHtml = "";
+      if (showCrude) {
+        if (v.crude_or) {
+          crudeHtml = `<td style="font-family:var(--font-mono);font-size:0.82rem">${v.crude_or} [${v.crude_ci_lo}–${v.crude_ci_hi}]</td>`;
+        } else {
+          crudeHtml = `<td style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-muted)">—</td>`;
+        }
+      }
+
       return `<tr>
         <td class="col-var">${v.name}</td>
         <td style="font-family:var(--font-mono);font-size:0.82rem">${v.coef}</td>
         <td style="font-family:var(--font-mono);font-size:0.82rem">${v.se}</td>
+        ${crudeHtml}
         <td style="font-family:var(--font-mono);font-weight:600">${orDisplay}</td>
         <td style="font-family:var(--font-mono);font-size:0.82rem">${ciStr}</td>
         <td ${pClass} style="font-family:var(--font-mono)">${v.p_value}</td>
@@ -427,11 +445,44 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const bullets = [];
 
+    // 0. EPV and Model Choice
+    const hasSeparation = data.standard && data.standard.error && data.standard.error.toLowerCase().includes("separation");
+    let expChoice = "";
+    let expReason = "";
+
+    if (hasSeparation) {
+        expChoice = "FIRTH 🔴";
+        expReason = "(separation detected)";
+    } else if (data.epv < 5) {
+        expChoice = "FIRTH 🔴";
+        expReason = "(EPV critical)";
+    } else if (data.epv < 10) {
+        expChoice = "FIRTH 🟡";
+        expReason = "(EPV borderline, Firth safer)";
+    } else if (data.epv < 15) {
+        expChoice = "STANDARD MLE 🟡";
+        expReason = "(warn: borderline EPV)";
+    } else {
+        expChoice = "STANDARD MLE 🟢";
+        expReason = "";
+    }
+
+    bullets.push(`<strong>📊 Model Recommendation (Events Per Variable = ${data.epv})</strong><br>
+      <div style="background:var(--bg-main); padding:1rem; border-radius:6px; margin-top:0.75rem; font-family:var(--font-mono); font-size:0.85rem; border:1px solid var(--border-color); line-height:1.5;">
+        <div style="margin-bottom:0.25rem"><strong>IF objective == PREDICTIVE:</strong></div>
+        <div style="padding-left:1.5rem; color:var(--text-muted)">→ LASSO + 10-fold CV</div>
+        <div style="padding-left:1.5rem; color:var(--text-muted); margin-bottom:0.75rem">→ report: AUC, Brier score, calibration plot</div>
+        <div style="margin-bottom:0.25rem"><strong>IF objective == EXPLANATORY:</strong></div>
+        <div style="padding-left:1.5rem; margin-bottom:0.25rem">→ ${expChoice} <span style="color:var(--text-muted)">${expReason}</span></div>
+        <div style="padding-left:1.5rem; color:var(--text-muted)">→ report: OR, 95% CI, p, H-L test, Nagelkerke R²</div>
+      </div>
+    `);
+
     // 1. LASSO
-    bullets.push(`<strong>🎯 LASSO Feature Selection</strong> — From ${data.n_features_total} candidate features, LASSO (C=${data.lasso_C}) selected <strong>${data.n_features_selected}</strong> independent predictors by minimizing AIC. This sparse model handles multicollinearity — redundant variables are dropped.`);
+    bullets.push(`<strong>🎯 LASSO Feature Selection (Prediction)</strong> — For building a sparse prediction model (e.g., clinical scoring tool), LASSO (C=${data.lasso_C}) shrunk the ${data.n_features_total} candidates down to <strong>${data.n_features_selected}</strong> independent predictors. LASSO ORs are deliberately shrunk (biased towards 1) to prevent overfitting, so they are not used for causal interpretation.`);
 
     // 2. Agreement
-    bullets.push(`<strong>🤝 Firth vs Standard Agreement</strong> — Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth penalized likelihood provides more conservative profile-likelihood CIs — preferred reference when separation is a concern.`);
+    bullets.push(`<strong>🤝 Firth vs Standard Agreement</strong> — Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth provides more conservative profile-likelihood CIs and handles small samples or rare events better. Standard MLE provides goodness-of-fit metrics (Nagelkerke R² = ${data.standard.nagelkerke_r2 || '-'}) and discrimination power (AUC = ${data.standard.auc || '-'}) required by medical journals.`);
 
     // 3. Significant predictors
     if (firthSig.length > 0) {
@@ -445,11 +496,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 4. Baseline
     if (intercept) {
-      bullets.push(`<strong>📏 Baseline (Intercept)</strong> — OR = <strong>${intercept.or}</strong> [${intercept.ci_lo}–${intercept.ci_hi}], p = ${intercept.p_value}. Baseline SIP odds when all predictors are at reference level: <strong>บัตรทอง</strong> (insurance), <strong>no delusion</strong>, <strong>complete DSM-5 functional impairment data</strong>. At ~1.4:1, this reflects the high SIP prevalence in this population. The intercept is a statistical reference point, not a clinical predictor.`);
+      bullets.push(`<strong>📏 Baseline (Intercept)</strong> — OR = <strong>${intercept.or}</strong> [${intercept.ci_lo}–${intercept.ci_hi}], p = ${intercept.p_value}. Baseline SIP odds when all predictors are at reference level.`);
     }
-
-    // 5. Model fit
-    bullets.push(`<strong>📐 Model Fit</strong> — Pseudo R² = ${data.standard.pseudo_r2}. The selected features explain a small portion of variance in SIP diagnosis. SIP determination is multifactorial — unmeasured confounders (substance dose, duration, genetics, social factors) likely play major roles.`);
 
     grid.innerHTML = `
       <div class="interp-box reveal">

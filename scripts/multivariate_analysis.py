@@ -179,8 +179,10 @@ def run_firth(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict[st
 def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict[str, Any]:
     """Fit statsmodels.Logit and return results dict."""
     import statsmodels.api as sm
-
     from statsmodels.tools.sm_exceptions import PerfectSeparationError
+    import scipy.stats as stats
+    from sklearn.metrics import roc_auc_score
+    import pandas as pd
 
     # Add intercept
     X_sm = sm.add_constant(X)
@@ -204,6 +206,44 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
                 "variables": []
             }
 
+    n = len(y)
+    llf = float(result.llf)
+    llnull = float(result.llnull)
+    
+    # Nagelkerke R2
+    cox_snell = 1 - np.exp(2 * (llnull - llf) / n)
+    r2_max = 1 - np.exp(2 * llnull / n)
+    nagelkerke_r2 = cox_snell / r2_max if r2_max > 0 else 0
+
+    # Predictions for AUC & HL
+    y_pred = result.predict(X_sm)
+    
+    # AUC
+    try:
+        auc = roc_auc_score(y, y_pred)
+    except:
+        auc = None
+        
+    # Hosmer-Lemeshow test (g=10)
+    hl_chi2 = None
+    hl_p = None
+    try:
+        df_hl = pd.DataFrame({'y': y, 'p': y_pred})
+        # Use qcut to get deciles, drop duplicates if there are many ties
+        df_hl['g'] = pd.qcut(df_hl['p'], 10, duplicates='drop')
+        observed = df_hl.groupby('g', observed=True)['y'].sum()
+        expected = df_hl.groupby('g', observed=True)['p'].sum()
+        total = df_hl.groupby('g', observed=True)['y'].count()
+        
+        # Calculate Pearson chi2 for deciles
+        chi2_val = np.sum((observed - expected)**2 / (expected * (1 - expected / total)))
+        df_groups = len(df_hl['g'].unique())
+        if df_groups > 2:
+            hl_chi2 = float(chi2_val)
+            hl_p = float(1 - stats.chi2.cdf(hl_chi2, df_groups - 2))
+    except Exception as e:
+        pass
+
     variables = []
     for i, name in enumerate(all_names):
         coef = float(result.params[i])
@@ -215,8 +255,27 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
         or_val = round(float(np.exp(coef)), 3)
         ci_lo_or = round(float(np.exp(ci_lo)), 3)
         ci_hi_or = round(float(np.exp(ci_hi)), 3)
+        
+        # Univariate crude OR
+        crude_or = None
+        crude_ci_lo = None
+        crude_ci_hi = None
+        crude_pval = None
+        
+        if i > 0: # Not intercept
+            try:
+                X_univ = sm.add_constant(X[:, i-1])
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore")
+                    res_univ = sm.Logit(y, X_univ).fit(disp=False, maxiter=50)
+                crude_or = round(float(np.exp(res_univ.params[1])), 3)
+                crude_ci_lo = round(float(np.exp(res_univ.conf_int()[1, 0])), 3)
+                crude_ci_hi = round(float(np.exp(res_univ.conf_int()[1, 1])), 3)
+                crude_pval = round(float(res_univ.pvalues[1]), 4)
+            except:
+                pass
 
-        variables.append({
+        var_dict = {
             "name": name,
             "coef": round(coef, 4),
             "se": round(se, 4),
@@ -225,12 +284,26 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
             "ci_hi": ci_hi_or,
             "p_value": round(pval, 4),
             "significant": pval < 0.05,
-        })
+        }
+        
+        if crude_or is not None:
+            var_dict.update({
+                "crude_or": crude_or,
+                "crude_ci_lo": crude_ci_lo,
+                "crude_ci_hi": crude_ci_hi,
+                "crude_p_value": crude_pval
+            })
+            
+        variables.append(var_dict)
 
     return {
         "method": "Standard MLE (statsmodels)",
-        "log_likelihood": round(float(result.llf), 2),
+        "log_likelihood": round(llf, 2),
         "pseudo_r2": round(float(result.prsquared), 4),
+        "nagelkerke_r2": round(nagelkerke_r2, 4) if nagelkerke_r2 else None,
+        "auc": round(auc, 4) if auc else None,
+        "hl_chi2": round(hl_chi2, 4) if hl_chi2 else None,
+        "hl_p_value": round(hl_p, 4) if hl_p else None,
         "n_iterations": int(getattr(result, "iterations", result.mle_retvals.get("iterations", 0))),
         "variables": variables,
     }
@@ -285,29 +358,31 @@ def main(df: pd.DataFrame = None) -> None:
     selected = best_selected or feature_names
     print(f"  → Selected C={best_C}: {len(selected)} features, AIC={best_aic:.1f}")
 
-    # Subset X to selected features
-    selected_idx = [feature_names.index(s) for s in selected]
-    X_sel = X[:, selected_idx]
-
-    # Run both models
-    print("\nFirth logistic regression...")
+    # Run explanatory models on ALL pre-specified features
+    print("\nFirth logistic regression (Explanatory)...")
     try:
-        firth_result = run_firth(X_sel, y, selected)
+        firth_result = run_firth(X, y, feature_names)
     except Exception as e:
         print(f"  Firth regression failed: {e}")
         firth_result = {"method": "Firth", "error": str(e), "variables": []}
 
-    print("\nStandard logistic regression...")
+    print("\nStandard logistic regression (Explanatory)...")
     try:
-        standard_result = run_standard(X_sel, y, selected)
+        standard_result = run_standard(X, y, feature_names)
     except Exception as e:
         print(f"  Standard MLE failed: {e}")
         standard_result = {"method": "Standard MLE (statsmodels)", "error": str(e), "variables": []}
 
     # Build output
+    n_events = int(y.sum())
+    minority_events = min(n_events, len(y) - n_events)
+    epv = minority_events / len(feature_names) if len(feature_names) > 0 else 0
+
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "total_n": len(y),
+        "n_events": n_events,
+        "epv": round(epv, 2),
         "n_features_total": len(feature_names),
         "n_features_selected": len(selected),
         "lasso_C": best_C,
@@ -322,21 +397,22 @@ def main(df: pd.DataFrame = None) -> None:
 
     # Quick summary
     print(f"\n--- Significant predictors (Firth, p<0.05) ---")
-    sig = [v for v in firth_result["variables"] if v["significant"]]
-    if sig:
-        for v in sorted(sig, key=lambda x: x["p_value"]):
-            print(f"  {v['name']}: OR={v['or']} [{v['ci_lo']}–{v['ci_hi']}], p={v['p_value']}")
-    else:
-        print("  None")
+    if "error" not in firth_result:
+        sig = [v for v in firth_result["variables"] if v["significant"]]
+        if sig:
+            for v in sorted(sig, key=lambda x: x["p_value"]):
+                print(f"  {v['name']}: OR={v['or']} [{v['ci_lo']}–{v['ci_hi']}], p={v['p_value']}")
+        else:
+            print("  None")
 
     print(f"\n--- Significant predictors (Standard, p<0.05) ---")
-    sig_std = [v for v in standard_result["variables"] if v["significant"] and v["name"] != "Intercept"]
-    if sig_std:
-        for v in sorted(sig_std, key=lambda x: x["p_value"]):
-            print(f"  {v['name']}: OR={v['or']} [{v['ci_lo']}–{v['ci_hi']}], p={v['p_value']}")
-    else:
-        print("  None")
-
+    if "error" not in standard_result:
+        sig_std = [v for v in standard_result["variables"] if v["significant"] and v["name"] != "Intercept"]
+        if sig_std:
+            for v in sorted(sig_std, key=lambda x: x["p_value"]):
+                print(f"  {v['name']}: OR={v['or']} [{v['ci_lo']}–{v['ci_hi']}], p={v['p_value']}")
+        else:
+            print("  None")
 
 if __name__ == "__main__":
     main()
