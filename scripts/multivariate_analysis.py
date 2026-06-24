@@ -34,7 +34,7 @@ def prepare_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, list[str
     """
     One-hot encode categoricals, standardize continuous, return (X, y, feature_names, y_series).
     """
-    y = df[STRATIFY_COL].astype(int).values
+    y_raw = df[STRATIFY_COL].to_numpy(dtype=float)
     feature_dfs = []
     feature_names: list[str] = []
 
@@ -62,10 +62,9 @@ def prepare_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, list[str
             feature_names.append(col_name)
 
     X_df = pd.concat(feature_dfs, axis=1)
-    # Drop rows where y is NaN (shouldn't happen after load_data excludes 99)
-    mask = ~pd.isna(y)
+    mask = np.isfinite(y_raw)
     X_df = X_df.loc[mask]
-    y = y[mask]
+    y = y_raw[mask].astype(int)
 
     # Fill any remaining NaN in X with 0 (median for scaled, 0 for dummies = reference category)
     X_df = X_df.fillna(0)
@@ -160,6 +159,8 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     """Fit statsmodels.Logit and return results dict."""
     import statsmodels.api as sm
 
+    from statsmodels.tools.sm_exceptions import PerfectSeparationError
+
     # Add intercept
     X_sm = sm.add_constant(X)
     all_names = ["Intercept"] + feature_names
@@ -167,7 +168,20 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         model = sm.Logit(y, X_sm)
-        result = model.fit(disp=False, maxiter=200)
+        try:
+            result = model.fit(disp=False, maxiter=200)
+        except PerfectSeparationError:
+            return {
+                "method": "Standard MLE (statsmodels)",
+                "error": "Perfect separation detected — model cannot be estimated",
+                "variables": []
+            }
+        except Exception as e:
+            return {
+                "method": "Standard MLE (statsmodels)",
+                "error": str(e),
+                "variables": []
+            }
 
     variables = []
     for i, name in enumerate(all_names):
@@ -248,10 +262,18 @@ def main(df: pd.DataFrame = None) -> None:
 
     # Run both models
     print("\nFirth logistic regression...")
-    firth_result = run_firth(X_sel, y, selected)
+    try:
+        firth_result = run_firth(X_sel, y, selected)
+    except Exception as e:
+        print(f"  Firth regression failed: {e}")
+        firth_result = {"method": "Firth", "error": str(e), "variables": []}
 
     print("\nStandard logistic regression...")
-    standard_result = run_standard(X_sel, y, selected)
+    try:
+        standard_result = run_standard(X_sel, y, selected)
+    except Exception as e:
+        print(f"  Standard MLE failed: {e}")
+        standard_result = {"method": "Standard MLE (statsmodels)", "error": str(e), "variables": []}
 
     # Build output
     output = {

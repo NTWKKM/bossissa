@@ -234,6 +234,9 @@ class StatisticalEngine:
             
         if len(cats) != 2:
             return None
+        # Convention: Use the last category based on VALUE_MAPPINGS as Positive/Event
+        # Example: Sex (1="ชาย", 2="หญิง") -> "หญิง" is Event
+        #          Disease (0="ไม่มี", 1="มี") -> "มี" is Event
         cat = cats[-1]  # Use the 'event' or 'positive' category
         p1v = float(p1.get(cat, 0))
         p0v = float(p0.get(cat, 0))
@@ -549,7 +552,7 @@ class TableOneFormatter:
                     rf"{{l}}{{\textit{{{var_label}}}}} \\"
                 )
                 # One row per level
-                level_keys = sorted(va.stats_overall.keys()) if isinstance(va.stats_overall, dict) else []
+                level_keys = list(va.stats_overall.keys()) if isinstance(va.stats_overall, dict) else []
                 for i, level in enumerate(level_keys):
                     overall_val = _escape(va.stats_overall.get(level, "—")) if isinstance(va.stats_overall, dict) else "—"
                     group_vals = []

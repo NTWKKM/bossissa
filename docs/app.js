@@ -525,12 +525,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (r.extra_stats) {
         if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) {
           effectType = "OR";
-          effectSize = r.extra_stats.or.or;
-          ciLo = r.extra_stats.or.ci_lo;
-          ciHi = r.extra_stats.or.ci_hi;
+          effectSize = r.extra_stats.or.or ?? "";
+          ciLo = r.extra_stats.or.ci_lo ?? "";
+          ciHi = r.extra_stats.or.ci_hi ?? "";
+          // Add p-value and method to csv if we decide to add those columns later. Currently they aren't in the header.
         } else if (r.extra_stats.smd !== undefined && r.extra_stats.smd !== null) {
           effectType = "SMD";
-          effectSize = r.extra_stats.smd;
+          effectSize = r.extra_stats.smd ?? "";
         }
       }
 
