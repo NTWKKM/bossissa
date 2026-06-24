@@ -358,6 +358,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       multiLoaded = true;
     } catch (err) {
       document.getElementById("multi-loading-state").innerHTML = `<p style="color:var(--accent-red)">Error loading multivariate data. Ensure the GitHub Action has run.</p>`;
+    }
+  }
+
   function renderMultivariate(data) {
     document.getElementById("multi-loading-state").style.display = "none";
     document.getElementById("multi-content-area").hidden = false;
