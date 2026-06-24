@@ -50,11 +50,11 @@ All generators are called sequentially from `run_analysis.py`. Each fetches live
 Effect sizes: SMD (pooled SD), OR with 95% CI (Haldane-Anscombe for categorical, logistic regression for continuous).
 
 ### Multivariate
-1. **LASSO** (L1-regularized logistic regression, C=0.1/0.5/1.0) — feature selection by AIC
-2. **Firth Logistic Regression** (`firthmodels`) — penalized likelihood, profile likelihood CIs, handles separation
-3. **Standard MLE** (`statsmodels.Logit`) — Wald CIs, pseudo R²
+The pipeline evaluates pre-specified clinical covariates across three model configurations based on Events Per Variable (EPV) and clinical objectives:
 
-Both models run on LASSO-selected features. Results presented side-by-side for comparison.
+1. **Standard MLE Logistic Regression** (`statsmodels.Logit`) — Explanatory model. Evaluates all pre-specified covariates. Reports Crude/Adjusted OR, 95% Wald CI, p-value, Hosmer-Lemeshow goodness-of-fit, Nagelkerke R², and AUC. Recommended when EPV ≥ 10.
+2. **Firth's Penalized Likelihood** (`firthmodels`) — Explanatory model. Evaluates all pre-specified covariates. Reports Adjusted OR, 95% profile likelihood CI, and p-value. Recommended when EPV < 10 or perfect separation is detected.
+3. **LASSO Feature Selection** (L1-regularized logistic, C=0.1/0.5/1.0) — Predictive model. Selects an independent subset of predictors by minimizing AIC. Intended for building sparse prediction models (e.g., clinical scoring tools).
 
 ## Offline Decisions
 
@@ -68,7 +68,6 @@ Both models run on LASSO-selected features. Results presented side-by-side for c
 
 - **Statistical Power**: P-values may lack power if subgroup N is critically low. Interpret with caution.
 - **Automated Normality Tests**: Shapiro-Wilk (N<5000) or Jarque-Bera (N≥5000) with skew/kurtosis criteria. Clinical researchers should visually verify distributions.
-- **Multivariate Pseudo R²**: Current model explains limited variance (R²≈0.015). SIP determination is multifactorial; unmeasured confounders (substance dose, duration, genetics) dominate.
-- **LASSO Sparsity**: C=0.1 selects only 3 features. This is intentional — the model prioritizes independent predictors over redundant ones. Less aggressive C values (0.5, 1.0) select 33–42 features but increase AIC.
+- **EPV and Multivariate Stability**: The UI enforces strict interpretative recommendations based on Events Per Variable (EPV). If EPV < 10 or perfect separation occurs, Firth's Penalized Likelihood is the recommended explanatory model. Standard MLE is safely interpretable only when EPV ≥ 10. For predictive workflows, LASSO is the recommended first step.
+- **LASSO Sparsity**: C=0.1 often selects very few features. This is intentional — the model prioritizes independent predictors over redundant ones. Less aggressive C values (0.5, 1.0) select more features but may increase AIC.
 - **PHI Sanitization**: Pipeline must ensure no PHI/PII in `docs/data/*.json` payloads. Google Sheet must be public ("Anyone with link can view") with PHI removed beforehand.
-- **Firth vs Standard**: Both methods agree on significant predictors. Firth provides more conservative CIs (profile likelihood) — preferred reference. Standard MLE provides pseudo R² for model fit assessment.
