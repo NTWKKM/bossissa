@@ -105,34 +105,42 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     Returns a dictionary with selected features, coefficients, and metrics.
     """
     import warnings
-    from sklearn.linear_model import LogisticRegressionCV, LogisticRegression
+    from sklearn.linear_model import LogisticRegressionCV
     from sklearn.metrics import roc_auc_score, brier_score_loss
     from sklearn.calibration import calibration_curve
-    from sklearn.model_selection import cross_val_predict
+    from sklearn.model_selection import cross_val_predict, StratifiedKFold
 
     from sklearn.pipeline import Pipeline
     from sklearn.preprocessing import StandardScaler
 
+    inner_cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    outer_cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
+
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        # 1. Scale X and find best C using 10-fold CV
-        scaler = StandardScaler()
-        X_scaled = scaler.fit_transform(X)
-        model = LogisticRegressionCV(
-            Cs=10,
-            cv=10,
-            penalty="l1",
-            solver="saga",
-            max_iter=5000,
-            random_state=42,
-            scoring='neg_log_loss'
-        )
-        model.fit(X_scaled, y)
+        
+        # True nested CV — C selected within each outer fold
+        pipeline = Pipeline([
+            ("scaler", StandardScaler()),
+            ("lasso", LogisticRegressionCV(
+                Cs=10, cv=inner_cv,
+                penalty="l1", solver="saga",
+                max_iter=5000, random_state=42,
+                scoring="neg_log_loss"
+            ))
+        ])
+        
+        # Get cross-validated probabilities using outer CV
+        y_prob_cv = cross_val_predict(pipeline, X, y, cv=outer_cv, method="predict_proba")[:, 1]
+        
+        # Fit once with full data to get best_C and selected features for reporting
+        pipeline.fit(X, y)
 
-    best_C = float(model.C_[0])
+    lasso_model = pipeline.named_steps["lasso"]
+    best_C = float(lasso_model.C_[0])
     
     # Get coefficients
-    coefs = model.coef_[0]
+    coefs = lasso_model.coef_[0]
     selected_idx = np.where(coefs != 0)[0]
     
     variables = []
@@ -143,16 +151,6 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
             "coef": round(float(coefs[idx]), 4),
             "or": round(float(np.exp(coefs[idx])), 3)
         })
-        
-    # To get cross-validated metrics, we use a Pipeline within cross_val_predict
-    # to perfectly isolate the scaling step and prevent data leakage
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore")
-        pipeline = Pipeline([
-            ("scaler", StandardScaler()),
-            ("lasso", LogisticRegression(penalty="l1", solver="saga", C=best_C, max_iter=5000, random_state=42))
-        ])
-        y_prob_cv = cross_val_predict(pipeline, X, y, cv=10, method='predict_proba')[:, 1]
         
     # Calculate metrics
     auc_cv = roc_auc_score(y, y_prob_cv)
