@@ -1,50 +1,179 @@
 {
-  "generated_at": "2026-06-24T12:29:22.313736+00:00",
+  "generated_at": "2026-06-24T12:41:39.663064+00:00",
   "total_n": 1000,
   "n_events": 121,
   "epv": 2.75,
   "n_features_total": 44,
-  "n_features_selected": 37,
-  "lasso_C": 1.0,
-  "selected_features": [
-    "age_scaled",
-    "sex_หญิง",
-    "insurance_type_ข้าราชการ",
-    "insurance_type_ประกันสังคม",
-    "icd10_er_F29",
-    "icd10_er_อื่นๆ",
-    "sx_hallucination_auditory_มี",
-    "sx_hallucination_visual_มี",
-    "sx_delusion_มี",
-    "sx_aggression_มี",
-    "sx_disorganized_speech_มี",
-    "hx_psychiatric_มี",
-    "hx_substance_use_มี",
-    "primary_substance_Cannabis",
-    "primary_substance_Ket",
-    "primary_substance_Opioid",
-    "primary_substance_Alc",
-    "primary_substance_Benzo",
-    "primary_substance_Kratom",
-    "primary_substance_อื่นๆ",
-    "primary_substance_route_ดม",
-    "last_substance_use_1-7วัน",
-    "last_substance_use_1-4สัปดาห์",
-    "last_substance_use_>1เดือน",
-    "uds_status_ตรวจ",
-    "uds_meth_Positive",
-    "uds_cannabis_Positive",
-    "uds_opioid_Positive",
-    "dsm_hallucination_delusion_ใช่",
-    "dsm_within_1mo_or_withdrawal_ใช่",
-    "dsm_substance_related_ใช่",
-    "dsm_not_primary_ใช่",
-    "dsm_no_delirium_ใช่",
-    "dsm_functional_impairment_ใช่",
-    "discharge_status_Admitอื่น",
-    "discharge_status_Refer",
-    "discharge_status_กลับบ้าน"
-  ],
+  "lasso": {
+    "method": "LASSO (10-fold CV)",
+    "best_C": 0.3594,
+    "auc_cv": 0.809,
+    "brier_score_cv": 0.0787,
+    "calibration": {
+      "prob_true": [
+        0.03,
+        0.06,
+        0.03,
+        0.04,
+        0.06,
+        0.04,
+        0.06,
+        0.1,
+        0.21,
+        0.58
+      ],
+      "prob_pred": [
+        0.0076,
+        0.0169,
+        0.0291,
+        0.042,
+        0.058,
+        0.0813,
+        0.1108,
+        0.1552,
+        0.2518,
+        0.4643
+      ]
+    },
+    "variables": [
+      {
+        "name": "age_scaled",
+        "coef": -0.0694,
+        "or": 0.933
+      },
+      {
+        "name": "sex_หญิง",
+        "coef": -0.2336,
+        "or": 0.792
+      },
+      {
+        "name": "insurance_type_ข้าราชการ",
+        "coef": -0.1735,
+        "or": 0.841
+      },
+      {
+        "name": "insurance_type_ประกันสังคม",
+        "coef": 0.0432,
+        "or": 1.044
+      },
+      {
+        "name": "icd10_er_F29",
+        "coef": 0.0547,
+        "or": 1.056
+      },
+      {
+        "name": "sx_hallucination_auditory_มี",
+        "coef": -0.0101,
+        "or": 0.99
+      },
+      {
+        "name": "sx_hallucination_visual_มี",
+        "coef": -0.1011,
+        "or": 0.904
+      },
+      {
+        "name": "sx_delusion_มี",
+        "coef": -0.1111,
+        "or": 0.895
+      },
+      {
+        "name": "sx_aggression_มี",
+        "coef": 0.1449,
+        "or": 1.156
+      },
+      {
+        "name": "sx_disorganized_speech_มี",
+        "coef": -0.061,
+        "or": 0.941
+      },
+      {
+        "name": "hx_psychiatric_มี",
+        "coef": -0.1052,
+        "or": 0.9
+      },
+      {
+        "name": "hx_substance_use_มี",
+        "coef": 0.0861,
+        "or": 1.09
+      },
+      {
+        "name": "primary_substance_Ket",
+        "coef": 0.032,
+        "or": 1.033
+      },
+      {
+        "name": "primary_substance_Opioid",
+        "coef": 0.0789,
+        "or": 1.082
+      },
+      {
+        "name": "primary_substance_Benzo",
+        "coef": -0.0934,
+        "or": 0.911
+      },
+      {
+        "name": "primary_substance_Kratom",
+        "coef": 0.1692,
+        "or": 1.184
+      },
+      {
+        "name": "uds_meth_Positive",
+        "coef": 0.1047,
+        "or": 1.11
+      },
+      {
+        "name": "uds_cannabis_Positive",
+        "coef": 0.0451,
+        "or": 1.046
+      },
+      {
+        "name": "dsm_hallucination_delusion_ใช่",
+        "coef": 0.59,
+        "or": 1.804
+      },
+      {
+        "name": "dsm_within_1mo_or_withdrawal_ใช่",
+        "coef": 1.2746,
+        "or": 3.577
+      },
+      {
+        "name": "dsm_substance_related_ใช่",
+        "coef": 0.9626,
+        "or": 2.619
+      },
+      {
+        "name": "dsm_not_primary_ใช่",
+        "coef": 0.7709,
+        "or": 2.162
+      },
+      {
+        "name": "dsm_no_delirium_ใช่",
+        "coef": 1.3102,
+        "or": 3.707
+      },
+      {
+        "name": "dsm_functional_impairment_ใช่",
+        "coef": 1.2256,
+        "or": 3.406
+      },
+      {
+        "name": "discharge_status_Admitอื่น",
+        "coef": -1.5343,
+        "or": 0.216
+      },
+      {
+        "name": "discharge_status_Refer",
+        "coef": -0.7825,
+        "or": 0.457
+      },
+      {
+        "name": "discharge_status_กลับบ้าน",
+        "coef": -1.1427,
+        "or": 0.319
+      }
+    ],
+    "n_features_selected": 27
+  },
   "firth": {
     "method": "Firth (Penalized Likelihood — firthmodels)",
     "n_iterations": 13,

@@ -97,32 +97,75 @@ def prepare_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, list[str
 # LASSO selection
 # ──────────────────────────────────────────────
 
-def lasso_select(X: np.ndarray, y: np.ndarray, feature_names: list[str], C: float = 0.1) -> list[str]:
+def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict[str, Any]:
     """
-    L1-regularized logistic regression for feature selection.
-    Lower C = stronger regularization = fewer features.
-    Returns list of selected feature names.
+    10-fold Cross-Validated LASSO (L1-regularized logistic regression).
+    Calculates AUC, Brier Score, and Calibration Curve.
+    Returns a dictionary with selected features, coefficients, and metrics.
     """
     import warnings
+    from sklearn.linear_model import LogisticRegressionCV, LogisticRegression
+    from sklearn.metrics import roc_auc_score, brier_score_loss
+    from sklearn.calibration import calibration_curve
+    from sklearn.model_selection import cross_val_predict
+
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        model = LogisticRegression(
+        # 10-fold CV to find best C
+        model = LogisticRegressionCV(
+            Cs=10,
+            cv=10,
             penalty="l1",
             solver="saga",
-            C=C,
             max_iter=5000,
             random_state=42,
+            scoring='neg_log_loss'
         )
         model.fit(X, y)
 
-    selected_idx = np.where(model.coef_[0] != 0)[0]
-    selected = [feature_names[i] for i in selected_idx]
+    best_C = float(model.C_[0])
+    
+    # Get coefficients
+    coefs = model.coef_[0]
+    selected_idx = np.where(coefs != 0)[0]
+    
+    variables = []
+    
+    for idx in selected_idx:
+        variables.append({
+            "name": feature_names[idx],
+            "coef": round(float(coefs[idx]), 4),
+            "or": round(float(np.exp(coefs[idx])), 3)
+        })
+        
+    # To get cross-validated metrics, we can use cross_val_predict with the best_C
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        final_model = LogisticRegression(penalty="l1", solver="saga", C=best_C, max_iter=5000, random_state=42)
+        y_prob_cv = cross_val_predict(final_model, X, y, cv=10, method='predict_proba')[:, 1]
+        
+    # Calculate metrics
+    auc_cv = roc_auc_score(y, y_prob_cv)
+    brier_cv = brier_score_loss(y, y_prob_cv)
+    
+    # Calibration curve
+    prob_true, prob_pred = calibration_curve(y, y_prob_cv, n_bins=10, strategy='quantile')
+    
+    print(f"  LASSO 10-fold CV: Best C={best_C:.4f}, Selected {len(selected_idx)}/{len(feature_names)} features")
+    print(f"    Cross-Validated AUC: {auc_cv:.4f}, Brier Score: {brier_cv:.4f}")
 
-    print(f"  LASSO (C={C}): selected {len(selected)}/{len(feature_names)} features")
-    for name, coef in zip(selected, model.coef_[0][selected_idx]):
-        print(f"    {name}: {coef:.4f}")
-
-    return selected
+    return {
+        "method": "LASSO (10-fold CV)",
+        "best_C": round(best_C, 4),
+        "auc_cv": round(auc_cv, 4),
+        "brier_score_cv": round(brier_cv, 4),
+        "calibration": {
+            "prob_true": [round(float(p), 4) for p in prob_true],
+            "prob_pred": [round(float(p), 4) for p in prob_pred]
+        },
+        "variables": variables,
+        "n_features_selected": len(selected_idx)
+    }
 
 
 # ──────────────────────────────────────────────
@@ -324,39 +367,17 @@ def main(df: pd.DataFrame = None) -> None:
     X, y, feature_names, _ = prepare_features(df)
     print(f"  Feature matrix: {X.shape[0]} rows × {X.shape[1]} columns")
 
-    # LASSO selection — try multiple C values, pick best by AIC
-    print("\nLASSO feature selection (trying C=0.1, 0.5, 1.0)...")
-    best_selected = None
-    best_aic = float("inf")
-    best_C = None
-
-    for C_val in [0.1, 0.5, 1.0]:
-        selected = lasso_select(X, y, feature_names, C=C_val)
-        if len(selected) == 0:
-            continue
-        # Quick AIC via FirthLogisticRegression on selected features
-        sel_idx = [feature_names.index(s) for s in selected]
-        X_tmp = X[:, sel_idx]
-        from firthmodels import FirthLogisticRegression
-        fl_tmp = FirthLogisticRegression(max_iter=200, gtol=1e-6, xtol=1e-6)
-        
-        try:
-            fl_tmp.fit(X_tmp, y)
-            # AIC = 2k - 2 * log(L)
-            k = len(selected) + 1  # +1 for intercept
-            aic = 2 * k - 2 * fl_tmp.loglik_
-        except Exception as e:
-            print(f"  C={C_val}: {len(selected)} features, AIC calculation failed ({e})")
-            continue
-                
-        print(f"  C={C_val}: {len(selected)} features, AIC={aic:.1f}")
-        if aic < best_aic:
-            best_aic = aic
-            best_selected = selected
-            best_C = C_val
-
-    selected = best_selected or feature_names
-    print(f"  → Selected C={best_C}: {len(selected)} features, AIC={best_aic:.1f}")
+    # LASSO prediction model
+    print("\nLASSO feature selection and predictive evaluation (10-fold CV)...")
+    try:
+        lasso_result = run_lasso_cv(X, y, feature_names)
+        selected = [v["name"] for v in lasso_result["variables"]]
+        best_C = lasso_result["best_C"]
+    except Exception as e:
+        print(f"  LASSO failed: {e}")
+        lasso_result = {"method": "LASSO (10-fold CV)", "error": str(e), "variables": []}
+        selected = feature_names
+        best_C = None
 
     # Run explanatory models on ALL pre-specified features
     print("\nFirth logistic regression (Explanatory)...")
@@ -384,9 +405,7 @@ def main(df: pd.DataFrame = None) -> None:
         "n_events": n_events,
         "epv": round(epv, 2),
         "n_features_total": len(feature_names),
-        "n_features_selected": len(selected),
-        "lasso_C": best_C,
-        "selected_features": selected,
+        "lasso": lasso_result,
         "firth": firth_result,
         "standard": standard_result,
     }

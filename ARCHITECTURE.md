@@ -54,7 +54,7 @@ The pipeline evaluates pre-specified clinical covariates across three model conf
 
 1. **Standard MLE Logistic Regression** (`statsmodels.Logit`) — Explanatory model. Evaluates all pre-specified covariates. Reports Crude/Adjusted OR, 95% Wald CI, p-value, Hosmer-Lemeshow goodness-of-fit, Nagelkerke R², and AUC. Recommended when EPV ≥ 10.
 2. **Firth's Penalized Likelihood** (`firthmodels`) — Explanatory model. Evaluates all pre-specified covariates. Reports Adjusted OR, 95% profile likelihood CI, and p-value. Recommended when EPV < 10 or perfect separation is detected.
-3. **LASSO Feature Selection** (L1-regularized logistic, C=0.1/0.5/1.0) — Predictive model. Selects an independent subset of predictors by minimizing AIC. Intended for building sparse prediction models (e.g., clinical scoring tools).
+3. **LASSO Logistic Regression (10-fold CV)** (`sklearn.linear_model.LogisticRegressionCV`) — Predictive model. Automatically selects the optimal regularization parameter ($C$) via cross-validation. Reports cross-validated AUC, Brier Score, and Calibration Curve to rigorously assess predictive performance without overfitting.
 
 ## Offline Decisions
 
@@ -69,5 +69,5 @@ The pipeline evaluates pre-specified clinical covariates across three model conf
 - **Statistical Power**: P-values may lack power if subgroup N is critically low. Interpret with caution.
 - **Automated Normality Tests**: Shapiro-Wilk (N<5000) or Jarque-Bera (N≥5000) with skew/kurtosis criteria. Clinical researchers should visually verify distributions.
 - **EPV and Multivariate Stability**: The UI enforces strict interpretative recommendations based on Events Per Variable (EPV). If EPV < 10 or perfect separation occurs, Firth's Penalized Likelihood is the recommended explanatory model. Standard MLE is safely interpretable only when EPV ≥ 10. For predictive workflows, LASSO is the recommended first step.
-- **LASSO Sparsity**: C=0.1 often selects very few features. This is intentional — the model prioritizes independent predictors over redundant ones. Less aggressive C values (0.5, 1.0) select more features but may increase AIC.
+- **LASSO Predictive Validation**: The LASSO model utilizes 10-fold Cross-Validation with `neg_log_loss` scoring to rigorously estimate the out-of-sample AUC, Brier Score, and Calibration. This prevents over-optimistic performance reporting typical in non-cross-validated pipelines.
 - **PHI Sanitization**: Pipeline must ensure no PHI/PII in `docs/data/*.json` payloads. Google Sheet must be public ("Anyone with link can view") with PHI removed beforehand.

@@ -1,0 +1,728 @@
+1: depth=0 // app.js - Bossissa SIP Analy
+2: depth=1 document.addEventListener("DOM
+3: depth=1   // Elements
+4: depth=2   const stats = {
+5: depth=2     total: document.getElement
+6: depth=2     sip: document.getElementBy
+7: depth=2     nonSip: document.getElemen
+8: depth=2     sig: document.getElementBy
+9: depth=1   };
+10: depth=1   const footerTs = document.ge
+11: depth=1   const thead = document.getEl
+12: depth=1   const tbody = document.getEl
+13: depth=1   const table = document.getEl
+14: depth=1   const loadingState = documen
+15: depth=1   const findingsGrid = documen
+16: depth=1 
+17: depth=1   const filterType = document.
+18: depth=1   const filterSig = document.g
+19: depth=1   const filterCorrection = doc
+20: depth=1   const searchVar = document.g
+21: depth=1   const btnExport = document.g
+22: depth=1   const btnExportLatex = docum
+23: depth=1 
+24: depth=1   // Tab Elements
+25: depth=1   const tabTableOne = document
+26: depth=1   const tabCharts = document.g
+27: depth=1   const tabStat = document.get
+28: depth=1   const tabMulti = document.ge
+29: depth=1   const pageTableOne = documen
+30: depth=1   const pageCharts = document.
+31: depth=1   const pageStat = document.ge
+32: depth=1   const pageMulti = document.g
+33: depth=1   const chartsGrid = document.
+34: depth=1   const chartsLoading = docume
+35: depth=1 
+36: depth=1   // Theme Toggle Logic
+37: depth=1   const themeToggle = document
+38: depth=1   const themeIcon = document.g
+39: depth=1   
+40: depth=2   function applyTheme(theme) {
+41: depth=2     document.documentElement.s
+42: depth=2     localStorage.setItem("boss
+43: depth=2     themeIcon.textContent = th
+44: depth=1   }
+45: depth=1 
+46: depth=1   const savedTheme = localStor
+47: depth=2   if (savedTheme) {
+48: depth=2     applyTheme(savedTheme);
+49: depth=1   }
+50: depth=1 
+51: depth=2   if (themeToggle) {
+52: depth=3     themeToggle.addEventListen
+53: depth=3       const current = document
+54: depth=3       applyTheme(current === "
+55: depth=2     });
+56: depth=1   }
+57: depth=1 
+58: depth=1   let tableData = [];
+59: depth=1   let metaData = null;
+60: depth=1   let chartsData = [];
+61: depth=1   let statData = null;
+62: depth=1 
+63: depth=1   // 1. Fetch Data (core: meta
+64: depth=2   try {
+65: depth=2     const [metaRes, tableRes] 
+66: depth=2       fetch("data/metadata.jso
+67: depth=2       fetch("data/tableone.jso
+68: depth=2     ]);
+69: depth=2 
+70: depth=2     if (!metaRes.ok || !tableR
+71: depth=2 
+72: depth=2     metaData = await metaRes.j
+73: depth=2     tableData = await tableRes
+74: depth=2 
+75: depth=2     populateHero();
+76: depth=2     renderTable();
+77: depth=2     renderFindings();
+78: depth=2 
+79: depth=2     // Hide loading, show tabl
+80: depth=2     loadingState.style.display
+81: depth=2     table.hidden = false;
+82: depth=2 
+83: depth=2   } catch (err) {
+84: depth=2     console.error(err);
+85: depth=2     loadingState.innerHTML = `
+86: depth=1   }
+87: depth=1 
+88: depth=1   // 2. Core Rendering
+89: depth=2   function populateHero() {
+90: depth=2     if (!metaData) return;
+91: depth=2     stats.total.textContent = 
+92: depth=2     stats.sip.textContent = me
+93: depth=2     stats.nonSip.textContent =
+94: depth=2     stats.sig.textContent = me
+95: depth=2 
+96: depth=2     document.querySelectorAll(
+97: depth=2     document.getElementById("m
+98: depth=2       Data updated: <span clas
+99: depth=2     `;
+100: depth=2     footerTs.textContent = `La
+101: depth=1   }
+102: depth=1 
+103: depth=2   function renderTable() {
+104: depth=2     if (!tableData.length || !
+105: depth=2 
+106: depth=2     const term = searchVar.val
+107: depth=2     const type = filterType.va
+108: depth=2     const sig = filterSig.valu
+109: depth=2     const correction = filterC
+110: depth=2 
+111: depth=3     const filtered = tableData
+112: depth=3       if (term && !r.name.toLo
+113: depth=3       if (type !== "all" && r.
+114: depth=3       
+115: depth=3       let pVal = r.p_value;
+116: depth=3       if (correction === "bonf
+117: depth=3       else if (correction === 
+118: depth=3 
+119: depth=3       if (sig === "sig" && (pV
+120: depth=3       if (sig === "ns" && pVal
+121: depth=3       return true;
+122: depth=2     });
+123: depth=2 
+124: depth=2     const groupKeys = Object.k
+125: depth=2     const g0Name = groupKeys.l
+126: depth=2     const g1Name = groupKeys.l
+127: depth=2     const g0N = metaData.group
+128: depth=2     const g1N = metaData.group
+129: depth=2 
+130: depth=2     let pLabel = "p-value";
+131: depth=2     if (correction === "bonfer
+132: depth=2     else if (correction === "f
+133: depth=2 
+134: depth=2     thead.innerHTML = `
+135: depth=2       <tr>
+136: depth=2         <th>Variable</th>
+137: depth=2         <th>Total (N=${metaDat
+138: depth=2         <th>Missing</th>
+139: depth=2         <th>${g0Name} (n=${g0N
+140: depth=2         <th>${g1Name} (n=${g1N
+141: depth=2         <th>${pLabel}</th>
+142: depth=2         <th>Test</th>
+143: depth=2         <th>Effect Size</th>
+144: depth=2       </tr>
+145: depth=2     `;
+146: depth=2 
+147: depth=3     tbody.innerHTML = filtered
+148: depth=3       let pVal = r.p_value;
+149: depth=3       let pValFmt = r.p_value_
+150: depth=4       if (correction === "bonf
+151: depth=4         pVal = r.p_value_bonfe
+152: depth=4         pValFmt = r.p_value_bo
+153: depth=4       } else if (correction ==
+154: depth=4         pVal = r.p_value_bh;
+155: depth=4         pValFmt = r.p_value_bh
+156: depth=3       }
+157: depth=3 
+158: depth=3       let pClass = pVal !== nu
+159: depth=3       let effectHtml = "-";
+160: depth=4       if (r.extra_stats) {
+161: depth=5         if (r.extra_stats.or !
+162: depth=5           const orData = r.ext
+163: depth=5           const ciLo = (orData
+164: depth=5           const ciHi = (orData
+165: depth=5           effectHtml = `OR: ${
+166: depth=5         } else if (r.extra_sta
+167: depth=5           effectHtml = `SMD: $
+168: depth=4         }
+169: depth=3       }
+170: depth=3 
+171: depth=3       let totalStr = "";
+172: depth=3       let missStr = "";
+173: depth=3       let g0Str = "";
+174: depth=3       let g1Str = "";
+175: depth=3 
+176: depth=3       const missColor = r.n_mi
+177: depth=3       const missText = `<span 
+178: depth=3 
+179: depth=4       if (r.var_type === "cate
+180: depth=4         const levels = Object.
+181: depth=4         totalStr = levels.map(
+182: depth=4         missStr = `<div style=
+183: depth=4         g0Str = levels.map(l =
+184: depth=4         g1Str = levels.map(l =
+185: depth=4       } else {
+186: depth=4         totalStr = r.stats_ove
+187: depth=4         missStr = missText;
+188: depth=4         g0Str = r.stats_groups
+189: depth=4         g1Str = r.stats_groups
+190: depth=3       }
+191: depth=3 
+192: depth=3       const testStyle = (r.tes
+193: depth=3         ? 'style="color:var(--
+194: depth=3         : 'style="font-size:0.
+195: depth=3 
+196: depth=3       return `
+197: depth=3         <tr>
+198: depth=3           <td class="col-var">
+199: depth=3             ${r.label || r.nam
+200: depth=3             <div style="font-s
+201: depth=3           </td>
+202: depth=3           <td>${totalStr}</td>
+203: depth=3           <td>${missStr}</td>
+204: depth=3           <td>${g0Str}</td>
+205: depth=3           <td>${g1Str}</td>
+206: depth=3           <td ${pClass}>${pVal
+207: depth=3           <td ${testStyle}>${r
+208: depth=3           <td style="font-size
+209: depth=3         </tr>
+210: depth=3       `;
+211: depth=2     }).join("");
+212: depth=1   }
+213: depth=1 
+214: depth=2   function renderFindings() {
+215: depth=2     const correction = filterC
+216: depth=3     const sigVars = tableData.
+217: depth=3       let pVal = r.p_value;
+218: depth=3       if (correction === "bonf
+219: depth=3       else if (correction === 
+220: depth=3       return pVal !== null && 
+221: depth=2     });
+222: depth=2     
+223: depth=3     if (sigVars.length === 0) 
+224: depth=3       findingsGrid.innerHTML =
+225: depth=3       return;
+226: depth=2     }
+227: depth=2 
+228: depth=3     findingsGrid.innerHTML = s
+229: depth=3       let effectHtml = "";
+230: depth=4       if (r.extra_stats) {
+231: depth=4         if (r.extra_stats.or !
+232: depth=4         else if (r.extra_stats
+233: depth=3       }
+234: depth=3 
+235: depth=3       let g0Str = "";
+236: depth=3       let g1Str = "";
+237: depth=3       const groupKeys = Object
+238: depth=3       const g0Name = groupKeys
+239: depth=3       const g1Name = groupKeys
+240: depth=3 
+241: depth=4       if (r.var_type === "cate
+242: depth=4         const levels = Object.
+243: depth=4         g0Str = levels.map(l =
+244: depth=4         g1Str = levels.map(l =
+245: depth=4       } else {
+246: depth=4         g0Str = r.stats_groups
+247: depth=4         g1Str = r.stats_groups
+248: depth=3       }
+249: depth=3 
+250: depth=3       let pValFmt = r.p_value_
+251: depth=3       if (correction === "bonf
+252: depth=3       else if (correction === 
+253: depth=3 
+254: depth=3       return `
+255: depth=3         <div class="finding-ca
+256: depth=3           <div class="finding-
+257: depth=3             <span class="findi
+258: depth=3             <span class="findi
+259: depth=3           </div>
+260: depth=3           <div class="finding-
+261: depth=3             <div><strong>${g0N
+262: depth=3             <div><strong>${g1N
+263: depth=3             ${effectHtml ? `<d
+264: depth=3           </div>
+265: depth=3         </div>
+266: depth=3       `;
+267: depth=2     }).join("");
+268: depth=1   }
+269: depth=1 
+270: depth=1   // 3. Tab Navigation (with l
+271: depth=1   let chartsLoaded = false;
+272: depth=1   let statLoaded = false;
+273: depth=1   let multiLoaded = false;
+274: depth=1 
+275: depth=2   function switchTab(tabId) {
+276: depth=3     [tabTableOne, tabCharts, t
+277: depth=4       if (el) {
+278: depth=4         el.classList.remove("a
+279: depth=4         el.setAttribute("aria-
+280: depth=3       }
+281: depth=2     });
+282: depth=3     [pageTableOne, pageCharts,
+283: depth=3       if (el) el.hidden = true
+284: depth=2     });
+285: depth=2 
+286: depth=3     if (tabId === "tableone") 
+287: depth=3       tabTableOne.classList.ad
+288: depth=3       tabTableOne.setAttribute
+289: depth=3       pageTableOne.hidden = fa
+290: depth=3     } else if (tabId === "char
+291: depth=3       tabCharts.classList.add(
+292: depth=3       tabCharts.setAttribute("
+293: depth=3       pageCharts.hidden = fals
+294: depth=3       
+295: depth=4       if (!chartsLoaded) {
+296: depth=4         loadCharts();
+297: depth=4       } else {
+298: depth=5         setTimeout(() => {
+299: depth=6           if (window.Plotly) {
+300: depth=6             document.querySele
+301: depth=5           }
+302: depth=4         }, 50);
+303: depth=3       }
+304: depth=3     } else if (tabId === "stat
+305: depth=4       if (tabStat) {
+306: depth=4         tabStat.classList.add(
+307: depth=4         tabStat.setAttribute("
+308: depth=3       }
+309: depth=3       if (pageStat) pageStat.h
+310: depth=3       
+311: depth=4       if (!statLoaded) {
+312: depth=4         loadStatFreq();
+313: depth=3       }
+314: depth=3     } else if (tabId === "mult
+315: depth=4       if (tabMulti) {
+316: depth=4         tabMulti.classList.add
+317: depth=4         tabMulti.setAttribute(
+318: depth=3       }
+319: depth=3       if (pageMulti) pageMulti
+320: depth=3       
+321: depth=4       if (!multiLoaded) {
+322: depth=4         loadMultivariate();
+323: depth=3       }
+324: depth=2     }
+325: depth=1   }
+326: depth=1 
+327: depth=2   async function loadCharts() 
+328: depth=3     try {
+329: depth=3       const res = await fetch(
+330: depth=3       if (!res.ok) throw new E
+331: depth=3       chartsData = await res.j
+332: depth=3       chartsLoading.style.disp
+333: depth=3       renderCharts();
+334: depth=3       chartsLoaded = true;
+335: depth=3     } catch (err) {
+336: depth=3       chartsLoading.innerHTML 
+337: depth=2     }
+338: depth=1   }
+339: depth=1 
+340: depth=2   async function loadStatFreq(
+341: depth=3     try {
+342: depth=3       const res = await fetch(
+343: depth=3       if (!res.ok) throw new E
+344: depth=3       statData = await res.jso
+345: depth=3       renderStatTabs();
+346: depth=3       statLoaded = true;
+347: depth=3     } catch (err) {
+348: depth=3       document.getElementById(
+349: depth=2     }
+350: depth=1   }
+351: depth=1 
+352: depth=2   async function loadMultivari
+353: depth=3     try {
+354: depth=3       const res = await fetch(
+355: depth=3       if (!res.ok) throw new E
+356: depth=3       const multiData = await 
+357: depth=3       renderMultivariate(multi
+358: depth=3       multiLoaded = true;
+359: depth=3     } catch (err) {
+360: depth=3       document.getElementById(
+361: depth=4   function renderMultivariate(
+362: depth=4     document.getElementById("m
+363: depth=4     document.getElementById("m
+364: depth=4 
+365: depth=4     // Summary stats
+366: depth=4     document.getElementById("m
+367: depth=4     document.getElementById("m
+368: depth=4     document.getElementById("m
+369: depth=4     document.getElementById("m
+370: depth=4 
+371: depth=4     // Firth meta
+372: depth=4     document.getElementById("m
+373: depth=4 
+374: depth=4     // Standard meta
+375: depth=4     let stdMeta = `Method: ${d
+376: depth=4     if (data.standard.nagelker
+377: depth=4     if (data.standard.auc) std
+378: depth=4     if (data.standard.hl_p_val
+379: depth=4     document.getElementById("m
+380: depth=4 
+381: depth=4     // Render both tables
+382: depth=4     renderMultiTable("firth", 
+383: depth=4     renderMultiTable("std", da
+384: depth=4 
+385: depth=4     // Interpretation cards
+386: depth=4     renderMultiInterpretation(
+387: depth=3   }
+388: depth=3 
+389: depth=4   function renderMultiTable(id
+390: depth=4     const thead = document.get
+391: depth=4     const tbody = document.get
+392: depth=4     if (!thead || !tbody) retu
+393: depth=4 
+394: depth=4     let headHtml = `<tr>
+395: depth=4       <th>Predictor</th>
+396: depth=4       <th>Coef (β)</th>
+397: depth=4       <th>SE</th>`;
+398: depth=4     
+399: depth=5     if (showCrude) {
+400: depth=5       headHtml += `<th>Crude O
+401: depth=4     }
+402: depth=4     
+403: depth=4     headHtml += `<th>Adj OR</t
+404: depth=4       <th>95% CI</th>
+405: depth=4       <th>p-value</th>
+406: depth=4     </tr>`;
+407: depth=4     thead.innerHTML = headHtml
+408: depth=4 
+409: depth=5     tbody.innerHTML = variable
+410: depth=5       const pClass = v.signifi
+411: depth=5       const ciStr = `[${v.ci_l
+412: depth=5       const orDisplay = v.or >
+413: depth=5       
+414: depth=5       let crudeHtml = "";
+415: depth=6       if (showCrude) {
+416: depth=7         if (v.crude_or) {
+417: depth=7           crudeHtml = `<td sty
+418: depth=7         } else {
+419: depth=7           crudeHtml = `<td sty
+420: depth=6         }
+421: depth=5       }
+422: depth=5 
+423: depth=5       return `<tr>
+424: depth=5         <td class="col-var">${
+425: depth=5         <td style="font-family
+426: depth=5         <td style="font-family
+427: depth=5         ${crudeHtml}
+428: depth=5         <td style="font-family
+429: depth=5         <td style="font-family
+430: depth=5         <td ${pClass} style="f
+431: depth=5       </tr>`;
+432: depth=4     }).join("");
+433: depth=3   }
+434: depth=3 
+435: depth=4   function renderMultiInterpre
+436: depth=4     const grid = document.getE
+437: depth=4     if (!grid) return;
+438: depth=4 
+439: depth=4     const firthSig = data.firt
+440: depth=4     const stdSig = data.standa
+441: depth=4     const firthNames = new Set
+442: depth=4     const stdNames = new Set(s
+443: depth=4     const agree = [...firthNam
+444: depth=4     const intercept = data.sta
+445: depth=4 
+446: depth=4     const bullets = [];
+447: depth=4 
+448: depth=4     // 0. EPV and Model Choice
+449: depth=4     const hasSeparation = data
+450: depth=4     let expChoice = "";
+451: depth=4     let expReason = "";
+452: depth=4 
+453: depth=5     if (hasSeparation) {
+454: depth=5         expChoice = "FIRTH 🔴"
+455: depth=5         expReason = "(separati
+456: depth=5     } else if (data.epv < 5) {
+457: depth=5         expChoice = "FIRTH 🔴"
+458: depth=5         expReason = "(EPV crit
+459: depth=5     } else if (data.epv < 10) 
+460: depth=5         expChoice = "FIRTH 🟡"
+461: depth=5         expReason = "(EPV bord
+462: depth=5     } else if (data.epv < 15) 
+463: depth=5         expChoice = "STANDARD 
+464: depth=5         expReason = "(warn: bo
+465: depth=5     } else {
+466: depth=5         expChoice = "STANDARD 
+467: depth=5         expReason = "";
+468: depth=4     }
+469: depth=4 
+470: depth=4     bullets.push(`<strong>📊 M
+471: depth=4       <div style="background:v
+472: depth=4         <div style="margin-bot
+473: depth=4         <div style="padding-le
+474: depth=4         <div style="padding-le
+475: depth=4         <div style="margin-bot
+476: depth=4         <div style="padding-le
+477: depth=4         <div style="padding-le
+478: depth=4       </div>
+479: depth=4     `);
+480: depth=4 
+481: depth=4     // 1. LASSO
+482: depth=4     bullets.push(`<strong>🎯 L
+483: depth=4 
+484: depth=4     // 2. Agreement
+485: depth=4     bullets.push(`<strong>🤝 F
+486: depth=4 
+487: depth=4     // 3. Significant predicto
+488: depth=5     if (firthSig.length > 0) {
+489: depth=6       const items = firthSig.m
+490: depth=6         const direction = v.or
+491: depth=6         const strength = Math.
+492: depth=6         return `<strong>${v.na
+493: depth=5       }).join(" · ");
+494: depth=5       bullets.push(`<strong>🔍
+495: depth=4     }
+496: depth=4 
+497: depth=4     // 4. Baseline
+498: depth=5     if (intercept) {
+499: depth=5       bullets.push(`<strong>📏
+500: depth=4     }
+501: depth=4 
+502: depth=4     grid.innerHTML = `
+503: depth=4       <div class="interp-box r
+504: depth=4         <h3 style="margin-bott
+505: depth=4         <ul style="list-style:
+506: depth=4           ${bullets.map(b => `
+507: depth=4         </ul>
+508: depth=4       </div>
+509: depth=4     `;
+510: depth=4     observeReveal(grid);
+511: depth=3   }
+512: depth=3 
+513: depth=3   tabTableOne.addEventListener
+514: depth=3   tabCharts.addEventListener("
+515: depth=3   if (tabStat) tabStat.addEven
+516: depth=3   if (tabMulti) tabMulti.addEv
+517: depth=3 
+518: depth=3   // 4. Plotly Charts Renderin
+519: depth=4   function renderCharts() {
+520: depth=5     if (!window.Plotly) {
+521: depth=5       console.warn("Plotly not
+522: depth=5       setTimeout(renderCharts,
+523: depth=5       return;
+524: depth=4     }
+525: depth=4 
+526: depth=4     chartsGrid.innerHTML = "";
+527: depth=5     chartsData.forEach((spec, 
+528: depth=5       const containerId = `cha
+529: depth=5       const div = document.cre
+530: depth=5       div.className = "chart-c
+531: depth=5       div.id = containerId;
+532: depth=5       chartsGrid.appendChild(d
+533: depth=5 
+534: depth=6       try {
+535: depth=6         const layout = Object.
+536: depth=6         const config = { respo
+537: depth=6         Plotly.newPlot(contain
+538: depth=6       } catch (err) {
+539: depth=6         console.error(`Chart $
+540: depth=6         div.innerHTML = `<p st
+541: depth=5       }
+542: depth=4     });
+543: depth=4     observeReveal(chartsGrid);
+544: depth=3   }
+545: depth=3 
+546: depth=3   // 5. Interactivity
+547: depth=3   let debounceTimer;
+548: depth=4   [filterType, filterSig, filt
+549: depth=5     if (el) el.addEventListene
+550: depth=5       renderTable();
+551: depth=5       renderFindings();
+552: depth=4     });
+553: depth=3   });
+554: depth=4   searchVar.addEventListener("
+555: depth=4     clearTimeout(debounceTimer
+556: depth=5     debounceTimer = setTimeout
+557: depth=5       renderTable();
+558: depth=5       renderFindings();
+559: depth=4     }, 200);
+560: depth=3   });
+561: depth=3 
+562: depth=4   btnExport.addEventListener("
+563: depth=4     if (!tableData.length) ret
+564: depth=4     const groupKeys = Object.k
+565: depth=4     const g0Name = groupKeys.l
+566: depth=4     const g1Name = groupKeys.l
+567: depth=4 
+568: depth=4     const csvRows = [];
+569: depth=4     csvRows.push(["Variable", 
+570: depth=4     
+571: depth=5     tableData.forEach(r => {
+572: depth=5       let ciLo = "", ciHi = ""
+573: depth=6       if (r.extra_stats) {
+574: depth=7         if (r.extra_stats.or !
+575: depth=7           effectType = "OR";
+576: depth=7           effectSize = r.extra
+577: depth=7           ciLo = r.extra_stats
+578: depth=7           ciHi = r.extra_stats
+579: depth=7           // Add p-value and m
+580: depth=7         } else if (r.extra_sta
+581: depth=7           effectType = "SMD";
+582: depth=7           effectSize = r.extra
+583: depth=6         }
+584: depth=5       }
+585: depth=5 
+586: depth=5       let totalStr = r.stats_o
+587: depth=5       let g0Str = r.stats_grou
+588: depth=5       let g1Str = r.stats_grou
+589: depth=5 
+590: depth=6       if (r.var_type === "cate
+591: depth=6         totalStr = JSON.string
+592: depth=6         g0Str = JSON.stringify
+593: depth=6         g1Str = JSON.stringify
+594: depth=5       }
+595: depth=5 
+596: depth=5       const row = [
+597: depth=5         `"${r.name}"`,
+598: depth=5         r.var_type,
+599: depth=5         `"${totalStr}"`,
+600: depth=5         `"${g0Str || ''}"`,
+601: depth=5         `"${g1Str || ''}"`,
+602: depth=5         r.p_value,
+603: depth=5         effectType,
+604: depth=5         effectSize,
+605: depth=5         ciLo,
+606: depth=5         ciHi
+607: depth=5       ];
+608: depth=5       csvRows.push(row.join(",
+609: depth=4     });
+610: depth=4 
+611: depth=4     const blob = new Blob([csv
+612: depth=4     const url = window.URL.cre
+613: depth=4     const a = document.createE
+614: depth=4     a.href = url;
+615: depth=4     a.download = `sip_table_on
+616: depth=4     a.click();
+617: depth=4     window.URL.revokeObjectURL
+618: depth=3   });
+619: depth=3 
+620: depth=4   if (btnExportLatex) {
+621: depth=5     btnExportLatex.addEventLis
+622: depth=5       const res = await fetch(
+623: depth=5       if (!res.ok) return aler
+624: depth=5       const text = await res.t
+625: depth=5       const blob = new Blob([t
+626: depth=5       const url = URL.createOb
+627: depth=5       const a = document.creat
+628: depth=5       a.href = url;
+629: depth=5       a.download = `sip_tableo
+630: depth=5       a.click();
+631: depth=5       URL.revokeObjectURL(url)
+632: depth=4     });
+633: depth=3   }
+634: depth=3 
+635: depth=3   // Reveal animation observer
+636: depth=4   const observer = new Interse
+637: depth=5     entries.forEach(entry => {
+638: depth=6       if (entry.isIntersecting
+639: depth=6         entry.target.style.opa
+640: depth=6         entry.target.style.tra
+641: depth=5       }
+642: depth=4     });
+643: depth=3   }, { threshold: 0.1 });
+644: depth=3 
+645: depth=4   function observeReveal(root 
+646: depth=4     root.querySelectorAll('.re
+647: depth=3   }
+648: depth=3   observeReveal();
+649: depth=3 
+650: depth=3   // 6. Frequency Stats Render
+651: depth=4   function renderStatTabs() {
+652: depth=4     if (!statData) return;
+653: depth=4     
+654: depth=4     const loadingState = docum
+655: depth=4     if (loadingState) loadingS
+656: depth=4     
+657: depth=4     const statContent = docume
+658: depth=4     if (statContent) statConte
+659: depth=4 
+660: depth=4     renderStatTable("inclusion
+661: depth=4     renderStatTable("hx", stat
+662: depth=4     renderStatTable("sip", sta
+663: depth=3   }
+664: depth=3 
+665: depth=4   function renderStatTable(idP
+666: depth=4     const thead = document.get
+667: depth=4     const tbody = document.get
+668: depth=4     
+669: depth=4     if (!thead || !tbody || !g
+670: depth=4 
+671: depth=4     const groupKeys = Object.k
+672: depth=4     
+673: depth=4     let theadHtml = `<tr>
+674: depth=4       <th>Variable</th>
+675: depth=4       <th>Total (N=${totalN})<
+676: depth=4     
+677: depth=5     groupKeys.forEach(k => {
+678: depth=5       const label = groupData.
+679: depth=5       const count = groupData.
+680: depth=5       theadHtml += `<th>${labe
+681: depth=4     });
+682: depth=4     
+683: depth=4     theadHtml += `<th>p-value<
+684: depth=4     thead.innerHTML = theadHtm
+685: depth=4 
+686: depth=5     const rows = groupData.res
+687: depth=5       let pClass = r.p_value !
+688: depth=5       
+689: depth=5       let totalStr = "";
+690: depth=5       let groupStrs = groupKey
+691: depth=5 
+692: depth=6       if (r.var_type === "cate
+693: depth=6         const levels = Object.
+694: depth=6         totalStr = levels.map(
+695: depth=6         
+696: depth=7         groupStrs = groupKeys.
+697: depth=7           const label = groupD
+698: depth=7           return levels.map(l 
+699: depth=6         });
+700: depth=6       } else {
+701: depth=6         totalStr = r.stats_ove
+702: depth=7         groupStrs = groupKeys.
+703: depth=7           const label = groupD
+704: depth=7           return r.stats_group
+705: depth=6         });
+706: depth=5       }
+707: depth=5 
+708: depth=5       let rowHtml = `
+709: depth=5         <tr>
+710: depth=5           <td class="col-var">
+711: depth=5             ${r.label || r.nam
+712: depth=5             <div style="font-s
+713: depth=5           </td>
+714: depth=5           <td>${totalStr}</td>
+715: depth=5       `;
+716: depth=5 
+717: depth=6       groupStrs.forEach(gStr =
+718: depth=6         rowHtml += `<td>${gStr
+719: depth=5       });
+720: depth=5 
+721: depth=5       rowHtml += `<td ${pClass
+722: depth=5       return rowHtml;
+723: depth=4     });
+724: depth=4 
+725: depth=4     tbody.innerHTML = rows.joi
+726: depth=3   }
+727: depth=2 });
+728: depth=2 

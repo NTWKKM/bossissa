@@ -367,9 +367,46 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Summary stats
     document.getElementById("multi-epv").textContent = data.epv;
-    document.getElementById("multi-n-features").textContent = `${data.n_features_selected}/${data.n_features_total}`;
+    document.getElementById("multi-n-features").textContent = `${data.lasso?.n_features_selected || data.n_features_selected || 0}/${data.n_features_total}`;
     document.getElementById("multi-firth-sig").textContent = data.firth.variables.filter(v => v.significant).length;
     document.getElementById("multi-std-sig").textContent = data.standard.variables.filter(v => v.significant && v.name !== "Intercept").length;
+
+    // LASSO stats and plot
+    if (data.lasso) {
+      document.getElementById("lasso-auc").textContent = data.lasso.auc_cv || "—";
+      document.getElementById("lasso-brier").textContent = data.lasso.brier_score_cv || "—";
+      document.getElementById("lasso-c").textContent = data.lasso.best_C || "—";
+      
+      if (data.lasso.calibration) {
+        const traceTrue = {
+          x: data.lasso.calibration.prob_pred,
+          y: data.lasso.calibration.prob_true,
+          mode: 'markers+lines',
+          name: 'Calibration curve',
+          marker: { color: 'var(--accent-blue)', size: 8 }
+        };
+        const tracePerfect = {
+          x: [0, 1],
+          y: [0, 1],
+          mode: 'lines',
+          name: 'Perfectly calibrated',
+          line: { color: 'gray', dash: 'dash' }
+        };
+        const layout = {
+          title: "LASSO 10-fold CV Calibration Curve",
+          xaxis: { title: "Mean Predicted Probability" },
+          yaxis: { title: "Fraction of Positives" },
+          margin: { l: 50, r: 20, t: 40, b: 50 },
+          paper_bgcolor: 'rgba(0,0,0,0)',
+          plot_bgcolor: 'rgba(0,0,0,0)',
+          font: { color: 'var(--text-color)' },
+          showlegend: true,
+          legend: { x: 0.05, y: 0.95 }
+        };
+        Plotly.newPlot("calibration-plot", [tracePerfect, traceTrue], layout, { responsive: true });
+      }
+      renderMultiTable("lasso", data.lasso.variables, false);
+    }
 
     // Firth meta
     document.getElementById("multi-firth-meta").textContent = `Method: ${data.firth.method}. ${data.firth.n_iterations} iterations.`;
@@ -411,12 +448,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     tbody.innerHTML = variables.map(v => {
       const pClass = v.significant ? 'style="color:var(--accent-green);font-weight:600"' : '';
-      const ciStr = `[${v.ci_lo}–${v.ci_hi}]`;
-      const orDisplay = v.or > 1 ? `<span style="color:var(--accent-red)">${v.or}</span>` : v.or < 1 ? `<span style="color:var(--accent-green)">${v.or}</span>` : v.or;
+      const ciStr = (v.ci_lo !== undefined && v.ci_hi !== undefined) ? `[${v.ci_lo}–${v.ci_hi}]` : '—';
+      const orDisplay = (v.or !== undefined) ? (v.or > 1 ? `<span style="color:var(--accent-red)">${v.or}</span>` : v.or < 1 ? `<span style="color:var(--accent-green)">${v.or}</span>` : v.or) : '—';
+      const seDisplay = v.se !== undefined ? v.se : '—';
+      const pValDisplay = v.p_value !== undefined ? v.p_value : '—';
       
       let crudeHtml = "";
       if (showCrude) {
-        if (v.crude_or) {
+        if (v.crude_or !== undefined) {
           crudeHtml = `<td style="font-family:var(--font-mono);font-size:0.82rem">${v.crude_or} [${v.crude_ci_lo}–${v.crude_ci_hi}]</td>`;
         } else {
           crudeHtml = `<td style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-muted)">—</td>`;
@@ -426,11 +465,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       return `<tr>
         <td class="col-var">${v.name}</td>
         <td style="font-family:var(--font-mono);font-size:0.82rem">${v.coef}</td>
-        <td style="font-family:var(--font-mono);font-size:0.82rem">${v.se}</td>
+        <td style="font-family:var(--font-mono);font-size:0.82rem">${seDisplay}</td>
         ${crudeHtml}
         <td style="font-family:var(--font-mono);font-weight:600">${orDisplay}</td>
         <td style="font-family:var(--font-mono);font-size:0.82rem">${ciStr}</td>
-        <td ${pClass} style="font-family:var(--font-mono)">${v.p_value}</td>
+        <td ${pClass} style="font-family:var(--font-mono)">${pValDisplay}</td>
       </tr>`;
     }).join("");
   }

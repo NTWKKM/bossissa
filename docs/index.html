@@ -261,9 +261,21 @@
             <div class="stat-card"><span class="stat-value" id="multi-std-sig">—</span><span class="stat-label">Standard Significant</span></div>
           </div>
 
-          <!-- Firth Results -->
+          <!-- Standard Results -->
           <div class="section-header" style="margin-top: 2rem;">
-            <h2 class="section-title">Firth Logistic Regression (Penalized Likelihood)</h2>
+            <h2 class="section-title">Standard Logistic Regression (MLE)</h2>
+            <p class="section-desc" id="multi-std-meta"></p>
+          </div>
+          <div class="table-wrapper">
+            <table class="tableone">
+              <thead id="thead-std"></thead>
+              <tbody id="tbody-std"></tbody>
+            </table>
+          </div>
+
+          <!-- Firth Results -->
+          <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Firth Logistic Regression (Explanatory)</h2>
             <p class="section-desc" id="multi-firth-meta"></p>
           </div>
           <div class="table-wrapper">
@@ -273,15 +285,28 @@
             </table>
           </div>
 
-          <!-- Standard Results -->
+          <!-- LASSO Results -->
           <div class="section-header" style="margin-top: 4rem;">
-            <h2 class="section-title">Standard Logistic Regression (MLE)</h2>
-            <p class="section-desc" id="multi-std-meta"></p>
+            <h2 class="section-title">LASSO Logistic Regression (Predictive)</h2>
+            <p class="section-desc" id="multi-lasso-meta">10-fold Cross-Validation for predictive modeling.</p>
           </div>
+          
+          <div class="stats-grid" id="lasso-metrics-grid" style="margin-bottom:2rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="stat-card"><span class="stat-value" id="lasso-auc">—</span><span class="stat-label">Cross-Validated AUC</span></div>
+            <div class="stat-card"><span class="stat-value" id="lasso-brier">—</span><span class="stat-label">Cross-Validated Brier Score</span></div>
+            <div class="stat-card"><span class="stat-value" id="lasso-c">—</span><span class="stat-label">Best Regularization (C)</span></div>
+          </div>
+          
+          <!-- Calibration Plot -->
+          <div class="chart-card reveal" style="margin-bottom:2rem;">
+             <h3 class="chart-title">Calibration Curve (LASSO 10-fold CV)</h3>
+             <div class="chart-wrapper" id="calibration-plot"></div>
+          </div>
+
           <div class="table-wrapper">
             <table class="tableone">
-              <thead id="thead-std"></thead>
-              <tbody id="tbody-std"></tbody>
+              <thead id="thead-lasso"></thead>
+              <tbody id="tbody-lasso"></tbody>
             </table>
           </div>
 
