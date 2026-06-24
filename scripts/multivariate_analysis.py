@@ -58,7 +58,7 @@ def prepare_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, list[str
             vals = series.dropna().values.reshape(-1, 1)
             scaled = scaler.fit_transform(vals)
             col_name = f"{var}_scaled"
-            feature_dfs.append(pd.DataFrame(scaled, columns=[col_name], index=series.index))
+            feature_dfs.append(pd.DataFrame(scaled, columns=[col_name], index=series.dropna().index))
             feature_names.append(col_name)
 
     X_df = pd.concat(feature_dfs, axis=1)
@@ -205,11 +205,12 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
 # Main
 # ──────────────────────────────────────────────
 
-def main() -> None:
+def main(df: pd.DataFrame = None) -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    print("Loading data...")
-    df = load_data()
+    if df is None:
+        print("Loading data...")
+        df = load_data()
 
     print("Preparing features...")
     X, y, feature_names, _ = prepare_features(df)
@@ -258,7 +259,7 @@ def main() -> None:
         "total_n": len(y),
         "n_features_total": len(feature_names),
         "n_features_selected": len(selected),
-        "lasso_C": 0.1,
+        "lasso_C": best_C,
         "selected_features": selected,
         "firth": firth_result,
         "standard": standard_result,

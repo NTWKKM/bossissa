@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <tr>
           <td class="col-var">
             ${r.label || r.name}
-            <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.var_type.replace('_', ' ')}</div>
+            <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.var_type.replaceAll('_', ' ')}</div>
           </td>
           <td>${totalStr}</td>
           <td>${g0Str}</td>
@@ -249,7 +249,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!chartsLoaded) {
         loadCharts();
       } else {
-        setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+        setTimeout(() => {
+          if (window.Plotly) {
+            document.querySelectorAll('.js-plotly-plot').forEach(el => Plotly.Plots.resize(el));
+          }
+        }, 50);
       }
     } else if (tabId === "stat") {
       if (tabStat) {
@@ -589,7 +593,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <tr>
           <td class="col-var">
             ${r.label || r.name}
-            <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.var_type.replace('_', ' ')}</div>
+            <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.var_type.replaceAll('_', ' ')}</div>
           </td>
           <td>${totalStr}</td>
       `;

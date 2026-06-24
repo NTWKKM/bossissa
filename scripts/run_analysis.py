@@ -27,7 +27,8 @@ def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     # 1. Load & clean data
-    df = load_data()
+    df_all = load_data(exclude_sip_99=False)
+    df = df_all[df_all[STRATIFY_COL] != 99].copy()
 
     # Map sip_diagnosis values to human-readable labels
     group_labels: dict[str, str] = {
@@ -47,7 +48,7 @@ def main() -> None:
     for va in results:
         new_groups: dict[str, str] = {}
         for k, v in va.stats_groups.items():
-            label = STRATIFY_LABELS.get(int(k)) or k
+            label = STRATIFY_LABELS.get(int(float(k))) or k
             new_groups[label] = v
         va.stats_groups = new_groups
 
@@ -90,11 +91,11 @@ def main() -> None:
 
     # 7. Generate stat_freq (inclusion/hx_psych/sip_all)
     print("Generating frequency stats...")
-    generate_stat_freq()
+    generate_stat_freq(df_all)
 
     # 8. Generate multivariate analysis (LASSO → Firth + Standard)
     print("Generating multivariate analysis...")
-    generate_multivariate()
+    generate_multivariate(df)
 
     # 9. Write outputs
     (OUTPUT_DIR / "tableone.json").write_text(

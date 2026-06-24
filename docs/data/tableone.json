@@ -44,7 +44,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": 0.0769,
+      "smd": -0.0769,
       "or": {
         "or": 0.857,
         "ci_lo": 0.634,
@@ -107,7 +107,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": 0.0126,
+      "smd": -0.0126,
       "or": {
         "or": 0.975,
         "ci_lo": 0.72,
@@ -167,7 +167,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": -0.0826,
+      "smd": 0.0826,
       "or": {
         "or": 1.18,
         "ci_lo": 0.873,
@@ -198,7 +198,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": -0.1003,
+      "smd": 0.1003,
       "or": {
         "or": 1.222,
         "ci_lo": 0.904,
@@ -353,7 +353,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": 0.0653,
+      "smd": -0.0653,
       "or": {
         "or": 0.877,
         "ci_lo": 0.649,
@@ -384,7 +384,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": -0.0884,
+      "smd": 0.0884,
       "or": {
         "or": 1.194,
         "ci_lo": 0.883,
@@ -555,7 +555,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": -0.1067,
+      "smd": 0.1067,
       "or": {
         "or": 1.238,
         "ci_lo": 0.915,
@@ -586,7 +586,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": -0.1003,
+      "smd": 0.1003,
       "or": {
         "or": 1.222,
         "ci_lo": 0.904,
@@ -617,7 +617,7 @@
     "test_name": "Chi-square",
     "significant": false,
     "extra_stats": {
-      "smd": -0.1005,
+      "smd": 0.1005,
       "or": {
         "or": 1.222,
         "ci_lo": 0.904,

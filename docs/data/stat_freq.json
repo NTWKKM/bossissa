@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T17:07:34.314902+00:00",
+  "generated_at": "2026-06-24T00:16:13.428815+00:00",
   "total_n": 1000,
   "inclusion": {
     "group_counts": {
@@ -47,7 +47,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.0134
+          "smd": 0.0134
         }
       },
       {
@@ -105,7 +105,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.0674
+          "smd": 0.0674
         }
       },
       {
@@ -160,7 +160,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": 0.104
+          "smd": -0.104
         }
       },
       {
@@ -186,7 +186,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.0373
+          "smd": 0.0373
         }
       },
       {
@@ -316,7 +316,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.0604
+          "smd": 0.0604
         }
       },
       {
@@ -342,7 +342,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.0695
+          "smd": 0.0695
         }
       },
       {
@@ -508,7 +508,7 @@
         "test_name": "Chi-square",
         "significant": true,
         "extra_stats": {
-          "smd": 0.1483
+          "smd": -0.1483
         }
       },
       {
@@ -534,7 +534,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": 0.0388
+          "smd": -0.0388
         }
       },
       {
@@ -560,7 +560,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.016
+          "smd": 0.016
         }
       },
       {
@@ -848,7 +848,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.0517
+          "smd": 0.0517
         }
       },
       {
@@ -906,7 +906,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": 0.0603
+          "smd": -0.0603
         }
       },
       {
@@ -961,7 +961,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": -0.0043
+          "smd": 0.0043
         }
       },
       {
@@ -987,7 +987,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": 0.0449
+          "smd": -0.0449
         }
       },
       {
@@ -1117,7 +1117,7 @@
         "test_name": "Chi-square",
         "significant": true,
         "extra_stats": {
-          "smd": -0.1455
+          "smd": 0.1455
         }
       },
       {
@@ -1309,7 +1309,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": 0.0155
+          "smd": -0.0155
         }
       },
       {
@@ -1335,7 +1335,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": 0.0488
+          "smd": -0.0488
         }
       },
       {
@@ -1361,7 +1361,7 @@
         "test_name": "Chi-square",
         "significant": false,
         "extra_stats": {
-          "smd": 0.012
+          "smd": -0.012
         }
       },
       {

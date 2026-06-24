@@ -73,11 +73,14 @@ def process_group(generator: TableOneGenerator, df: pd.DataFrame, selected_vars:
         "group_labels": display_labels
     }
 
-def main():
+def main(df_all: pd.DataFrame = None):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 1. Load data, but do NOT drop sip_diagnosis == 99
-    df = load_data(exclude_sip_99=False)
+    # 1. Load data, but do NOT drop sip_diagnosis == 99 if not provided
+    if df_all is None:
+        df = load_data(exclude_sip_99=False)
+    else:
+        df = df_all
     selected_vars = list(VARIABLE_META.keys())
     
     generator = TableOneGenerator(df, VARIABLE_META)

@@ -181,11 +181,14 @@ class StatisticalEngine:
         """SMD for binary categorical using proportions."""
         p1 = s[group_col == g1_val].value_counts(normalize=True)
         p0 = s[group_col == g0_val].value_counts(normalize=True)
-        # Use most common category
-        cats = s.dropna().unique()
+        cats = list(s.dropna().unique())
+        if hasattr(s, "cat"):
+            cat_list = list(s.cat.categories)
+            cats = sorted(cats, key=lambda x: cat_list.index(x) if x in cat_list else 0)
+            
         if len(cats) != 2:
             return None
-        cat = cats[0]
+        cat = cats[-1]  # Use the 'event' or 'positive' category
         p1v = float(p1.get(cat, 0))
         p0v = float(p0.get(cat, 0))
         denom = math.sqrt((p1v * (1 - p1v) + p0v * (1 - p0v)) / 2)
@@ -271,16 +274,15 @@ class TableOneFormatter:
         for va in results:
             if va.var_type == "categorical":
                 # One row per category level
-                all_vals = sorted(va.stats_groups.keys()) if va.stats_groups else []
-                # Collect all level keys across groups + overall
-                level_keys: set[str] = set()
-                if va.stats_overall and isinstance(va.stats_overall, dict):
-                    level_keys.update(va.stats_overall.keys())
+                # Collect all level keys across groups + overall, maintaining order
+                level_keys = list(va.stats_overall.keys()) if isinstance(va.stats_overall, dict) else []
                 for gd in va.stats_groups.values():
                     if isinstance(gd, dict):
-                        level_keys.update(gd.keys())
+                        for k in gd.keys():
+                            if k not in level_keys:
+                                level_keys.append(k)
 
-                for i, level in enumerate(sorted(level_keys)):
+                for i, level in enumerate(level_keys):
                     row: dict[str, Any] = {
                         "Variable": va.label if i == 0 else "",
                         "Level": level,
