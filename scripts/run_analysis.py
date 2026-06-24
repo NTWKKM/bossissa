@@ -108,6 +108,13 @@ def main() -> None:
     (OUTPUT_DIR / "charts.json").write_text(
         json.dumps(charts, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+    latex_raw = TableOneFormatter.to_latex(results, display_labels, correction="none")
+    latex_bonf = TableOneFormatter.to_latex(results, display_labels, correction="bonferroni",
+                                            caption="Baseline Characteristics (Bonferroni-corrected)",
+                                            label="tab:tableone_bonf")
+    (OUTPUT_DIR / "tableone.tex").write_text(latex_raw, encoding="utf-8")
+    (OUTPUT_DIR / "tableone_bonf.tex").write_text(latex_bonf, encoding="utf-8")
+    print("  LaTeX tables → docs/data/tableone.tex + tableone_bonf.tex")
     print(f"  Generated {len(charts)} chart specs → docs/data/charts.json")
 
     print("\n✅ Analysis complete.")

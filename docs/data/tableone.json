@@ -12,6 +12,20 @@
     "p_value_fmt": "0.471",
     "test_name": "Mann-Whitney U",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.7332,
+    "p_value_bh_fmt": "0.733",
+    "normality_by_group": {
+      "0": false,
+      "1": false
+    },
     "extra_stats": {
       "smd": -0.0535,
       "or": {
@@ -43,6 +57,17 @@
     "p_value_fmt": "0.356",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6641,
+    "p_value_bh_fmt": "0.664",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": -0.0769,
       "or": {
@@ -80,6 +105,17 @@
     "p_value_fmt": "0.222",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -106,6 +142,17 @@
     "p_value_fmt": "0.931",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.9307,
+    "p_value_bh_fmt": "0.931",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": -0.0126,
       "or": {
@@ -140,6 +187,17 @@
     "p_value_fmt": "0.781",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.9174,
+    "p_value_bh_fmt": "0.917",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -166,6 +224,17 @@
     "p_value_fmt": "0.318",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": 0.0826,
       "or": {
@@ -197,6 +266,17 @@
     "p_value_fmt": "0.220",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": 0.1003,
       "or": {
@@ -228,6 +308,17 @@
     "p_value_fmt": "0.143",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": -0.1186,
       "or": {
@@ -259,6 +350,17 @@
     "p_value_fmt": "0.248",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": -0.0947,
       "or": {
@@ -290,6 +392,17 @@
     "p_value_fmt": "0.819",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.9174,
+    "p_value_bh_fmt": "0.917",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": -0.0235,
       "or": {
@@ -321,6 +434,17 @@
     "p_value_fmt": "0.538",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.7881,
+    "p_value_bh_fmt": "0.788",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": 0.0532,
       "or": {
@@ -352,6 +476,17 @@
     "p_value_fmt": "0.440",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.7285,
+    "p_value_bh_fmt": "0.729",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": -0.0653,
       "or": {
@@ -383,6 +518,17 @@
     "p_value_fmt": "0.283",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": 0.0884,
       "or": {
@@ -417,6 +563,17 @@
     "p_value_fmt": "0.273",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -461,6 +618,17 @@
     "p_value_fmt": "0.304",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -496,6 +664,17 @@
     "p_value_fmt": "0.563",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.7881,
+    "p_value_bh_fmt": "0.788",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -528,6 +707,17 @@
     "p_value_fmt": "0.059",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -554,6 +744,17 @@
     "p_value_fmt": "0.190",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": 0.1067,
       "or": {
@@ -585,6 +786,17 @@
     "p_value_fmt": "0.219",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": 0.1003,
       "or": {
@@ -616,6 +828,17 @@
     "p_value_fmt": "0.219",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": 0.1005,
       "or": {
@@ -647,6 +870,17 @@
     "p_value_fmt": "0.442",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.7285,
+    "p_value_bh_fmt": "0.729",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": -0.0649,
       "or": {
@@ -681,6 +915,17 @@
     "p_value_fmt": "0.856",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.9217,
+    "p_value_bh_fmt": "0.922",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -710,6 +955,17 @@
     "p_value_fmt": "0.809",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.9174,
+    "p_value_bh_fmt": "0.917",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -739,6 +995,17 @@
     "p_value_fmt": "0.161",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.6369,
+    "p_value_bh_fmt": "0.637",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -768,6 +1035,17 @@
     "p_value_fmt": "0.927",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.9307,
+    "p_value_bh_fmt": "0.931",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -797,6 +1075,17 @@
     "p_value_fmt": "0.668",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.8847,
+    "p_value_bh_fmt": "0.885",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -826,6 +1115,17 @@
     "p_value_fmt": "0.019",
     "test_name": "Chi-square",
     "significant": true,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 0.5455,
+    "p_value_bonferroni_fmt": "0.545",
+    "p_value_bh": 0.5455,
+    "p_value_bh_fmt": "0.545",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }
@@ -858,6 +1158,17 @@
     "p_value_fmt": "0.695",
     "test_name": "Chi-square",
     "significant": false,
+    "n_missing": 0,
+    "pct_missing": 0.0,
+    "n_missing_by_group": {
+      "0": 0,
+      "1": 0
+    },
+    "p_value_bonferroni": 1.0,
+    "p_value_bonferroni_fmt": "1.000",
+    "p_value_bh": 0.8847,
+    "p_value_bh_fmt": "0.885",
+    "normality_by_group": {},
     "extra_stats": {
       "smd": null
     }

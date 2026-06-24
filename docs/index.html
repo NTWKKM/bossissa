@@ -92,6 +92,14 @@
             <option value="ns">Non-Significant</option>
           </select>
         </div>
+        <div class="filter-group">
+          <label for="filter-correction">P-value Correction</label>
+          <select id="filter-correction">
+            <option value="none">Raw p-value</option>
+            <option value="bonferroni">Bonferroni</option>
+            <option value="fdr_bh">BH-FDR</option>
+          </select>
+        </div>
         <div class="filter-group search-group">
           <label for="search-var">Search Variable</label>
           <input id="search-var" type="text" placeholder="Type to filter…" autocomplete="off" />
@@ -106,6 +114,7 @@
           <h2 class="section-title">Table 1 — Baseline Characteristics</h2>
           <p class="section-desc">Stratified by SIP diagnosis. Values: mean ± SD (normal), median [Q1–Q3] (non-normal), n (%) for categorical.</p>
           <button class="btn-export" id="btn-export-csv">⬇ Export CSV</button>
+          <button class="btn-export" id="btn-export-latex">⬇ Export LaTeX</button>
         </div>
         <div class="table-wrapper" id="table-wrapper">
           <div class="loading-state" id="loading-state"><div class="spinner"></div><p>Loading analysis data…</p></div>

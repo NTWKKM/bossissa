@@ -16,8 +16,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const filterType = document.getElementById("filter-type");
   const filterSig = document.getElementById("filter-sig");
+  const filterCorrection = document.getElementById("filter-correction");
   const searchVar = document.getElementById("search-var");
   const btnExport = document.getElementById("btn-export-csv");
+  const btnExportLatex = document.getElementById("btn-export-latex");
 
   // Tab Elements
   const tabTableOne = document.getElementById("tab-tableone");
@@ -104,12 +106,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     const term = searchVar.value.toLowerCase();
     const type = filterType.value;
     const sig = filterSig.value;
+    const correction = filterCorrection ? filterCorrection.value : "none";
 
     const filtered = tableData.filter(r => {
       if (term && !r.name.toLowerCase().includes(term) && !(r.label && r.label.toLowerCase().includes(term))) return false;
       if (type !== "all" && r.var_type !== type) return false;
-      if (sig === "sig" && (r.p_value === null || r.p_value >= 0.05)) return false;
-      if (sig === "ns" && r.p_value !== null && r.p_value < 0.05) return false;
+      
+      let pVal = r.p_value;
+      if (correction === "bonferroni") pVal = r.p_value_bonferroni;
+      else if (correction === "fdr_bh") pVal = r.p_value_bh;
+
+      if (sig === "sig" && (pVal === null || pVal >= 0.05)) return false;
+      if (sig === "ns" && pVal !== null && pVal < 0.05) return false;
       return true;
     });
 
@@ -119,19 +127,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     const g0N = metaData.group_counts[g0Name] || 0;
     const g1N = metaData.group_counts[g1Name] || 0;
 
+    let pLabel = "p-value";
+    if (correction === "bonferroni") pLabel = "p-value (Bonf.)";
+    else if (correction === "fdr_bh") pLabel = "p-value (BH-FDR)";
+
     thead.innerHTML = `
       <tr>
         <th>Variable</th>
         <th>Total (N=${metaData.total_n})</th>
+        <th>Missing</th>
         <th>${g0Name} (n=${g0N})</th>
         <th>${g1Name} (n=${g1N})</th>
-        <th>p-value</th>
+        <th>${pLabel}</th>
+        <th>Test</th>
         <th>Effect Size</th>
       </tr>
     `;
 
     tbody.innerHTML = filtered.map(r => {
-      let pClass = r.p_value !== null && r.p_value < 0.05 ? 'style="color:var(--accent-green);font-weight:600"' : '';
+      let pVal = r.p_value;
+      let pValFmt = r.p_value_fmt;
+      if (correction === "bonferroni") {
+        pVal = r.p_value_bonferroni;
+        pValFmt = r.p_value_bonferroni_fmt;
+      } else if (correction === "fdr_bh") {
+        pVal = r.p_value_bh;
+        pValFmt = r.p_value_bh_fmt;
+      }
+
+      let pClass = pVal !== null && pVal < 0.05 ? 'style="color:var(--accent-green);font-weight:600"' : '';
       let effectHtml = "-";
       if (r.extra_stats) {
         if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) {
@@ -145,19 +169,29 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       let totalStr = "";
+      let missStr = "";
       let g0Str = "";
       let g1Str = "";
+
+      const missColor = r.n_missing > 0 ? 'var(--accent-orange)' : 'var(--text-muted)';
+      const missText = `<span style="color:${missColor}">${r.n_missing} (${r.pct_missing}%)</span>`;
 
       if (r.var_type === "categorical") {
         const levels = Object.keys(r.stats_overall || {});
         totalStr = levels.map(l => `<div style="margin-bottom:2px"><b>${l}:</b> ${r.stats_overall[l]}</div>`).join("");
+        missStr = `<div style="margin-bottom:2px">${missText}</div>` + levels.slice(1).map(l => `<div style="margin-bottom:2px"></div>`).join("");
         g0Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups[g0Name]?.[l] || "-"}</div>`).join("");
         g1Str = levels.map(l => `<div style="margin-bottom:2px">${r.stats_groups[g1Name]?.[l] || "-"}</div>`).join("");
       } else {
         totalStr = r.stats_overall || "-";
+        missStr = missText;
         g0Str = r.stats_groups[g0Name] || "-";
         g1Str = r.stats_groups[g1Name] || "-";
       }
+
+      const testStyle = (r.test_name || "").includes("⚠")
+        ? 'style="color:var(--accent-orange);font-size:0.75rem"'
+        : 'style="font-size:0.75rem;color:var(--text-muted)"';
 
       return `
         <tr>
@@ -166,9 +200,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div style="font-size:0.7rem;color:var(--text-muted);font-weight:400">${r.var_type.replaceAll('_', ' ')}</div>
           </td>
           <td>${totalStr}</td>
+          <td>${missStr}</td>
           <td>${g0Str}</td>
           <td>${g1Str}</td>
-          <td ${pClass}>${r.p_value_fmt}</td>
+          <td ${pClass}>${pValFmt}</td>
+          <td ${testStyle}>${r.test_name || "—"}</td>
           <td style="font-size:0.8rem;color:var(--text-secondary)">${effectHtml}</td>
         </tr>
       `;
@@ -176,7 +212,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function renderFindings() {
-    const sigVars = tableData.filter(r => r.p_value !== null && r.p_value < 0.05);
+    const correction = filterCorrection ? filterCorrection.value : "none";
+    const sigVars = tableData.filter(r => {
+      let pVal = r.p_value;
+      if (correction === "bonferroni") pVal = r.p_value_bonferroni;
+      else if (correction === "fdr_bh") pVal = r.p_value_bh;
+      return pVal !== null && pVal < 0.05;
+    });
     
     if (sigVars.length === 0) {
       findingsGrid.innerHTML = `<div style="grid-column:1/-1;color:var(--text-muted)">No statistically significant findings (p < 0.05) found in this dataset.</div>`;
@@ -205,11 +247,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         g1Str = r.stats_groups[g1Name] || "-";
       }
 
+      let pValFmt = r.p_value_fmt;
+      if (correction === "bonferroni") pValFmt = r.p_value_bonferroni_fmt;
+      else if (correction === "fdr_bh") pValFmt = r.p_value_bh_fmt;
+
       return `
         <div class="finding-card reveal">
           <div class="finding-header">
             <span class="finding-title">${r.label || r.name}</span>
-            <span class="finding-pval">p = ${r.p_value_fmt}</span>
+            <span class="finding-pval">p = ${pValFmt}</span>
           </div>
           <div class="finding-body">
             <div><strong>${g0Name}:</strong> ${g0Str}</div>
@@ -451,12 +497,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 5. Interactivity
   let debounceTimer;
-  [filterType, filterSig].forEach(el => {
-    el.addEventListener("change", renderTable);
+  [filterType, filterSig, filterCorrection].forEach(el => {
+    if (el) el.addEventListener("change", () => {
+      renderTable();
+      renderFindings();
+    });
   });
   searchVar.addEventListener("input", () => {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(renderTable, 200);
+    debounceTimer = setTimeout(() => {
+      renderTable();
+      renderFindings();
+    }, 200);
   });
 
   btnExport.addEventListener("click", () => {
@@ -515,6 +567,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     a.click();
     window.URL.revokeObjectURL(url);
   });
+
+  if (btnExportLatex) {
+    btnExportLatex.addEventListener("click", async () => {
+      const res = await fetch("data/tableone.tex");
+      if (!res.ok) return alert("LaTeX file not yet generated. Run the analysis pipeline first.");
+      const text = await res.text();
+      const blob = new Blob([text], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `sip_tableone_${new Date().toISOString().slice(0,10)}.tex`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
 
   // Reveal animation observer
   const observer = new IntersectionObserver((entries) => {

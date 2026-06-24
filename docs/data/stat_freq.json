@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T00:16:13.428815+00:00",
+  "generated_at": "2026-06-24T00:42:06.812319+00:00",
   "total_n": 1000,
   "inclusion": {
     "group_counts": {
@@ -20,6 +20,20 @@
         "p_value_fmt": "0.290",
         "test_name": "Mann-Whitney U",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9497,
+        "p_value_bh_fmt": "0.950",
+        "normality_by_group": {
+          "ใช่": false,
+          "ไม่": false
+        },
         "extra_stats": {
           "smd": 0.0683
         }
@@ -46,6 +60,17 @@
         "p_value_fmt": "0.882",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0134
         }
@@ -78,6 +103,17 @@
         "p_value_fmt": "0.878",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -104,6 +140,17 @@
         "p_value_fmt": "0.316",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9497,
+        "p_value_bh_fmt": "0.950",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0674
         }
@@ -133,6 +180,17 @@
         "p_value_fmt": "0.700",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -159,6 +217,17 @@
         "p_value_fmt": "0.114",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7578,
+        "p_value_bh_fmt": "0.758",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.104
         }
@@ -185,6 +254,17 @@
         "p_value_fmt": "0.599",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0373
         }
@@ -211,6 +291,17 @@
         "p_value_fmt": "0.915",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0108
         }
@@ -237,6 +328,17 @@
         "p_value_fmt": "0.634",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0341
         }
@@ -263,6 +365,17 @@
         "p_value_fmt": "0.352",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9497,
+        "p_value_bh_fmt": "0.950",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0629
         }
@@ -289,6 +402,17 @@
         "p_value_fmt": "0.972",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0062
         }
@@ -315,6 +439,17 @@
         "p_value_fmt": "0.373",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9497,
+        "p_value_bh_fmt": "0.950",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0604
         }
@@ -341,6 +476,17 @@
         "p_value_fmt": "0.301",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9497,
+        "p_value_bh_fmt": "0.950",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0695
         }
@@ -370,6 +516,17 @@
         "p_value_fmt": "0.231",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9497,
+        "p_value_bh_fmt": "0.950",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -414,6 +571,17 @@
         "p_value_fmt": "0.877",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -449,6 +617,17 @@
         "p_value_fmt": "0.566",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -481,6 +660,17 @@
         "p_value_fmt": "0.915",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -507,6 +697,17 @@
         "p_value_fmt": "0.023",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 0.6428,
+        "p_value_bonferroni_fmt": "0.643",
+        "p_value_bh": 0.2326,
+        "p_value_bh_fmt": "0.233",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1483
         }
@@ -533,6 +734,17 @@
         "p_value_fmt": "0.583",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0388
         }
@@ -559,6 +771,17 @@
         "p_value_fmt": "0.849",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.016
         }
@@ -585,6 +808,17 @@
         "p_value_fmt": "0.019",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 0.5364,
+        "p_value_bonferroni_fmt": "0.536",
+        "p_value_bh": 0.2326,
+        "p_value_bh_fmt": "0.233",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1526
         }
@@ -614,6 +848,17 @@
         "p_value_fmt": "0.907",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -643,6 +888,17 @@
         "p_value_fmt": "0.677",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -672,6 +928,17 @@
         "p_value_fmt": "0.997",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -701,6 +968,17 @@
         "p_value_fmt": "0.025",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 0.6977,
+        "p_value_bonferroni_fmt": "0.698",
+        "p_value_bh": 0.2326,
+        "p_value_bh_fmt": "0.233",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -730,6 +1008,17 @@
         "p_value_fmt": "0.135",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7578,
+        "p_value_bh_fmt": "0.758",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -759,6 +1048,17 @@
         "p_value_fmt": "0.944",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -791,6 +1091,17 @@
         "p_value_fmt": "0.629",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9968,
+        "p_value_bh_fmt": "0.997",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -821,6 +1132,20 @@
         "p_value_fmt": "0.081",
         "test_name": "Mann-Whitney U",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5197,
+        "p_value_bh_fmt": "0.520",
+        "normality_by_group": {
+          "มี": false,
+          "ไม่มี": false
+        },
         "extra_stats": {
           "smd": -0.1085
         }
@@ -847,6 +1172,17 @@
         "p_value_fmt": "0.452",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0517
         }
@@ -879,6 +1215,17 @@
         "p_value_fmt": "0.735",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9352,
+        "p_value_bh_fmt": "0.935",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -905,6 +1252,17 @@
         "p_value_fmt": "0.374",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0603
         }
@@ -934,6 +1292,17 @@
         "p_value_fmt": "0.093",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5197,
+        "p_value_bh_fmt": "0.520",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -960,6 +1329,17 @@
         "p_value_fmt": "0.996",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9958,
+        "p_value_bh_fmt": "0.996",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0043
         }
@@ -986,6 +1366,17 @@
         "p_value_fmt": "0.518",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0449
         }
@@ -1012,6 +1403,17 @@
         "p_value_fmt": "0.317",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0674
         }
@@ -1038,6 +1440,17 @@
         "p_value_fmt": "0.291",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0709
         }
@@ -1064,6 +1477,17 @@
         "p_value_fmt": "0.962",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9958,
+        "p_value_bh_fmt": "0.996",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.007
         }
@@ -1090,6 +1514,17 @@
         "p_value_fmt": "0.493",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0475
         }
@@ -1116,6 +1551,17 @@
         "p_value_fmt": "0.026",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 0.7229,
+        "p_value_bonferroni_fmt": "0.723",
+        "p_value_bh": 0.3614,
+        "p_value_bh_fmt": "0.361",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1455
         }
@@ -1142,6 +1588,17 @@
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 0.0,
+        "p_value_bonferroni_fmt": "<0.001",
+        "p_value_bh": 0.0,
+        "p_value_bh_fmt": "<0.001",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1171,6 +1628,17 @@
         "p_value_fmt": "0.339",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1215,6 +1683,17 @@
         "p_value_fmt": "0.824",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9958,
+        "p_value_bh_fmt": "0.996",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1250,6 +1729,17 @@
         "p_value_fmt": "0.454",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1282,6 +1772,17 @@
         "p_value_fmt": "0.147",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5875,
+        "p_value_bh_fmt": "0.588",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1308,6 +1809,17 @@
         "p_value_fmt": "0.856",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9958,
+        "p_value_bh_fmt": "0.996",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0155
         }
@@ -1334,6 +1846,17 @@
         "p_value_fmt": "0.480",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0488
         }
@@ -1360,6 +1883,17 @@
         "p_value_fmt": "0.899",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9958,
+        "p_value_bh_fmt": "0.996",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": -0.012
         }
@@ -1386,6 +1920,17 @@
         "p_value_fmt": "0.700",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9335,
+        "p_value_bh_fmt": "0.933",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0284
         }
@@ -1415,6 +1960,17 @@
         "p_value_fmt": "0.438",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1444,6 +2000,17 @@
         "p_value_fmt": "0.954",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9958,
+        "p_value_bh_fmt": "0.996",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1473,6 +2040,17 @@
         "p_value_fmt": "0.118",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5492,
+        "p_value_bh_fmt": "0.549",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1502,6 +2080,17 @@
         "p_value_fmt": "0.058",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5197,
+        "p_value_bh_fmt": "0.520",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1531,6 +2120,17 @@
         "p_value_fmt": "0.359",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1560,6 +2160,17 @@
         "p_value_fmt": "0.179",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6249,
+        "p_value_bh_fmt": "0.625",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1592,6 +2203,17 @@
         "p_value_fmt": "0.378",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7253,
+        "p_value_bh_fmt": "0.725",
+        "normality_by_group": {},
         "extra_stats": {
           "smd": null
         }
@@ -1624,6 +2246,22 @@
         "p_value_fmt": "0.425",
         "test_name": "Kruskal-Wallis",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6043,
+        "p_value_bh_fmt": "0.604",
+        "normality_by_group": {
+          "0": false,
+          "1": false,
+          "99": false
+        },
         "extra_stats": {}
       },
       {
@@ -1652,6 +2290,18 @@
         "p_value_fmt": "0.375",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6043,
+        "p_value_bh_fmt": "0.604",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1688,6 +2338,18 @@
         "p_value_fmt": "0.313",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6043,
+        "p_value_bh_fmt": "0.604",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1716,6 +2378,18 @@
         "p_value_fmt": "0.432",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6043,
+        "p_value_bh_fmt": "0.604",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1748,6 +2422,18 @@
         "p_value_fmt": "0.253",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5902,
+        "p_value_bh_fmt": "0.590",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1776,6 +2462,18 @@
         "p_value_fmt": "0.527",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.7022,
+        "p_value_bh_fmt": "0.702",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1804,6 +2502,18 @@
         "p_value_fmt": "0.366",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6043,
+        "p_value_bh_fmt": "0.604",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1832,6 +2542,18 @@
         "p_value_fmt": "0.279",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.601,
+        "p_value_bh_fmt": "0.601",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1860,6 +2582,18 @@
         "p_value_fmt": "0.083",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.4662,
+        "p_value_bh_fmt": "0.466",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1888,6 +2622,18 @@
         "p_value_fmt": "0.812",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.874,
+        "p_value_bh_fmt": "0.874",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1916,6 +2662,18 @@
         "p_value_fmt": "0.210",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5541,
+        "p_value_bh_fmt": "0.554",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1944,6 +2702,18 @@
         "p_value_fmt": "0.128",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5541,
+        "p_value_bh_fmt": "0.554",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -1972,6 +2742,18 @@
         "p_value_fmt": "0.340",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6043,
+        "p_value_bh_fmt": "0.604",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2004,6 +2786,18 @@
         "p_value_fmt": "0.193",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5541,
+        "p_value_bh_fmt": "0.554",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2056,6 +2850,18 @@
         "p_value_fmt": "0.062",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.4309,
+        "p_value_bh_fmt": "0.431",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2096,6 +2902,18 @@
         "p_value_fmt": "0.705",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.8582,
+        "p_value_bh_fmt": "0.858",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2132,6 +2950,18 @@
         "p_value_fmt": "0.186",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5541,
+        "p_value_bh_fmt": "0.554",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2160,6 +2990,18 @@
         "p_value_fmt": "0.036",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.339,
+        "p_value_bh_fmt": "0.339",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2188,6 +3030,18 @@
         "p_value_fmt": "0.218",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5541,
+        "p_value_bh_fmt": "0.554",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2216,6 +3070,18 @@
         "p_value_fmt": "0.392",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6043,
+        "p_value_bh_fmt": "0.604",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2244,6 +3110,18 @@
         "p_value_fmt": "0.699",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.8582,
+        "p_value_bh_fmt": "0.858",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2276,6 +3154,18 @@
         "p_value_fmt": "0.804",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.874,
+        "p_value_bh_fmt": "0.874",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2308,6 +3198,18 @@
         "p_value_fmt": "0.025",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 0.7132,
+        "p_value_bonferroni_fmt": "0.713",
+        "p_value_bh": 0.339,
+        "p_value_bh_fmt": "0.339",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2340,6 +3242,18 @@
         "p_value_fmt": "0.215",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.5541,
+        "p_value_bh_fmt": "0.554",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2372,6 +3286,18 @@
         "p_value_fmt": "0.922",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.922,
+        "p_value_bh_fmt": "0.922",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2404,6 +3330,18 @@
         "p_value_fmt": "0.795",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.874,
+        "p_value_bh_fmt": "0.874",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2436,6 +3374,18 @@
         "p_value_fmt": "0.008",
         "test_name": "Chi-square",
         "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 0.2351,
+        "p_value_bonferroni_fmt": "0.235",
+        "p_value_bh": 0.2351,
+        "p_value_bh_fmt": "0.235",
+        "normality_by_group": {},
         "extra_stats": {}
       },
       {
@@ -2472,6 +3422,18 @@
         "p_value_fmt": "0.888",
         "test_name": "Chi-square",
         "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0,
+          "99": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9209,
+        "p_value_bh_fmt": "0.921",
+        "normality_by_group": {},
         "extra_stats": {}
       }
     ],
