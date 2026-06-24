@@ -101,7 +101,7 @@
         "อื่นๆ": "92 (27.2%)"
       }
     },
-    "p_value": 0.22244374118611784,
+    "p_value": 0.2224437411861187,
     "p_value_fmt": "0.222",
     "test_name": "Chi-square",
     "significant": false,
@@ -262,7 +262,7 @@
         "มี": "169 (50.0%)"
       }
     },
-    "p_value": 0.21995436984625105,
+    "p_value": 0.21995436984625108,
     "p_value_fmt": "0.220",
     "test_name": "Chi-square",
     "significant": false,
@@ -304,7 +304,7 @@
         "มี": "151 (44.7%)"
       }
     },
-    "p_value": 0.14301778527807377,
+    "p_value": 0.1430177852780738,
     "p_value_fmt": "0.143",
     "test_name": "Chi-square",
     "significant": false,
@@ -614,7 +614,7 @@
         "อื่นๆ": "49 (14.5%)"
       }
     },
-    "p_value": 0.3038653216222682,
+    "p_value": 0.30386532162226776,
     "p_value_fmt": "0.304",
     "test_name": "Chi-square",
     "significant": false,
@@ -703,7 +703,7 @@
         ">1เดือน": "102 (30.2%)"
       }
     },
-    "p_value": 0.058569885383762677,
+    "p_value": 0.058569885383762774,
     "p_value_fmt": "0.059",
     "test_name": "Chi-square",
     "significant": false,
@@ -824,7 +824,7 @@
         "Positive": "179 (53.0%)"
       }
     },
-    "p_value": 0.21881477555613735,
+    "p_value": 0.21881477555613732,
     "p_value_fmt": "0.219",
     "test_name": "Chi-square",
     "significant": false,
@@ -991,7 +991,7 @@
         "ข้อมูลไม่ครบ": "107 (31.7%)"
       }
     },
-    "p_value": 0.16082489428719426,
+    "p_value": 0.1608248942871943,
     "p_value_fmt": "0.161",
     "test_name": "Chi-square",
     "significant": false,
