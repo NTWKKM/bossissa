@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       let pClass = pVal !== null && pVal < 0.05 ? 'style="color:var(--accent-green);font-weight:600"' : '';
       let effectHtml = "-";
       if (r.extra_stats) {
-        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) {
+        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null && Object.keys(r.extra_stats.or).length > 0) {
           const orData = r.extra_stats.or;
           const ciLo = (orData.ci_lo !== null && orData.ci_lo !== undefined) ? orData.ci_lo.toFixed(2) : '?';
           const ciHi = (orData.ci_hi !== null && orData.ci_hi !== undefined) ? orData.ci_hi.toFixed(2) : '?';
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     findingsGrid.innerHTML = sigVars.map(r => {
       let effectHtml = "";
       if (r.extra_stats) {
-        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) effectHtml = `OR: ${r.extra_stats.or.or.toFixed(2)}`;
+        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null && Object.keys(r.extra_stats.or).length > 0) effectHtml = `OR: ${r.extra_stats.or.or.toFixed(2)}`;
         else if (r.extra_stats.smd !== undefined && r.extra_stats.smd !== null) effectHtml = `SMD: ${r.extra_stats.smd.toFixed(2)}`;
       }
 
@@ -613,7 +613,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     tableData.forEach(r => {
       let ciLo = "", ciHi = "", effectType = "", effectSize = "";
       if (r.extra_stats) {
-        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null) {
+        if (r.extra_stats.or !== undefined && r.extra_stats.or !== null && Object.keys(r.extra_stats.or).length > 0) {
           effectType = "OR";
           effectSize = r.extra_stats.or.or ?? "";
           ciLo = r.extra_stats.or.ci_lo ?? "";
