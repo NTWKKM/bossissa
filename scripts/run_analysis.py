@@ -84,18 +84,18 @@ def main() -> None:
         "n_significant": sum(1 for r in results if r.p_value is not None and r.p_value < 0.05),
     }
 
-    # 6. Generate charts
+    # 6. Generate multivariate analysis (LASSO → Firth + Standard)
+    print("Generating multivariate analysis...")
+    generate_multivariate(df)
+
+    # 7. Generate charts
     print("Generating Plotly chart specs...")
     charts = generate_all_charts(df)
     metadata["n_charts"] = len(charts)
 
-    # 7. Generate stat_freq (inclusion/hx_psych/sip_all)
+    # 8. Generate stat_freq (inclusion/hx_psych/sip_all)
     print("Generating frequency stats...")
     generate_stat_freq(df_all)
-
-    # 8. Generate multivariate analysis (LASSO → Firth + Standard)
-    print("Generating multivariate analysis...")
-    generate_multivariate(df)
 
     # 9. Write outputs
     (OUTPUT_DIR / "tableone.json").write_text(
