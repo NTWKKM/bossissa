@@ -224,7 +224,10 @@ class StatisticalEngine:
 
     @staticmethod
     def smd_categorical(s: pd.Series, group_col: pd.Series, g0_val: Any, g1_val: Any) -> float | None:
-        """SMD for binary categorical using proportions."""
+        """
+        SMD for binary categorical using proportions.
+        Note: Sign depends on the ordering. The 'event' is defined as the last category (cats[-1]).
+        """
         p1 = s[group_col == g1_val].value_counts(normalize=True)
         p0 = s[group_col == g0_val].value_counts(normalize=True)
         cats = list(s.dropna().unique())
@@ -268,35 +271,24 @@ class StatisticalEngine:
     def odds_ratio_continuous(s: pd.Series, group_col: pd.Series) -> dict[str, Any]:
         """Univariate logistic regression OR for continuous variable."""
         try:
-            from scipy.special import expit
+            import statsmodels.api as sm
             combined = pd.DataFrame({"x": s, "y": group_col}).dropna()
             if len(combined) < 10 or combined["y"].nunique() < 2:
                 return {}
-            # Simple logistic via scipy minimize
-            from scipy.optimize import minimize
-
-            def neg_log_likelihood(params):
-                b0, b1 = params
-                y_hat = expit(b0 + b1 * combined["x"])
-                y_hat = np.clip(y_hat, 1e-10, 1 - 1e-10)
-                return -np.sum(combined["y"] * np.log(y_hat) + (1 - combined["y"]) * np.log(1 - y_hat))
-
-            res = minimize(neg_log_likelihood, [0.0, 0.0], method="BFGS")
-            if not res.success:
-                return {}
-            b1 = res.x[1]
-            or_val = math.exp(b1)
-            # Approximate SE from Hessian
-            if res.hess_inv is not None:
-                se = math.sqrt(abs(res.hess_inv[1, 1]))
-                ci_lo = math.exp(b1 - 1.96 * se)
-                ci_hi = math.exp(b1 + 1.96 * se)
-            else:
-                ci_lo, ci_hi = None, None
+            
+            X = sm.add_constant(combined["x"])
+            y = combined["y"]
+            model = sm.Logit(y, X).fit(disp=False, maxiter=50)
+            
+            b1 = float(model.params.iloc[1])
+            ci = model.conf_int()
+            ci_lo_val = float(ci.iloc[1, 0])
+            ci_hi_val = float(ci.iloc[1, 1])
+            
             return {
-                "or": round(or_val, 3),
-                "ci_lo": round(ci_lo, 3) if ci_lo else None,
-                "ci_hi": round(ci_hi, 3) if ci_hi else None,
+                "or": round(math.exp(b1), 3),
+                "ci_lo": round(math.exp(ci_lo_val), 3),
+                "ci_hi": round(math.exp(ci_hi_val), 3),
             }
         except Exception:
             return {}
@@ -416,7 +408,9 @@ class TableOneFormatter:
     def to_html(df: pd.DataFrame) -> str:
         """Render DataFrame to styled HTML table."""
         def highlight_pvalue(val: str) -> str:
-            if val in ("<0.001", "") or val == "—":
+            if val == "<0.001":
+                return '<span class="sig"><0.001</span>'
+            if val in ("", "—"):
                 return val
             try:
                 p = float(val)

@@ -99,7 +99,9 @@ VARIABLE_META = {
     "dsm_not_primary":            {"label": "DSM-5: Not Primary Psychosis",   "type_hint": "categorical"},
     "dsm_no_delirium":            {"label": "DSM-5: No Delirium",             "type_hint": "categorical"},
     "dsm_functional_impairment":  {"label": "DSM-5: Functional Impairment",  "type_hint": "categorical"},
-    "medications":                {"label": "Medications Received",           "type_hint": "categorical"},
+    "med_antipsychotic":          {"label": "Antipsychotic",                  "type_hint": "categorical"},
+    "med_benzo":                  {"label": "Benzodiazepine",                 "type_hint": "categorical"},
+    "med_sedation":               {"label": "Sedation",                       "type_hint": "categorical"},
     "discharge_status":           {"label": "Discharge Status",               "type_hint": "categorical"},
 }
 

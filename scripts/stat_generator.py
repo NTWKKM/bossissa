@@ -29,8 +29,8 @@ def process_group(generator: TableOneGenerator, df: pd.DataFrame, selected_vars:
     # Only convert to numeric if the column still has numeric values (e.g. sip_diagnosis)
     # For columns already mapped to categorical strings (inclusion_criteria, hx_psychiatric), skip
     if stratify_col in df.columns:
-        sample_vals = df[stratify_col].dropna().head(5).tolist()
-        if sample_vals and all(isinstance(v, (int, float)) or (isinstance(v, str) and v.replace('.','',1).replace('-','',1).isdigit()) for v in sample_vals):
+        sample = df[stratify_col].dropna().head(5)
+        if len(sample) > 0 and pd.to_numeric(sample, errors='coerce').notna().all():
             df[stratify_col] = pd.to_numeric(df[stratify_col], errors="coerce")
 
     # Generate results

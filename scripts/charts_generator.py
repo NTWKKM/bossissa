@@ -432,56 +432,33 @@ OR_VARS = {
 
 
 def chart_forest_plot(df: pd.DataFrame) -> dict:
-    """Simple univariate logistic regression OR forest plot."""
-    from scipy.special import expit
+    """Univariate logistic regression OR forest plot (from pre-computed JSON)."""
+    import json
+    
+    json_path = Path(__file__).parent.parent / "docs" / "data" / "multivariate.json"
+    if not json_path.exists():
+        return {}
+        
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+        
+    std_vars = data.get("standard", {}).get("variables", [])
+    crude_data = {v["name"]: v for v in std_vars if "crude_or" in v}
 
     labels, ors, ci_los, ci_his, pvals = [], [], [], [], []
 
     for col, label in OR_VARS.items():
-        if col not in df.columns:
+        # Match feature name (might have suffix like _มี, _Positive from dummies)
+        matched_keys = [k for k in crude_data.keys() if k == col or k.startswith(col + "_")]
+        if not matched_keys:
             continue
-        try:
-            sub = df[[col, STRATIFY_COL]].dropna()
-            if len(sub) < 10 or sub[STRATIFY_COL].nunique() < 2:
-                continue
-            if pd.api.types.is_numeric_dtype(sub[col]):
-                x = (sub[col] == 1).astype(float)
-            else:
-                x = sub[col].str.lower().str.fullmatch(r"yes|ใช่|positive|\+|มี", na=False).astype(float)
-            y = sub[STRATIFY_COL].astype(float).values
-            x = x.values
-
-            # Simple logistic via scipy
-            from scipy.optimize import minimize
-            def nll(p):
-                lp = np.clip(expit(p[0] + p[1] * x), 1e-9, 1 - 1e-9)
-                return -np.sum(y * np.log(lp) + (1 - y) * np.log(1 - lp))
-            res = minimize(nll, [0.0, 0.0], method="BFGS")
-            if not res.success:
-                continue
-            b1 = res.x[1]
-            or_val = float(np.exp(min(b1, 700.0)))
-            # Validate Hessian inverse before computing SE
-            if res.hess_inv is None or np.any(np.isnan(res.hess_inv)) or np.any(np.isinf(res.hess_inv)):
-                continue
-            se = float(np.sqrt(max(abs(res.hess_inv[1, 1]), 1e-10)))
-            
-            # Prevent overflow in np.exp
-            val_lo = min(b1 - 1.96 * se, 700.0)
-            val_hi = min(b1 + 1.96 * se, 700.0)
-            ci_lo = float(np.exp(val_lo))
-            ci_hi = float(np.exp(val_hi))
-            # Wald p-value
-            z = b1 / se if se > 0 else 0
-            p = float(2 * (1 - stats.norm.cdf(abs(z))))
-
-            labels.append(label)
-            ors.append(round(or_val, 3))
-            ci_los.append(round(ci_lo, 3))
-            ci_his.append(round(ci_hi, 3))
-            pvals.append(round(p, 4))
-        except Exception:
-            continue
+        v = crude_data[matched_keys[-1]]
+        
+        labels.append(label)
+        ors.append(v["crude_or"])
+        ci_los.append(v["crude_ci_lo"])
+        ci_his.append(v["crude_ci_hi"])
+        pvals.append(v["crude_p_value"])
 
     if not labels:
         return {}

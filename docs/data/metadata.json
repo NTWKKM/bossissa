@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T23:17:07.219104+00:00",
+  "generated_at": "2026-06-25T00:01:16.428284+00:00",
   "sheet_id": "1JG5cGNaqo_2DB4Z7N-3w8Yz8eHkQhAhDLoUxMoymlAY",
   "total_n": 1000,
   "group_counts": {
@@ -11,7 +11,7 @@
     "Not SIP": "Not SIP",
     "SIP": "SIP"
   },
-  "n_variables": 28,
-  "n_significant": 11,
+  "n_variables": 31,
+  "n_significant": 12,
   "n_charts": 8
 }

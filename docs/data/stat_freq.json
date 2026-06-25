@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T23:17:08.087939+00:00",
+  "generated_at": "2026-06-25T00:01:16.812089+00:00",
   "total_n": 1000,
   "inclusion": {
     "group_counts": {
@@ -28,8 +28,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9922,
-        "p_value_bh_fmt": "0.992",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {
           "ใช่": false,
           "ไม่": false
@@ -68,8 +68,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9045,
-        "p_value_bh_fmt": "0.904",
+        "p_value_bh": 0.8583,
+        "p_value_bh_fmt": "0.858",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1013
@@ -111,8 +111,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9824,
-        "p_value_bh_fmt": "0.982",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -148,7 +148,7 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 1.0,
+        "p_value_bh": 0.9999,
         "p_value_bh_fmt": "1.000",
         "normality_by_group": {},
         "extra_stats": {
@@ -188,8 +188,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9922,
-        "p_value_bh_fmt": "0.992",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -225,8 +225,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9922,
-        "p_value_bh_fmt": "0.992",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0284
@@ -250,7 +250,7 @@
             "มี": "22 (21.6%)"
           }
         },
-        "p_value": 0.03367663352176124,
+        "p_value": 0.03367663352176122,
         "p_value_fmt": "0.034",
         "test_name": "Chi-square",
         "significant": true,
@@ -260,10 +260,10 @@
           "ใช่": 0,
           "ไม่": 0
         },
-        "p_value_bonferroni": 0.9429,
-        "p_value_bonferroni_fmt": "0.943",
-        "p_value_bh": 0.2294,
-        "p_value_bh_fmt": "0.229",
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.2539,
+        "p_value_bh_fmt": "0.254",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.246
@@ -299,8 +299,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9922,
-        "p_value_bh_fmt": "0.992",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0481
@@ -324,7 +324,7 @@
             "มี": "51 (50.0%)"
           }
         },
-        "p_value": 0.05598031301802902,
+        "p_value": 0.0559803130180289,
         "p_value_fmt": "0.056",
         "test_name": "Chi-square",
         "significant": false,
@@ -336,8 +336,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2612,
-        "p_value_bh_fmt": "0.261",
+        "p_value_bh": 0.2892,
+        "p_value_bh_fmt": "0.289",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.2094
@@ -373,8 +373,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9824,
-        "p_value_bh_fmt": "0.982",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0566
@@ -410,7 +410,7 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 1.0,
+        "p_value_bh": 0.9999,
         "p_value_bh_fmt": "1.000",
         "normality_by_group": {},
         "extra_stats": {
@@ -445,10 +445,10 @@
           "ใช่": 0,
           "ไม่": 0
         },
-        "p_value_bonferroni": 0.3031,
-        "p_value_bonferroni_fmt": "0.303",
-        "p_value_bh": 0.2294,
-        "p_value_bh_fmt": "0.229",
+        "p_value_bonferroni": 0.3356,
+        "p_value_bonferroni_fmt": "0.336",
+        "p_value_bh": 0.2539,
+        "p_value_bh_fmt": "0.254",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.2818
@@ -484,8 +484,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9922,
-        "p_value_bh_fmt": "0.992",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.034
@@ -512,7 +512,7 @@
             "ไม่ทราบ": "0 (0.0%)"
           }
         },
-        "p_value": 0.07420605168670402,
+        "p_value": 0.0742060516867043,
         "p_value_fmt": "0.074",
         "test_name": "Chi-square",
         "significant": false,
@@ -524,8 +524,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2968,
-        "p_value_bh_fmt": "0.297",
+        "p_value_bh": 0.3286,
+        "p_value_bh_fmt": "0.329",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.2167
@@ -567,7 +567,7 @@
             "อื่นๆ": "14 (15.6%)"
           }
         },
-        "p_value": 0.6337726522679061,
+        "p_value": 0.6337726522679062,
         "p_value_fmt": "0.634",
         "test_name": "Chi-square",
         "significant": false,
@@ -579,8 +579,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9824,
-        "p_value_bh_fmt": "0.982",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -625,8 +625,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2294,
-        "p_value_bh_fmt": "0.229",
+        "p_value_bh": 0.2539,
+        "p_value_bh_fmt": "0.254",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -656,7 +656,7 @@
             ">1เดือน": "18 (20.0%)"
           }
         },
-        "p_value": 0.24311825613307064,
+        "p_value": 0.24311825613306964,
         "p_value_fmt": "0.243",
         "test_name": "Chi-square",
         "significant": false,
@@ -668,8 +668,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.7564,
-        "p_value_bh_fmt": "0.756",
+        "p_value_bh": 0.6852,
+        "p_value_bh_fmt": "0.685",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -705,8 +705,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.8022,
-        "p_value_bh_fmt": "0.802",
+        "p_value_bh": 0.7402,
+        "p_value_bh_fmt": "0.740",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1292
@@ -742,8 +742,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9922,
-        "p_value_bh_fmt": "0.992",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0263
@@ -767,7 +767,7 @@
             "Positive": "39 (38.2%)"
           }
         },
-        "p_value": 0.03308670344649628,
+        "p_value": 0.03308670344649633,
         "p_value_fmt": "0.033",
         "test_name": "Chi-square",
         "significant": true,
@@ -777,10 +777,10 @@
           "ใช่": 0,
           "ไม่": 0
         },
-        "p_value_bonferroni": 0.9264,
-        "p_value_bonferroni_fmt": "0.926",
-        "p_value_bh": 0.2294,
-        "p_value_bh_fmt": "0.229",
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.2539,
+        "p_value_bh_fmt": "0.254",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.2274
@@ -816,8 +816,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.7564,
-        "p_value_bh_fmt": "0.756",
+        "p_value_bh": 0.6852,
+        "p_value_bh_fmt": "0.685",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1532
@@ -856,8 +856,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9824,
-        "p_value_bh_fmt": "0.982",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0726
@@ -896,8 +896,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9824,
-        "p_value_bh_fmt": "0.982",
+        "p_value_bh": 0.96,
+        "p_value_bh_fmt": "0.960",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0875
@@ -924,7 +924,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 0.03341896908227783,
+        "p_value": 0.033418969082277865,
         "p_value_fmt": "0.033",
         "test_name": "Chi-square",
         "significant": true,
@@ -934,10 +934,10 @@
           "ใช่": 0,
           "ไม่": 0
         },
-        "p_value_bonferroni": 0.9357,
-        "p_value_bonferroni_fmt": "0.936",
-        "p_value_bh": 0.2294,
-        "p_value_bh_fmt": "0.229",
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.2539,
+        "p_value_bh_fmt": "0.254",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.251
@@ -1004,7 +1004,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 0.33799721924549875,
+        "p_value": 0.3379972192454988,
         "p_value_fmt": "0.338",
         "test_name": "Chi-square",
         "significant": false,
@@ -1016,8 +1016,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.8604,
-        "p_value_bh_fmt": "0.860",
+        "p_value_bh": 0.806,
+        "p_value_bh_fmt": "0.806",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1105
@@ -1056,11 +1056,122 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9824,
-        "p_value_bh_fmt": "0.982",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0724
+        }
+      },
+      {
+        "name": "med_antipsychotic",
+        "label": "Antipsychotic",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "649 (64.9%)",
+          "ใช่": "351 (35.1%)"
+        },
+        "stats_groups": {
+          "Met": {
+            "ไม่": "589 (65.6%)",
+            "ใช่": "309 (34.4%)"
+          },
+          "Not Met": {
+            "ไม่": "60 (58.8%)",
+            "ใช่": "42 (41.2%)"
+          }
+        },
+        "p_value": 0.21224818829868705,
+        "p_value_fmt": "0.212",
+        "test_name": "Chi-square",
+        "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6852,
+        "p_value_bh_fmt": "0.685",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": 0.1399
+        }
+      },
+      {
+        "name": "med_benzo",
+        "label": "Benzodiazepine",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "407 (40.7%)",
+          "ใช่": "593 (59.3%)"
+        },
+        "stats_groups": {
+          "Met": {
+            "ไม่": "364 (40.5%)",
+            "ใช่": "534 (59.5%)"
+          },
+          "Not Met": {
+            "ไม่": "43 (42.2%)",
+            "ใช่": "59 (57.8%)"
+          }
+        },
+        "p_value": 0.8338959163125569,
+        "p_value_fmt": "0.834",
+        "test_name": "Chi-square",
+        "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": -0.0329
+        }
+      },
+      {
+        "name": "med_sedation",
+        "label": "Sedation",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "451 (45.1%)",
+          "ใช่": "549 (54.9%)"
+        },
+        "stats_groups": {
+          "Met": {
+            "ไม่": "398 (44.3%)",
+            "ใช่": "500 (55.7%)"
+          },
+          "Not Met": {
+            "ไม่": "53 (52.0%)",
+            "ใช่": "49 (48.0%)"
+          }
+        },
+        "p_value": 0.17241670736009967,
+        "p_value_fmt": "0.172",
+        "test_name": "Chi-square",
+        "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "ใช่": 0,
+          "ไม่": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6681,
+        "p_value_bh_fmt": "0.668",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": -0.1534
         }
       },
       {
@@ -1099,8 +1210,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9824,
-        "p_value_bh_fmt": "0.982",
+        "p_value_bh": 0.9808,
+        "p_value_bh_fmt": "0.981",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -1138,10 +1249,10 @@
           "มี": 0,
           "ไม่มี": 0
         },
-        "p_value_bonferroni": 0.1642,
-        "p_value_bonferroni_fmt": "0.164",
-        "p_value_bh": 0.041,
-        "p_value_bh_fmt": "0.041",
+        "p_value_bonferroni": 0.1818,
+        "p_value_bonferroni_fmt": "0.182",
+        "p_value_bh": 0.0454,
+        "p_value_bh_fmt": "0.045",
         "normality_by_group": {
           "มี": false,
           "ไม่มี": false
@@ -1180,8 +1291,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.8307,
-        "p_value_bh_fmt": "0.831",
+        "p_value_bh": 0.7943,
+        "p_value_bh_fmt": "0.794",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0451
@@ -1223,8 +1334,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.842,
-        "p_value_bh_fmt": "0.842",
+        "p_value_bh": 0.8203,
+        "p_value_bh_fmt": "0.820",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -1248,7 +1359,7 @@
             "ต่างจังหวัด": "370 (52.1%)"
           }
         },
-        "p_value": 0.0846776918564435,
+        "p_value": 0.08467769185644358,
         "p_value_fmt": "0.085",
         "test_name": "Chi-square",
         "significant": false,
@@ -1260,8 +1371,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2155,
-        "p_value_bh_fmt": "0.215",
+        "p_value_bh": 0.2019,
+        "p_value_bh_fmt": "0.202",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1253
@@ -1300,8 +1411,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.3205,
-        "p_value_bh_fmt": "0.321",
+        "p_value_bh": 0.3131,
+        "p_value_bh_fmt": "0.313",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -1325,7 +1436,7 @@
             "มี": "279 (39.3%)"
           }
         },
-        "p_value": 0.12267704391428838,
+        "p_value": 0.12267704391428877,
         "p_value_fmt": "0.123",
         "test_name": "Chi-square",
         "significant": false,
@@ -1337,8 +1448,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2642,
-        "p_value_bh_fmt": "0.264",
+        "p_value_bh": 0.2535,
+        "p_value_bh_fmt": "0.254",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1122
@@ -1362,7 +1473,7 @@
             "มี": "211 (29.7%)"
           }
         },
-        "p_value": 0.10683599461619532,
+        "p_value": 0.10683599461619558,
         "p_value_fmt": "0.107",
         "test_name": "Chi-square",
         "significant": false,
@@ -1374,8 +1485,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2493,
-        "p_value_bh_fmt": "0.249",
+        "p_value_bh": 0.2366,
+        "p_value_bh_fmt": "0.237",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1167
@@ -1436,7 +1547,7 @@
             "มี": "408 (57.5%)"
           }
         },
-        "p_value": 0.07549358882438445,
+        "p_value": 0.07549358882438494,
         "p_value_fmt": "0.075",
         "test_name": "Chi-square",
         "significant": false,
@@ -1448,8 +1559,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2114,
-        "p_value_bh_fmt": "0.211",
+        "p_value_bh": 0.195,
+        "p_value_bh_fmt": "0.195",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1298
@@ -1522,8 +1633,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.8334,
-        "p_value_bh_fmt": "0.833",
+        "p_value_bh": 0.8023,
+        "p_value_bh_fmt": "0.802",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0421
@@ -1559,8 +1670,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2967,
-        "p_value_bh_fmt": "0.297",
+        "p_value_bh": 0.2874,
+        "p_value_bh_fmt": "0.287",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1057
@@ -1584,7 +1695,7 @@
             "มี": "0 (0.0%)"
           }
         },
-        "p_value": 2.035466525878789e-218,
+        "p_value": 2.0354665258787885e-218,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -1624,7 +1735,7 @@
             "ไม่ทราบ": "0 (0.0%)"
           }
         },
-        "p_value": 0.012646463386366711,
+        "p_value": 0.012646463386366718,
         "p_value_fmt": "0.013",
         "test_name": "Chi-square",
         "significant": true,
@@ -1634,10 +1745,10 @@
           "มี": 0,
           "ไม่มี": 0
         },
-        "p_value_bonferroni": 0.3541,
-        "p_value_bonferroni_fmt": "0.354",
-        "p_value_bh": 0.059,
-        "p_value_bh_fmt": "0.059",
+        "p_value_bonferroni": 0.392,
+        "p_value_bonferroni_fmt": "0.392",
+        "p_value_bh": 0.0653,
+        "p_value_bh_fmt": "0.065",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1756
@@ -1679,7 +1790,7 @@
             "อื่นๆ": "77 (13.0%)"
           }
         },
-        "p_value": 0.04501544746997856,
+        "p_value": 0.04501544746997854,
         "p_value_fmt": "0.045",
         "test_name": "Chi-square",
         "significant": true,
@@ -1691,8 +1802,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.1576,
-        "p_value_bh_fmt": "0.158",
+        "p_value_bh": 0.1551,
+        "p_value_bh_fmt": "0.155",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -1737,8 +1848,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.5279,
-        "p_value_bh_fmt": "0.528",
+        "p_value_bh": 0.5229,
+        "p_value_bh_fmt": "0.523",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -1805,7 +1916,7 @@
             "ตรวจ": "563 (79.3%)"
           }
         },
-        "p_value": 0.06980636649965145,
+        "p_value": 0.0698063664996514,
         "p_value_fmt": "0.070",
         "test_name": "Chi-square",
         "significant": false,
@@ -1817,8 +1928,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2114,
-        "p_value_bh_fmt": "0.211",
+        "p_value_bh": 0.195,
+        "p_value_bh_fmt": "0.195",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1301
@@ -1842,7 +1953,7 @@
             "Positive": "294 (41.4%)"
           }
         },
-        "p_value": 0.002798653538379363,
+        "p_value": 0.002798653538379362,
         "p_value_fmt": "0.003",
         "test_name": "Chi-square",
         "significant": true,
@@ -1852,10 +1963,10 @@
           "มี": 0,
           "ไม่มี": 0
         },
-        "p_value_bonferroni": 0.0784,
-        "p_value_bonferroni_fmt": "0.078",
-        "p_value_bh": 0.0261,
-        "p_value_bh_fmt": "0.026",
+        "p_value_bonferroni": 0.0868,
+        "p_value_bonferroni_fmt": "0.087",
+        "p_value_bh": 0.0289,
+        "p_value_bh_fmt": "0.029",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.2171
@@ -1879,7 +1990,7 @@
             "Positive": "221 (31.1%)"
           }
         },
-        "p_value": 0.009954628704023786,
+        "p_value": 0.009954628704023768,
         "p_value_fmt": "0.010",
         "test_name": "Chi-square",
         "significant": true,
@@ -1889,10 +2000,10 @@
           "มี": 0,
           "ไม่มี": 0
         },
-        "p_value_bonferroni": 0.2787,
-        "p_value_bonferroni_fmt": "0.279",
-        "p_value_bh": 0.0557,
-        "p_value_bh_fmt": "0.056",
+        "p_value_bonferroni": 0.3086,
+        "p_value_bonferroni_fmt": "0.309",
+        "p_value_bh": 0.0617,
+        "p_value_bh_fmt": "0.062",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1895
@@ -1928,8 +2039,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.8192,
-        "p_value_bh_fmt": "0.819",
+        "p_value_bh": 0.7774,
+        "p_value_bh_fmt": "0.777",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0527
@@ -2036,7 +2147,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 0.03316602014062634,
+        "p_value": 0.033166020140626376,
         "p_value_fmt": "0.033",
         "test_name": "Chi-square",
         "significant": true,
@@ -2046,10 +2157,10 @@
           "มี": 0,
           "ไม่มี": 0
         },
-        "p_value_bonferroni": 0.9286,
-        "p_value_bonferroni_fmt": "0.929",
-        "p_value_bh": 0.1327,
-        "p_value_bh_fmt": "0.133",
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.1285,
+        "p_value_bh_fmt": "0.129",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1518
@@ -2076,7 +2187,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 1.8435852965545385e-143,
+        "p_value": 1.8435852965545387e-143,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -2128,8 +2239,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.842,
-        "p_value_bh_fmt": "0.842",
+        "p_value_bh": 0.8203,
+        "p_value_bh_fmt": "0.820",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0355
@@ -2168,11 +2279,122 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.9188,
-        "p_value_bh_fmt": "0.919",
+        "p_value_bh": 0.8998,
+        "p_value_bh_fmt": "0.900",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0277
+        }
+      },
+      {
+        "name": "med_antipsychotic",
+        "label": "Antipsychotic",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "649 (64.9%)",
+          "ใช่": "351 (35.1%)"
+        },
+        "stats_groups": {
+          "Yes": {
+            "ไม่": "201 (69.3%)",
+            "ใช่": "89 (30.7%)"
+          },
+          "No": {
+            "ไม่": "448 (63.1%)",
+            "ใช่": "262 (36.9%)"
+          }
+        },
+        "p_value": 0.07273053873536421,
+        "p_value_fmt": "0.073",
+        "test_name": "Chi-square",
+        "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.195,
+        "p_value_bh_fmt": "0.195",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": 0.1316
+        }
+      },
+      {
+        "name": "med_benzo",
+        "label": "Benzodiazepine",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "407 (40.7%)",
+          "ใช่": "593 (59.3%)"
+        },
+        "stats_groups": {
+          "Yes": {
+            "ไม่": "112 (38.6%)",
+            "ใช่": "178 (61.4%)"
+          },
+          "No": {
+            "ไม่": "295 (41.5%)",
+            "ใช่": "415 (58.5%)"
+          }
+        },
+        "p_value": 0.43276854549004073,
+        "p_value_fmt": "0.433",
+        "test_name": "Chi-square",
+        "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.6708,
+        "p_value_bh_fmt": "0.671",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": -0.0598
+        }
+      },
+      {
+        "name": "med_sedation",
+        "label": "Sedation",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "451 (45.1%)",
+          "ใช่": "549 (54.9%)"
+        },
+        "stats_groups": {
+          "Yes": {
+            "ไม่": "113 (39.0%)",
+            "ใช่": "177 (61.0%)"
+          },
+          "No": {
+            "ไม่": "338 (47.6%)",
+            "ใช่": "372 (52.4%)"
+          }
+        },
+        "p_value": 0.015454727090523184,
+        "p_value_fmt": "0.015",
+        "test_name": "Chi-square",
+        "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "มี": 0,
+          "ไม่มี": 0
+        },
+        "p_value_bonferroni": 0.4791,
+        "p_value_bonferroni_fmt": "0.479",
+        "p_value_bh": 0.0684,
+        "p_value_bh_fmt": "0.068",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": -0.175
         }
       },
       {
@@ -2199,7 +2421,7 @@
             "กลับบ้าน": "143 (20.1%)"
           }
         },
-        "p_value": 0.3139242896135977,
+        "p_value": 0.31392428961359736,
         "p_value_fmt": "0.314",
         "test_name": "Chi-square",
         "significant": false,
@@ -2211,8 +2433,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.5279,
-        "p_value_bh_fmt": "0.528",
+        "p_value_bh": 0.5229,
+        "p_value_bh_fmt": "0.523",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -2253,8 +2475,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2392,
-        "p_value_bh_fmt": "0.239",
+        "p_value_bh": 0.2459,
+        "p_value_bh_fmt": "0.246",
         "normality_by_group": {
           "0": false,
           "1": false
@@ -2281,7 +2503,7 @@
             "หญิง": "57 (47.1%)"
           }
         },
-        "p_value": 0.33820181119496184,
+        "p_value": 0.3382018111949619,
         "p_value_fmt": "0.338",
         "test_name": "Chi-square",
         "significant": false,
@@ -2293,8 +2515,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.5261,
-        "p_value_bh_fmt": "0.526",
+        "p_value_bh": 0.5518,
+        "p_value_bh_fmt": "0.552",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.1024
@@ -2336,8 +2558,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.4738,
-        "p_value_bh_fmt": "0.474",
+        "p_value_bh": 0.4918,
+        "p_value_bh_fmt": "0.492",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -2373,8 +2595,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.8524,
-        "p_value_bh_fmt": "0.852",
+        "p_value_bh": 0.8461,
+        "p_value_bh_fmt": "0.846",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.035
@@ -2413,8 +2635,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.848,
-        "p_value_bh_fmt": "0.848",
+        "p_value_bh": 0.8382,
+        "p_value_bh_fmt": "0.838",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -2487,8 +2709,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.6562,
-        "p_value_bh_fmt": "0.656",
+        "p_value_bh": 0.6935,
+        "p_value_bh_fmt": "0.694",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0796
@@ -2524,8 +2746,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.848,
-        "p_value_bh_fmt": "0.848",
+        "p_value_bh": 0.8382,
+        "p_value_bh_fmt": "0.838",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0425
@@ -2561,8 +2783,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.7212,
-        "p_value_bh_fmt": "0.721",
+        "p_value_bh": 0.7652,
+        "p_value_bh_fmt": "0.765",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.0625
@@ -2598,8 +2820,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.6101,
-        "p_value_bh_fmt": "0.610",
+        "p_value_bh": 0.6417,
+        "p_value_bh_fmt": "0.642",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0893
@@ -2633,8 +2855,8 @@
           "0": 0,
           "1": 0
         },
-        "p_value_bonferroni": 0.0062,
-        "p_value_bonferroni_fmt": "0.006",
+        "p_value_bonferroni": 0.0069,
+        "p_value_bonferroni_fmt": "0.007",
         "p_value_bh": 0.0008,
         "p_value_bh_fmt": "<0.001",
         "normality_by_group": {},
@@ -2660,7 +2882,7 @@
             ">1เดือน": "34 (28.1%)"
           }
         },
-        "p_value": 6.631749317991468e-07,
+        "p_value": 6.631749317991463e-07,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -2697,7 +2919,7 @@
             "มี": "18 (14.9%)"
           }
         },
-        "p_value": 0.00039243256319348166,
+        "p_value": 0.0003924325631934819,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -2707,8 +2929,8 @@
           "0": 0,
           "1": 0
         },
-        "p_value_bonferroni": 0.011,
-        "p_value_bonferroni_fmt": "0.011",
+        "p_value_bonferroni": 0.0122,
+        "p_value_bonferroni_fmt": "0.012",
         "p_value_bh": 0.0012,
         "p_value_bh_fmt": "0.001",
         "normality_by_group": {},
@@ -2737,7 +2959,7 @@
             "ไม่ทราบ": "0 (0.0%)"
           }
         },
-        "p_value": 0.002368667849557873,
+        "p_value": 0.0023686678495578755,
         "p_value_fmt": "0.002",
         "test_name": "Chi-square",
         "significant": true,
@@ -2747,9 +2969,9 @@
           "0": 0,
           "1": 0
         },
-        "p_value_bonferroni": 0.0663,
-        "p_value_bonferroni_fmt": "0.066",
-        "p_value_bh": 0.0066,
+        "p_value_bonferroni": 0.0734,
+        "p_value_bonferroni_fmt": "0.073",
+        "p_value_bh": 0.0067,
         "p_value_bh_fmt": "0.007",
         "normality_by_group": {},
         "extra_stats": {
@@ -2792,7 +3014,7 @@
             "อื่นๆ": "17 (15.3%)"
           }
         },
-        "p_value": 0.3236037876830405,
+        "p_value": 0.3236037876830404,
         "p_value_fmt": "0.324",
         "test_name": "Chi-square",
         "significant": false,
@@ -2804,8 +3026,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.5261,
-        "p_value_bh_fmt": "0.526",
+        "p_value_bh": 0.5518,
+        "p_value_bh_fmt": "0.552",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -2850,8 +3072,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.6562,
-        "p_value_bh_fmt": "0.656",
+        "p_value_bh": 0.6935,
+        "p_value_bh_fmt": "0.694",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -2893,8 +3115,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.7212,
-        "p_value_bh_fmt": "0.721",
+        "p_value_bh": 0.7652,
+        "p_value_bh_fmt": "0.765",
         "normality_by_group": {},
         "extra_stats": {
           "smd": null
@@ -2930,8 +3152,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.5186,
-        "p_value_bh_fmt": "0.519",
+        "p_value_bh": 0.5404,
+        "p_value_bh_fmt": "0.540",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1162
@@ -2955,7 +3177,7 @@
             "Positive": "55 (45.5%)"
           }
         },
-        "p_value": 0.10912761200747026,
+        "p_value": 0.10912761200747073,
         "p_value_fmt": "0.109",
         "test_name": "Chi-square",
         "significant": false,
@@ -2967,8 +3189,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2392,
-        "p_value_bh_fmt": "0.239",
+        "p_value_bh": 0.2459,
+        "p_value_bh_fmt": "0.246",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1635
@@ -3004,8 +3226,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.2931,
-        "p_value_bh_fmt": "0.293",
+        "p_value_bh": 0.3029,
+        "p_value_bh_fmt": "0.303",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.1479
@@ -3041,8 +3263,8 @@
         },
         "p_value_bonferroni": 1.0,
         "p_value_bonferroni_fmt": "1.000",
-        "p_value_bh": 0.891,
-        "p_value_bh_fmt": "0.891",
+        "p_value_bh": 0.8878,
+        "p_value_bh_fmt": "0.888",
         "normality_by_group": {},
         "extra_stats": {
           "smd": -0.0329
@@ -3069,7 +3291,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 0.020814941288803734,
+        "p_value": 0.020814941288803696,
         "p_value_fmt": "0.021",
         "test_name": "Chi-square",
         "significant": true,
@@ -3079,10 +3301,10 @@
           "0": 0,
           "1": 0
         },
-        "p_value_bonferroni": 0.5828,
-        "p_value_bonferroni_fmt": "0.583",
-        "p_value_bh": 0.053,
-        "p_value_bh_fmt": "0.053",
+        "p_value_bonferroni": 0.6453,
+        "p_value_bonferroni_fmt": "0.645",
+        "p_value_bh": 0.0538,
+        "p_value_bh_fmt": "0.054",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.2515
@@ -3109,7 +3331,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 1.5572465383333869e-10,
+        "p_value": 1.5572465383333874e-10,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -3149,7 +3371,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 7.866554900279885e-05,
+        "p_value": 7.866554900279889e-05,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -3159,7 +3381,7 @@
           "0": 0,
           "1": 0
         },
-        "p_value_bonferroni": 0.0022,
+        "p_value_bonferroni": 0.0024,
         "p_value_bonferroni_fmt": "0.002",
         "p_value_bh": 0.0003,
         "p_value_bh_fmt": "<0.001",
@@ -3189,7 +3411,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 1.333961973560888e-05,
+        "p_value": 1.3339619735608869e-05,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -3229,7 +3451,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 7.973137849484572e-08,
+        "p_value": 7.973137849484571e-08,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -3269,7 +3491,7 @@
             "ข้อมูลไม่ครบ": "0 (0.0%)"
           }
         },
-        "p_value": 1.9602194565328743e-05,
+        "p_value": 1.9602194565328746e-05,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,
@@ -3279,13 +3501,124 @@
           "0": 0,
           "1": 0
         },
-        "p_value_bonferroni": 0.0005,
+        "p_value_bonferroni": 0.0006,
         "p_value_bonferroni_fmt": "<0.001",
         "p_value_bh": 0.0001,
         "p_value_bh_fmt": "<0.001",
         "normality_by_group": {},
         "extra_stats": {
           "smd": 0.5143
+        }
+      },
+      {
+        "name": "med_antipsychotic",
+        "label": "Antipsychotic",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "649 (64.9%)",
+          "ใช่": "351 (35.1%)"
+        },
+        "stats_groups": {
+          "Not SIP": {
+            "ไม่": "632 (71.9%)",
+            "ใช่": "247 (28.1%)"
+          },
+          "SIP": {
+            "ไม่": "17 (14.0%)",
+            "ใช่": "104 (86.0%)"
+          }
+        },
+        "p_value": 2.658746667086229e-35,
+        "p_value_fmt": "<0.001",
+        "test_name": "Chi-square",
+        "significant": true,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0
+        },
+        "p_value_bonferroni": 0.0,
+        "p_value_bonferroni_fmt": "<0.001",
+        "p_value_bh": 0.0,
+        "p_value_bh_fmt": "<0.001",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": 1.44
+        }
+      },
+      {
+        "name": "med_benzo",
+        "label": "Benzodiazepine",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "407 (40.7%)",
+          "ใช่": "593 (59.3%)"
+        },
+        "stats_groups": {
+          "Not SIP": {
+            "ไม่": "355 (40.4%)",
+            "ใช่": "524 (59.6%)"
+          },
+          "SIP": {
+            "ไม่": "52 (43.0%)",
+            "ใช่": "69 (57.0%)"
+          }
+        },
+        "p_value": 0.6565496032344691,
+        "p_value_fmt": "0.657",
+        "test_name": "Chi-square",
+        "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.8141,
+        "p_value_bh_fmt": "0.814",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": -0.0525
+        }
+      },
+      {
+        "name": "med_sedation",
+        "label": "Sedation",
+        "var_type": "categorical",
+        "stats_overall": {
+          "ไม่": "451 (45.1%)",
+          "ใช่": "549 (54.9%)"
+        },
+        "stats_groups": {
+          "Not SIP": {
+            "ไม่": "399 (45.4%)",
+            "ใช่": "480 (54.6%)"
+          },
+          "SIP": {
+            "ไม่": "52 (43.0%)",
+            "ใช่": "69 (57.0%)"
+          }
+        },
+        "p_value": 0.6865291836792731,
+        "p_value_fmt": "0.687",
+        "test_name": "Chi-square",
+        "significant": false,
+        "n_missing": 0,
+        "pct_missing": 0.0,
+        "n_missing_by_group": {
+          "0": 0,
+          "1": 0
+        },
+        "p_value_bonferroni": 1.0,
+        "p_value_bonferroni_fmt": "1.000",
+        "p_value_bh": 0.8186,
+        "p_value_bh_fmt": "0.819",
+        "normality_by_group": {},
+        "extra_stats": {
+          "smd": 0.0487
         }
       },
       {
@@ -3312,7 +3645,7 @@
             "กลับบ้าน": "12 (9.9%)"
           }
         },
-        "p_value": 9.498120862224628e-17,
+        "p_value": 9.498120862224625e-17,
         "p_value_fmt": "<0.001",
         "test_name": "Chi-square",
         "significant": true,

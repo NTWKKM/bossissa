@@ -143,13 +143,18 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     coefs = lasso_model.coef_[0]
     selected_idx = np.where(coefs != 0)[0]
     
+    scaler = pipeline.named_steps["scaler"]
+    scales = scaler.scale_
+    
     variables = []
     
     for idx in selected_idx:
+        # Convert coefficient back to per-unit
+        coef_per_unit = float(coefs[idx]) / float(scales[idx])
         variables.append({
             "name": feature_names[idx],
             "coef": round(float(coefs[idx]), 4),
-            "or": round(float(np.exp(coefs[idx])), 3)
+            "or": round(float(np.exp(coef_per_unit)), 3)
         })
         
     # Calculate metrics
