@@ -447,6 +447,7 @@ class TableOneFormatter:
                 "p_value": va.p_value,
                 "p_value_fmt": TableOneFormatter.format_pvalue(va.p_value),
                 "test_name": va.test_name,
+                "or_test_name": va.or_test_name,
                 "significant": va.p_value is not None and va.p_value < 0.05,
                 "n_missing": va.n_missing,
                 "pct_missing": va.pct_missing,

@@ -15,3 +15,6 @@ __pycache__/
 # Data (never commit raw patient data)
 *.csv
 !docs/data/.gitkeep
+
+# Debug files
+depth.txt

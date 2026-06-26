@@ -209,6 +209,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       const testStyle = (r.test_name || "").includes("⚠")
         ? 'style="color:var(--accent-orange);font-size:0.75rem"'
         : 'style="font-size:0.75rem;color:var(--text-muted)"';
+      
+      const orTestHtml = r.or_test_name ? `<br><span style="font-size:0.65rem;opacity:0.7">${r.or_test_name}</span>` : "";
 
       return `
         <tr>
@@ -221,7 +223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${g0Str}</td>
           <td>${g1Str}</td>
           <td ${pClass}>${pValFmt}</td>
-          <td ${testStyle}>${r.test_name || "—"}</td>
+          <td ${testStyle}>${r.test_name || "—"}${orTestHtml}</td>
           <td style="font-size:0.8rem;color:var(--text-secondary)">${effectHtml}</td>
         </tr>
       `;
@@ -401,7 +403,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           y: data.lasso.calibration.prob_true,
           mode: 'markers+lines',
           name: 'Calibration curve',
-          marker: { color: 'var(--accent-blue)', size: 8 }
+          marker: { color: '#63b3ed', size: 8 }
         };
         const tracePerfect = {
           x: [0, 1],
@@ -417,7 +419,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           margin: { l: 50, r: 20, t: 40, b: 50 },
           paper_bgcolor: 'rgba(0,0,0,0)',
           plot_bgcolor: 'rgba(0,0,0,0)',
-          font: { color: 'var(--text-color)' },
+          font: { color: '#8b97b0' },
           showlegend: true,
           legend: { x: 0.05, y: 0.95 }
         };
