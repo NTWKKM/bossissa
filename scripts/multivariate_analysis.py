@@ -307,8 +307,8 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     for i, name in enumerate(all_names):
         coef = float(result.params[i])
         se = float(result.bse[i])
-        ci_lo = float(result.conf_int()[i, 0])
-        ci_hi = float(result.conf_int()[i, 1])
+        ci_lo = float(result.conf_int().iloc[i, 0])
+        ci_hi = float(result.conf_int().iloc[i, 1])
         pval = float(result.pvalues[i])
 
         or_val = round(float(np.exp(coef)), 3)
@@ -328,8 +328,8 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
                     warnings.simplefilter("ignore")
                     res_univ = sm.Logit(y, X_univ).fit(disp=False, maxiter=50)
                 crude_or = round(float(np.exp(res_univ.params[1])), 3)
-                crude_ci_lo = round(float(np.exp(res_univ.conf_int()[1, 0])), 3)
-                crude_ci_hi = round(float(np.exp(res_univ.conf_int()[1, 1])), 3)
+                crude_ci_lo = round(float(np.exp(res_univ.conf_int().iloc[1, 0])), 3)
+                crude_ci_hi = round(float(np.exp(res_univ.conf_int().iloc[1, 1])), 3)
                 crude_pval = round(float(res_univ.pvalues[1]), 4)
             except Exception:
                 pass

@@ -729,7 +729,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     if (!thead || !tbody || !groupData || !groupData.results) return;
 
-    const groupKeys = Object.keys(groupData.group_labels).sort((a,b) => parseInt(a) - parseInt(b));
+    const groupKeys = Object.keys(groupData.group_labels).sort((a, b) => {
+      const numA = parseInt(a);
+      const numB = parseInt(b);
+      if (isNaN(numA) || isNaN(numB)) {
+        return a.localeCompare(b);
+      }
+      return numA - numB;
+    });
     
     let theadHtml = `<tr>
       <th>Variable</th>

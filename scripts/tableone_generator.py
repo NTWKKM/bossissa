@@ -490,16 +490,15 @@ class TableOneFormatter:
 
         def _escape(s: str) -> str:
             """Escape special LaTeX characters."""
-            replacements = [
-                ("\\", r"\textbackslash{}"),
-                ("&", r"\&"), ("%", r"\%"), ("$", r"\$"),
-                ("#", r"\#"), ("_", r"\_"), ("{", r"\{"), ("}", r"\}"),
-                ("~", r"\textasciitilde{}"), ("^", r"\textasciicircum{}"),
-                ("<", r"\textless{}"), (">", r"\textgreater{}"),
-            ]
-            for old, new in replacements:
-                s = s.replace(old, new)
-            return s
+            escape_map = {
+                "\\": r"\textbackslash{}",
+                "&": r"\&", "%": r"\%", "$": r"\$",
+                "#": r"\#", "_": r"\_", "{": r"\{", "}": r"\}",
+                "~": r"\textasciitilde{}", "^": r"\textasciicircum{}",
+                "<": r"\textless{}", ">": r"\textgreater{}",
+            }
+            pattern = re.compile("|".join(re.escape(k) for k in escape_map.keys()))
+            return pattern.sub(lambda m: escape_map[m.group(0)], s)
 
         def _fmt_p(va: VariableAnalysis) -> str:
             if correction == "bonferroni":

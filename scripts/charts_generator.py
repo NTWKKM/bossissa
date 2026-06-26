@@ -379,8 +379,8 @@ def chart_discharge(df: pd.DataFrame) -> dict:
     raw_cats = df[col].dropna().unique().tolist()
     order = ["Admitจิตเวช", "Admitอื่น", "Refer", "กลับบ้าน"]
     all_cats = sorted(raw_cats, key=lambda x: order.index(x) if x in order else 999)
-    total_sip = max(len(sip), 1)
-    total_non = max(len(non), 1)
+    total_sip = max(sip[col].notna().sum(), 1)
+    total_non = max(non[col].notna().sum(), 1)
 
     return {
         "id": "discharge_bar",
