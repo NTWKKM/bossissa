@@ -25,7 +25,8 @@ from tableone_generator import TableOneFormatter, TableOneGenerator
 
 OUTPUT_DIR = Path(__file__).parent.parent / "docs" / "data"
 
-def process_group(generator: TableOneGenerator, df: pd.DataFrame, selected_vars: list[str], stratify_col: str, labels: dict) -> dict:
+def process_group(generator: TableOneGenerator, df_in: pd.DataFrame, selected_vars: list[str], stratify_col: str, labels: dict) -> dict:
+    df = df_in.copy()
     # Only convert to numeric if the column still has numeric values (e.g. sip_diagnosis)
     # For columns already mapped to categorical strings (inclusion_criteria, hx_psychiatric), skip
     if stratify_col in df.columns:

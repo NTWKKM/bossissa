@@ -81,7 +81,7 @@ Effect sizes: SMD (Standardized Mean Difference), OR with 95% CI.
 2. **Firth Logistic Regression** (`firthmodels`) — penalized likelihood with profile likelihood CIs
 3. **Standard MLE** (`statsmodels`) — Wald CIs, pseudo R² for model fit
 
-Both models run on LASSO-selected features and are presented side-by-side for comparison.
+Both models run on all features (post-collinearity removal) and are presented side-by-side for comparison.
 
 ## Prerequisites (Google Sheet)
 

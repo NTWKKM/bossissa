@@ -277,7 +277,7 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     # AUC
     try:
         auc = roc_auc_score(y, y_pred)
-    except:
+    except Exception:
         auc = None
         
     # Hosmer-Lemeshow test (g=10)
@@ -331,7 +331,7 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
                 crude_ci_lo = round(float(np.exp(res_univ.conf_int()[1, 0])), 3)
                 crude_ci_hi = round(float(np.exp(res_univ.conf_int()[1, 1])), 3)
                 crude_pval = round(float(res_univ.pvalues[1]), 4)
-            except:
+            except Exception:
                 pass
 
         var_dict = {
