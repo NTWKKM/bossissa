@@ -52,8 +52,8 @@ Effect sizes: SMD (pooled SD), OR with 95% CI (Haldane-Anscombe for categorical,
 ### Multivariate
 The pipeline evaluates pre-specified clinical covariates across three model configurations based on Events Per Variable (EPV) and clinical objectives:
 
-1. **Standard MLE Logistic Regression** (`statsmodels.Logit`) — Explanatory model. Evaluates all pre-specified covariates. Reports Crude/Adjusted OR, 95% Wald CI, p-value, Hosmer-Lemeshow goodness-of-fit, Nagelkerke R², and AUC. Recommended when EPV ≥ 10.
-2. **Firth's Penalized Likelihood** (`firthmodels`) — Explanatory model. Evaluates all pre-specified covariates. Reports Adjusted OR, 95% profile likelihood CI, and p-value. Recommended when EPV < 10 or perfect separation is detected.
+1. **Standard MLE Logistic Regression** (`statsmodels.Logit`) — Explanatory model. Evaluates all pre-specified covariates. Reports Crude/Adjusted OR, 95% Wald CI, p-value, Variance Inflation Factor (VIF), Hosmer-Lemeshow goodness-of-fit, Nagelkerke R², and Apparent AUC. Recommended when EPV ≥ 10.
+2. **Firth's Penalized Likelihood** (`firthmodels`) — Explanatory model. Evaluates all pre-specified covariates. Reports Adjusted OR, 95% profile likelihood CI (with automatic fallback to Wald CI if convergence fails), and p-value. Recommended when EPV < 10 or perfect separation is detected.
 3. **LASSO Logistic Regression (10-fold CV)** (`sklearn.linear_model.LogisticRegressionCV`) — Predictive model. Automatically selects the optimal regularization parameter ($C$) via cross-validation. Reports cross-validated AUC, Brier Score, and Calibration Curve to rigorously assess predictive performance without overfitting.
 
 ## Offline Decisions
@@ -72,7 +72,7 @@ The pipeline evaluates pre-specified clinical covariates across three model conf
 - **PHI Sanitization**: Pipeline must ensure no PHI/PII in `docs/data/*.json` payloads. Google Sheet must be public ("Anyone with link can view") with PHI removed beforehand.
 
 ### 7.2 Statistical Guarantees
-- **Data Leakage Prevention**: The pipeline strictly enforces cross-validation boundaries. For the LASSO predictive model, data scaling and imputation are encapsulated within an `sklearn.pipeline.Pipeline`, ensuring that inner cross-validation folds do not leak distributional information (mean/variance) into out-of-sample metric evaluations (AUC, Brier score).
+- **Data Leakage Prevention**: The pipeline strictly enforces cross-validation boundaries. For the LASSO predictive model, data scaling and imputation are encapsulated within an `sklearn.pipeline.Pipeline`, ensuring that inner cross-validation folds do not leak distributional information (mean/variance) into out-of-sample metric evaluations (AUC, Brier score). Only continuous features are scaled, preserving binary variable interpretability.
 - **Imputation Strategy**: Missing values are not silently imputed with means. Binary dummy variables are filled with `0` (reference category), and continuous variables are filled with their median before model fitting. This prevents artificial variance reduction.
 - **Unit Consistency**: Explanatory models (Standard MLE, Firth) process unscaled raw variables. This guarantees that reported Adjusted Odds Ratios align directly with the Crude Odds Ratios from Table One (i.e., per 1 raw unit increase), avoiding clinical misinterpretation.
-- **EPV and Multivariate Stability**: The UI enforces strict interpretative recommendations based on Events Per Variable (EPV). If EPV < 10 or perfect separation occurs, Firth's Penalized Likelihood is the recommended explanatory model. Standard MLE is safely interpretable only when EPV ≥ 10. For predictive workflows, LASSO is the recommended first step.
+- **EPV and Multivariate Stability**: The UI enforces strict interpretative recommendations based on Events Per Variable (EPV). If EPV < 10 or perfect separation occurs (explicitly caught and gracefully handled by the pipeline), Firth's Penalized Likelihood is the recommended explanatory model. Standard MLE is safely interpretable only when EPV ≥ 10. For predictive workflows, LASSO is the recommended first step.

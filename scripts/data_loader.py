@@ -200,9 +200,9 @@ def load_data(exclude_sip_99: bool = True) -> pd.DataFrame:
         df[STRATIFY_COL] = pd.to_numeric(df[STRATIFY_COL], errors="coerce")
 
     if exclude_sip_99:
-        # Exclude rows where sip_diagnosis == 99 (incomplete data)
-        df = df[df[STRATIFY_COL] != 99].copy()
-        print(f"  After exclusion (99 removed): {len(df)} rows")
+        # Exclude rows where sip_diagnosis == 99 (incomplete data) or is NaN
+        df = df[(df[STRATIFY_COL] != 99) & (df[STRATIFY_COL].notna())].copy()
+        print(f"  After exclusion (99 and NaN removed): {len(df)} rows")
     else:
         print(f"  Retaining 99 (incomplete data) as requested: {len(df)} rows")
 

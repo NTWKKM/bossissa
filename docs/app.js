@@ -429,12 +429,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Firth meta
-    document.getElementById("multi-firth-meta").textContent = `Method: ${data.firth.method}. ${data.firth.n_iterations} iterations.`;
+    let firthMeta = `Method: ${data.firth.method}. ${data.firth.n_iterations} iterations.`;
+    if (data.firth.ci_method === "wald") {
+        firthMeta += ` <span style="color:var(--accent-orange)">⚠ Profile-likelihood failed, fell back to Wald CIs.</span>`;
+    }
+    document.getElementById("multi-firth-meta").innerHTML = firthMeta;
 
     // Standard meta
     let stdMeta = `Method: ${data.standard.method}. Pseudo R² = ${data.standard.pseudo_r2}. Log-likelihood = ${data.standard.log_likelihood}.`;
     if (data.standard.nagelkerke_r2) stdMeta += ` Nagelkerke R² = ${data.standard.nagelkerke_r2}.`;
-    if (data.standard.auc) stdMeta += ` AUC = ${data.standard.auc}.`;
+    if (data.standard.auc_apparent) stdMeta += ` Apparent AUC = ${data.standard.auc_apparent}.`;
     if (data.standard.hl_p_value !== null) {
       stdMeta += ` HL test p = ${data.standard.hl_p_value}.`;
     } else {
@@ -466,8 +470,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     headHtml += `<th>Adj OR</th>
       <th>95% CI</th>
-      <th>p-value</th>
-    </tr>`;
+      <th>p-value</th>`;
+      
+    if (variables.some(v => v.vif !== undefined)) {
+      headHtml += `<th>VIF</th>`;
+    }
+      
+    headHtml += `</tr>`;
     thead.innerHTML = headHtml;
 
     tbody.innerHTML = variables.map(v => {
@@ -485,6 +494,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           crudeHtml = `<td style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-muted)">—</td>`;
         }
       }
+      
+      let vifHtml = "";
+      if (variables.some(val => val.vif !== undefined)) {
+        if (v.vif !== undefined) {
+          const vifColor = v.vif > 5 ? 'var(--accent-red)' : v.vif > 2.5 ? 'var(--accent-orange)' : 'var(--text-muted)';
+          vifHtml = `<td style="font-family:var(--font-mono);font-size:0.82rem;color:${vifColor}">${v.vif}</td>`;
+        } else {
+          vifHtml = `<td style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-muted)">—</td>`;
+        }
+      }
 
       return `<tr>
         <td class="col-var">${v.name}</td>
@@ -494,6 +513,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <td style="font-family:var(--font-mono);font-weight:600">${orDisplay}</td>
         <td style="font-family:var(--font-mono);font-size:0.82rem">${ciStr}</td>
         <td ${pClass} style="font-family:var(--font-mono)">${pValDisplay}</td>
+        ${vifHtml}
       </tr>`;
     }).join("");
   }
@@ -548,7 +568,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     bullets.push(`<strong>🎯 LASSO Feature Selection (Prediction)</strong> — For building a sparse prediction model (e.g., clinical scoring tool), LASSO (C=${data.lasso.best_C}) shrunk the ${data.n_features_total} candidates down to <strong>${data.lasso.n_features_selected}</strong> independent predictors. LASSO ORs are deliberately shrunk (biased towards 1) to prevent overfitting, so they are not used for causal interpretation.`);
 
     // 2. Agreement
-    bullets.push(`<strong>🤝 Firth vs Standard Agreement</strong> — Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth provides more conservative profile-likelihood CIs and handles small samples or rare events better. Standard MLE provides goodness-of-fit metrics (Nagelkerke R² = ${data.standard.nagelkerke_r2 || '-'}) and discrimination power (AUC = ${data.standard.auc || '-'}) required by medical journals.`);
+    bullets.push(`<strong>🤝 Firth vs Standard Agreement</strong> — Both methods agree on <strong>${agree.length} significant predictor${agree.length !== 1 ? 's' : ''}</strong>: ${agree.join(", ") || "none"}. Firth provides more conservative profile-likelihood CIs and handles small samples or rare events better. Standard MLE provides goodness-of-fit metrics (Nagelkerke R² = ${data.standard.nagelkerke_r2 || '-'}) and discrimination power (Apparent AUC = ${data.standard.auc_apparent || '-'}) required by medical journals.`);
 
     // 3. Significant predictors
     if (firthSig.length > 0) {

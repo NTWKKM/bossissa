@@ -163,49 +163,64 @@ class StatisticalEngine:
         if any(len(g) < 2 for g in clean):
             return None, "N/A (insufficient data)"
 
-        if var_type == "continuous_normal":
-            if len(clean) == 2:
-                _, p = stats.ttest_ind(*clean, equal_var=False)
-                return float(p), "Welch t-test"
+        # Per-group normality check
+        is_normal = True
+        for g in clean:
+            if not VariableClassifier.test_normality_series(g):
+                is_normal = False
+                break
+        
+        effective_type = "continuous_normal" if is_normal else "continuous_non_normal"
+
+        try:
+            if effective_type == "continuous_normal":
+                if len(clean) == 2:
+                    _, p = stats.ttest_ind(*clean, equal_var=False)
+                    return float(p), "Welch t-test"
+                else:
+                    _, p = stats.f_oneway(*clean)
+                    return float(p), "One-way ANOVA"
             else:
-                _, p = stats.f_oneway(*clean)
-                return float(p), "One-way ANOVA"
-        else:
-            if len(clean) == 2:
-                _, p = stats.mannwhitneyu(*clean, alternative="two-sided")
-                return float(p), "Mann-Whitney U"
-            else:
-                _, p = stats.kruskal(*clean)
-                return float(p), "Kruskal-Wallis"
+                if len(clean) == 2:
+                    _, p = stats.mannwhitneyu(*clean, alternative="two-sided")
+                    return float(p), "Mann-Whitney U"
+                else:
+                    _, p = stats.kruskal(*clean)
+                    return float(p), "Kruskal-Wallis"
+        except Exception as e:
+            return None, f"Test failed: {str(e)[:30]}"
 
     @staticmethod
     def pvalue_categorical(contingency: pd.DataFrame) -> tuple[float | None, str]:
         """Chi-square, fallback to Fisher's exact for 2×2 with low expected freq."""
-        if contingency.shape == (2, 2):
-            chi2, p_chi, _, expected = stats.chi2_contingency(contingency)
-            if expected.min() < 5:
-                _, p = stats.fisher_exact(contingency)
-                return float(p), "Fisher's Exact"
+        try:
+            if contingency.shape == (2, 2):
+                chi2, p_chi, _, expected = stats.chi2_contingency(contingency)
+                if expected.min() < 5:
+                    _, p = stats.fisher_exact(contingency)
+                    return float(p), "Fisher's Exact"
+                return float(p_chi), "Chi-square"
+                
+            # r×c table
+            if contingency.shape[0] < 2 or contingency.shape[1] < 2:
+                return None, "N/A (insufficient categories)"
+    
+            chi2_stat, p_chi, dof, expected = stats.chi2_contingency(contingency)
+            min_expected = expected.min()
+    
+            if min_expected < 5:
+                # SciPy has no r×c Fisher's exact.
+                # Use likelihood ratio G-test (more robust than Pearson chi2 with low expected cells).
+                try:
+                    _, p_g, _, _ = stats.chi2_contingency(contingency, lambda_="log-likelihood")
+                    return float(p_g), f"G-test (low expected: min={min_expected:.1f})"
+                except Exception:
+                    # Final fallback: Pearson chi2 with warning flag
+                    return float(p_chi), f"Chi-square⚠ (low expected: min={min_expected:.1f})"
+    
             return float(p_chi), "Chi-square"
-            
-        # r×c table
-        if contingency.shape[0] < 2 or contingency.shape[1] < 2:
-            return None, "N/A (insufficient categories)"
-
-        chi2_stat, p_chi, dof, expected = stats.chi2_contingency(contingency)
-        min_expected = expected.min()
-
-        if min_expected < 5:
-            # SciPy has no r×c Fisher's exact.
-            # Use likelihood ratio G-test (more robust than Pearson chi2 with low expected cells).
-            try:
-                _, p_g, _, _ = stats.chi2_contingency(contingency, lambda_="log-likelihood")
-                return float(p_g), f"G-test (low expected: min={min_expected:.1f})"
-            except Exception:
-                # Final fallback: Pearson chi2 with warning flag
-                return float(p_chi), f"Chi-square⚠ (low expected: min={min_expected:.1f})"
-
-        return float(p_chi), "Chi-square"
+        except Exception as e:
+            return None, f"Test failed: {str(e)[:30]}"
 
     # --- Extra stats: SMD and OR ---
 

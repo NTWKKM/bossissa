@@ -116,12 +116,24 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     inner_cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     outer_cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
 
+    from sklearn.compose import ColumnTransformer
+    is_binary = [set(np.unique(X[:, i])).issubset({0, 1}) for i in range(X.shape[1])]
+    continuous_idx = [i for i, b in enumerate(is_binary) if not b]
+    binary_idx = [i for i, b in enumerate(is_binary) if b]
+
+    preprocessor = ColumnTransformer(
+        transformers=[("num", StandardScaler(), continuous_idx)],
+        remainder="passthrough"
+    )
+    
+    new_feature_names = [feature_names[i] for i in continuous_idx] + [feature_names[i] for i in binary_idx]
+
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         
         # True nested CV — C selected within each outer fold
         pipeline = Pipeline([
-            ("scaler", StandardScaler()),
+            ("preprocessor", preprocessor),
             ("lasso", LogisticRegressionCV(
                 Cs=10, cv=inner_cv,
                 penalty="l1", solver="saga",
@@ -143,8 +155,11 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     coefs = lasso_model.coef_[0]
     selected_idx = np.where(coefs != 0)[0]
     
-    scaler = pipeline.named_steps["scaler"]
-    scales = scaler.scale_
+    scales = []
+    if len(continuous_idx) > 0:
+        scaler = pipeline.named_steps["preprocessor"].named_transformers_["num"]
+        scales.extend(scaler.scale_)
+    scales.extend([1.0] * len(binary_idx))
     
     variables = []
     
@@ -152,7 +167,7 @@ def run_lasso_cv(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
         # Convert coefficient back to per-unit
         coef_per_unit = float(coefs[idx]) / float(scales[idx])
         variables.append({
-            "name": feature_names[idx],
+            "name": new_feature_names[idx],
             "coef": round(float(coefs[idx]), 4),
             "or": round(float(np.exp(coef_per_unit)), 3)
         })
@@ -197,10 +212,12 @@ def run_firth(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict[st
     pvals = fl.pvalues_.tolist()
 
     # Profile likelihood CIs (may be slow — skip if too many features)
+    ci_method = "profile-likelihood"
     try:
         cis = fl.confint_  # profile likelihood
     except AttributeError:
         # Fallback: Wald CIs
+        ci_method = "wald"
         from scipy import stats as sp_stats
         z = sp_stats.norm.ppf(0.975)
         cis = [(c - z * s, c + z * s) for c, s in zip(coefs, ses)]
@@ -224,6 +241,7 @@ def run_firth(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict[st
     return {
         "method": "Firth (Penalized Likelihood — firthmodels)",
         "n_iterations": int(getattr(fl, "n_iter_", 0)),
+        "ci_method": ci_method,
         "variables": variables,
     }
 
@@ -249,6 +267,8 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
         model = sm.Logit(y, X_sm)
         try:
             result = model.fit(disp=False, maxiter=200)
+            if not result.mle_retvals.get('converged', True):
+                raise Exception("MLE failed to converge.")
         except PerfectSeparationError:
             return {
                 "method": "Standard MLE (statsmodels)",
@@ -256,11 +276,28 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
                 "variables": []
             }
         except Exception as e:
+            if "PerfectSeparationError" in str(type(e).__name__):
+                return {
+                    "method": "Standard MLE (statsmodels)",
+                    "error": "Perfect separation detected — model cannot be estimated",
+                    "variables": []
+                }
             return {
                 "method": "Standard MLE (statsmodels)",
                 "error": str(e),
                 "variables": []
             }
+
+    from statsmodels.stats.outliers_influence import variance_inflation_factor
+    vif_data = {}
+    if len(feature_names) > 0:
+        try:
+            for i, name in enumerate(all_names):
+                if name != "Intercept":
+                    vif = variance_inflation_factor(X_sm, i)
+                    vif_data[name] = round(float(vif), 2)
+        except Exception:
+            pass
 
     n = len(y)
     llf = float(result.llf)
@@ -307,8 +344,9 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
     for i, name in enumerate(all_names):
         coef = float(result.params[i])
         se = float(result.bse[i])
-        ci_lo = float(result.conf_int().iloc[i, 0])
-        ci_hi = float(result.conf_int().iloc[i, 1])
+        ci_array = np.asarray(result.conf_int())
+        ci_lo = float(ci_array[i, 0])
+        ci_hi = float(ci_array[i, 1])
         pval = float(result.pvalues[i])
 
         or_val = round(float(np.exp(coef)), 3)
@@ -328,8 +366,9 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
                     warnings.simplefilter("ignore")
                     res_univ = sm.Logit(y, X_univ).fit(disp=False, maxiter=50)
                 crude_or = round(float(np.exp(res_univ.params[1])), 3)
-                crude_ci_lo = round(float(np.exp(res_univ.conf_int().iloc[1, 0])), 3)
-                crude_ci_hi = round(float(np.exp(res_univ.conf_int().iloc[1, 1])), 3)
+                crude_ci_array = np.asarray(res_univ.conf_int())
+                crude_ci_lo = round(float(np.exp(crude_ci_array[1, 0])), 3)
+                crude_ci_hi = round(float(np.exp(crude_ci_array[1, 1])), 3)
                 crude_pval = round(float(res_univ.pvalues[1]), 4)
             except Exception:
                 pass
@@ -344,6 +383,8 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
             "p_value": round(pval, 4),
             "significant": pval < 0.05,
         }
+        if name in vif_data:
+            var_dict["vif"] = vif_data[name]
         
         if crude_or is not None:
             var_dict.update({
@@ -360,7 +401,7 @@ def run_standard(X: np.ndarray, y: np.ndarray, feature_names: list[str]) -> dict
         "log_likelihood": round(llf, 2),
         "pseudo_r2": round(float(result.prsquared), 4),
         "nagelkerke_r2": round(nagelkerke_r2, 4) if nagelkerke_r2 else None,
-        "auc": round(auc, 4) if auc else None,
+        "auc_apparent": round(auc, 4) if auc else None,
         "hl_chi2": round(hl_chi2, 4) if hl_chi2 else None,
         "hl_p_value": round(hl_p, 4) if hl_p else None,
         "n_iterations": int(getattr(result, "iterations", result.mle_retvals.get("iterations", 0))),
